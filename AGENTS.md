@@ -2,7 +2,7 @@
 
 ## Current state
 
-This repository contains a design foundation, not working skill packages. Read `catalog.yaml`, `docs/architecture.md` and `docs/skill-boundaries.md` before proposing implementation. Planned paths in the catalog are intentional; do not claim they exist or are installable.
+This repository contains shared standards, experimental record schemas and local contract tests, not working skill packages. Read `catalog.yaml`, `docs/architecture.md` and `docs/skill-boundaries.md` before proposing implementation. Planned paths in the catalog are intentional; do not claim they exist or are installable.
 
 ## Scope and authority
 
@@ -13,7 +13,7 @@ Ask for explicit authority before contacting sources, uploading restricted mater
 ## Architecture
 
 - Keep editorial decisions and methods independent of vendor tool names or private runtime capabilities.
-- Use `standards/` as the planned source of shared rules; avoid divergent copies across skills.
+- Use `standards/` as the source of shared rules; avoid divergent copies across skills.
 - Keep Iranian context separate from Persian language and personal house style.
 - Put changing rates, laws, source endpoints and thresholds in dated reference records, not permanent instructions.
 - Skill packages must be self-contained after build. Shared resources must be included or required dependencies resolved explicitly.
@@ -33,6 +33,8 @@ Treat executable examples as code requiring tests. Never overwrite raw data. Doc
 Do not automatically execute downloaded scripts, macros or dependency installers. Inspect provenance, permissions and dependencies first. Do not send secrets or confidential inputs to external services.
 
 ## Delivery and verification
+
+Run the relevant local contract tests described in `schemas/README.md` when changing schemas. Read the shared definitions and preserve versioned references. Do not infer editorial truth, publication permission or privacy safety from schema validity.
 
 Report files changed and checks actually run. Distinguish static review, deterministic execution and model-output evaluation. Mark unavailable checks as unrun rather than passed.
 

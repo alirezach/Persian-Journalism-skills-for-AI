@@ -2,12 +2,12 @@ schema_version: '0.1'
 project:
   name: Persian Journalism Skills for AI
   repository: https://github.com/alirezach/Persian-Journalism-skills-for-AI
-  release: '0.1.0-design'
-  lifecycle: design-only
+  release: '0.2.0-contracts'
+  lifecycle: contracts-experimental
   default_language: fa
   license: MIT
   updated: '2026-11-13'
-  note: 'All skill paths are planned. No installable packages or runtime tests are shipped.'
+  note: 'All skills remain planned. Shared standards, experimental record schemas and local contract tests exist; no skill runtime is tested.'
 
 lifecycle_values:
   planned: 'Design recorded; package does not yet exist.'
@@ -27,6 +27,21 @@ shared_layers:
   house_style_profiles: profiles/house-style/
   versioned_knowledge: knowledge/
   schemas: schemas/
+
+contracts:
+  schema_version: '0.1.0'
+  dialect: draft-07
+  status: experimental
+  record_types: [source, claim, dataset, finding, handoff]
+  definitions: schemas/common.schema.json
+  guide: schemas/README.md
+  tests: tests/schemas.test.cjs
+  local_checks_passed: 67
+  local_checks_failed: 0
+  tested_with:
+    node: v22.23.1
+    ajv: '6.15.0'
+  not_tested: [network-install, ci, model-behavior, real-world-evidence]
 
 skills:
   - name: persian-editing

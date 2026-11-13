@@ -4,7 +4,7 @@
 
 A modular, tool-neutral collection for Persian editing, humanities translation, source verification, fact-checking, research synthesis, data analysis, visualization and data journalism, with a separate Iran context layer.
 
-**Status: design foundation only. No installable skills, executable analysis tools, automated tests or distribution packages are shipped yet.** Documentation describes intended behavior, not demonstrated runtime support.
+**Status: experimental contracts foundation.** Six shared standards, five record schemas, a common-definitions schema and local tests are provided. No installable skills, real-data analysis pipeline or distribution packages are shipped. Structural tests do not establish factual accuracy or model behavior.
 
 ## Planned capabilities
 
@@ -43,7 +43,7 @@ The design documents are currently in Persian:
 - [Testing strategy](docs/testing-strategy.md)
 - [Roadmap](docs/roadmap.md)
 
-There are no installation commands yet. Adapters and self-contained packages will be added after implementation and acceptance tests.
+See the [schema guide](schemas/README.md) for local test instructions. All 67 synthetic structural and limited relational tests passed with Node.js v22.23.1 and Ajv 6.15.0. Network dependency installation, CI and model evaluations were not run. There are no skill installation commands yet; adapters and skill packages remain planned.
 
 ## Contributing and licensing
 
