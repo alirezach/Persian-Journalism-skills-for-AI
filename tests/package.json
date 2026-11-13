@@ -1,0 +1,12 @@
+{
+  "name": "pjai-schema-tests",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local Draft-07 contract tests; no network or private input required.",
+  "scripts": {
+    "test": "node schemas.test.cjs"
+  },
+  "devDependencies": {
+    "ajv": "6.15.0"
+  }
+}
