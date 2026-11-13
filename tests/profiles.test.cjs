@@ -38,6 +38,6 @@ test('exactly eight human working templates are supplied',()=>{
 });
 test('publication checklist starts unreviewed',()=>{const text=fs.readFileSync(path.join(root,'templates/publication-checklist.md'),'utf8');assert(text.includes('- [ ]'));assert(!/- \[[xX]\]/.test(text));assert(text.includes('بررسی‌نشده'));});
 test('handoff form does not grant external authority',()=>{const text=fs.readFileSync(path.join(root,'templates/handoff.md'),'utf8');assert(text.includes('not_authorized_by_this_record'));assert(text.includes('مجوز انتشار نیست'));});
-test('package versions match the tooling milestone',()=>{const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));assert.strictEqual(pkg.version,'0.3.0-tooling');assert(pkg.private);assert.strictEqual(pkg.dependencies.ajv,'6.15.0');assert.strictEqual(pkg.devDependencies['js-yaml'],'4.3.2');});
+test('package version matches the catalog release',()=>{const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));assert.strictEqual(pkg.version,load('catalog.yaml').project.release);assert(pkg.private);assert.strictEqual(pkg.dependencies.ajv,'6.15.0');assert.strictEqual(pkg.devDependencies['js-yaml'],'4.3.2');});
 console.log(JSON.stringify({suite:'profiles-and-templates',passed,failed,node:process.version,yaml:require('js-yaml/package.json').version,scope:'Declarative configuration and blank-template checks only; no model behavior or rendering evaluation.'}));
 process.exitCode=failed?1:0;

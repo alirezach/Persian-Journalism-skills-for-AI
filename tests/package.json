@@ -1,9 +1,10 @@
 {
   "name": "pjai-local-tests",
-  "version": "0.3.0-tooling",
+  "version": "0.4.0-editing",
   "private": true,
   "description": "Compatibility test entry point. Install reviewed dependencies at the repository root.",
   "scripts": {
-    "test": "node schemas.test.cjs && node validator.test.cjs && node profiles.test.cjs"
+    "test": "node schemas.test.cjs && node validator.test.cjs && node profiles.test.cjs && node editing-package.test.cjs",
+    "test:packaging": "python3 test_editing_build.py"
   }
 }
