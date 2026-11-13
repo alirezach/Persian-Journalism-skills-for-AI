@@ -7,7 +7,7 @@ project:
   default_language: fa
   license: MIT
   updated: '2026-11-13'
-  note: 'Persian editing 0.1.0 has source instructions and a standalone package builder. Seven skills remain planned; model behavior and host compatibility are not tested.'
+  note: 'Persian editing 0.1.0 has source instructions and a standalone package builder. Seven skills remain planned; model behavior has only a one-run blind pilot and host compatibility is not tested.'
 
 lifecycle_values:
   planned: 'Design recorded; package does not yet exist.'
@@ -108,7 +108,8 @@ skills:
     intended_entry: false
     build_manifest: skills/persian-editing/build-manifest.json
     evaluation: docs/evaluations/persian-editing-0.1.0.md
-    model_behavior: not_run
+    model_behavior: pilot_blind_n1
+    model_evaluation_record: docs/evaluations/persian-editing-0.1.0-blind-pilot-2026-11-13.json
     host_compatibility: untested
     purpose: 'Edit Persian at the requested intervention level while preserving meaning and evidence.'
     collaborators: []
