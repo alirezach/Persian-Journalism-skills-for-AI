@@ -2,7 +2,7 @@
 
 ## Current state
 
-This repository contains shared standards, experimental record schemas and local contract tests, not working skill packages. Read `catalog.yaml`, `docs/architecture.md` and `docs/skill-boundaries.md` before proposing implementation. Planned paths in the catalog are intentional; do not claim they exist or are installable.
+This repository contains shared standards, experimental record schemas, declarative Persian profiles, blank working templates, a local record-validation CLI and deterministic tests, not working skill packages. Read `catalog.yaml`, `docs/architecture.md` and `docs/skill-boundaries.md` before proposing implementation. Planned paths in the catalog are intentional; do not claim they exist or are installable.
 
 ## Scope and authority
 
@@ -34,7 +34,9 @@ Do not automatically execute downloaded scripts, macros or dependency installers
 
 ## Delivery and verification
 
-Run the relevant local contract tests described in `schemas/README.md` when changing schemas. Read the shared definitions and preserve versioned references. Do not infer editorial truth, publication permission or privacy safety from schema validity.
+Run the relevant suites described in `scripts/validation/README.md` when changing schemas, validation code, profiles or templates. Read the shared definitions and preserve versioned references. Do not infer editorial truth, publication permission or privacy safety from a valid record or exit code zero. Warnings and unresolved external references must remain visible.
+
+Profiles are declarative choices, not an automatic editor or merge engine. Keep exact quotations and machine strings protected. Blank templates are not completed checks, and CSV forms are not canonical JSON serialization. Do not publish filled-in project forms or private profiles by default.
 
 Report files changed and checks actually run. Distinguish static review, deterministic execution and model-output evaluation. Mark unavailable checks as unrun rather than passed.
 

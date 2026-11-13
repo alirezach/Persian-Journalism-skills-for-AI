@@ -4,7 +4,7 @@
 
 A modular, tool-neutral collection for Persian editing, humanities translation, source verification, fact-checking, research synthesis, data analysis, visualization and data journalism, with a separate Iran context layer.
 
-**Status: experimental contracts foundation.** Six shared standards, five record schemas, a common-definitions schema and local tests are provided. No installable skills, real-data analysis pipeline or distribution packages are shipped. Structural tests do not establish factual accuracy or model behavior.
+**Status: experimental tooling, `0.3.0-tooling`.** Shared standards and record schemas, two Persian profiles, eight working templates and a record-validation CLI are available. No installable skills, automatic text editor, real-data analysis pipeline or skill distribution packages are shipped. Structural tests do not establish factual accuracy or model behavior.
 
 ## Planned capabilities
 
@@ -43,7 +43,21 @@ The design documents are currently in Persian:
 - [Testing strategy](docs/testing-strategy.md)
 - [Roadmap](docs/roadmap.md)
 
-See the [schema guide](schemas/README.md) for local test instructions. All 67 synthetic structural and limited relational tests passed with Node.js v22.23.1 and Ajv 6.15.0. Network dependency installation, CI and model evaluations were not run. There are no skill installation commands yet; adapters and skill packages remain planned.
+## Available tooling
+
+- [Persian profiles](profiles/README.md): declarative locale and replaceable house-style guidance, not a text-rewriting engine or automatic Iran-context selector.
+- [Eight working templates](templates/README.md): blank human forms, not completed reviews or automatic JSON exports.
+- [Record validator](scripts/validation/README.md): one JSON record or an array; local schema and versioned-reference checks. It does not fetch sources, execute declared calculations or modify the input file.
+
+With Node.js and the reviewed dependencies available, run from the repository root:
+
+```bash
+node scripts/validation/validate-records.cjs --input examples/records/synthetic-bundle.json
+```
+
+The example is entirely synthetic. Exit zero may include warnings and does not grant publication authority. The validator guide covers setup, stdin, unresolved-reference mode, limits and error codes.
+
+All 178 local tests passed: 67 schema/regression, 88 validator/CLI and 23 profile/template checks, with Node.js v22.23.1, Ajv 6.15.0 and js-yaml 4.3.2. Existing libraries were used. Network installation, npm commands, CI, model behavior, visual rendering and comprehensive security audits were not tested. There is no complete transitive-dependency lockfile yet. There are no skill installation commands; adapters and skill packages remain planned.
 
 ## Contributing and licensing
 

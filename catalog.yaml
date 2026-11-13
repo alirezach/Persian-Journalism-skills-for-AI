@@ -2,12 +2,12 @@ schema_version: '0.1'
 project:
   name: Persian Journalism Skills for AI
   repository: https://github.com/alirezach/Persian-Journalism-skills-for-AI
-  release: '0.2.0-contracts'
-  lifecycle: contracts-experimental
+  release: '0.3.0-tooling'
+  lifecycle: tooling-experimental
   default_language: fa
   license: MIT
   updated: '2026-11-13'
-  note: 'All skills remain planned. Shared standards, experimental record schemas and local contract tests exist; no skill runtime is tested.'
+  note: 'All eight skills remain planned. Standards, record schemas, Persian profiles, working templates and a local record-validation CLI exist; no skill runtime is tested.'
 
 lifecycle_values:
   planned: 'Design recorded; package does not yet exist.'
@@ -42,6 +42,59 @@ contracts:
     node: v22.23.1
     ajv: '6.15.0'
   not_tested: [network-install, ci, model-behavior, real-world-evidence]
+
+profiles:
+  status: experimental
+  version: '0.1.0'
+  locale: profiles/locales/fa-IR.yaml
+  house_style: profiles/house-style/default-fa.yaml
+  guide: profiles/README.md
+  automatic_iran_context: false
+  automatic_rewriting: false
+  automatic_merge: false
+
+templates:
+  status: experimental
+  guide: templates/README.md
+  count: 8
+  serialization: human-working-forms-not-canonical-json
+  automatic_csv_conversion: false
+
+record_validator:
+  status: experimental
+  version: '0.3.0-tooling'
+  cli: scripts/validation/validate-records.cjs
+  library: scripts/validation/records.cjs
+  guide: scripts/validation/README.md
+  example: examples/records/synthetic-bundle.json
+  supported_schema_version: '0.1.0'
+  default_references: strict-in-bundle-versioned
+  external_reference_mode: explicit-warning-with-incomplete-relationships
+  network_fetches: false
+  modifies_input: false
+  follows_declared_file_references: false
+  cli_limits:
+    bytes: 2097152
+    depth: 64
+    records: 1000
+    displayed_issues: 100
+  not_verified: [factual-accuracy, analysis-method, publication-authority, privacy-safety, real-inspection, model-behavior]
+
+local_test_run:
+  date: '2026-11-13'
+  passed: 178
+  failed: 0
+  suites:
+    schema_and_regression: 67
+    validator_and_cli: 88
+    profiles_and_templates: 23
+  tested_with:
+    node: v22.23.1
+    ajv: '6.15.0'
+    js_yaml: '4.3.2'
+  dependency_source: preinstalled
+  complete_dependency_lock: false
+  not_run: [network-install, npm-commands, ci, model-behavior, visual-rendering, full-security-audit, cross-platform-matrix]
 
 skills:
   - name: persian-editing
