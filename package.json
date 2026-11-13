@@ -1,0 +1,19 @@
+{
+  "name": "persian-journalism-skills-for-ai",
+  "version": "0.3.0-tooling",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate:records": "node scripts/validation/validate-records.cjs",
+    "test": "node tests/schemas.test.cjs && node tests/validator.test.cjs && node tests/profiles.test.cjs"
+  },
+  "dependencies": {
+    "ajv": "6.15.0"
+  },
+  "devDependencies": {
+    "js-yaml": "4.3.2"
+  }
+}
