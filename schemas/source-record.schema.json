@@ -1,0 +1,386 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:pjai:schemas:source:0.1.0",
+  "title": "PJAI source",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "source"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^src-[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+    },
+    "record_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "privacy": {
+      "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/privacy"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "source_type": {
+      "enum": [
+        "document",
+        "dataset",
+        "webpage",
+        "recording",
+        "interview",
+        "other"
+      ]
+    },
+    "publisher": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "local_ref": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "url",
+        "local_ref"
+      ],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "properties": {
+            "url": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "properties": {
+            "local_ref": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "publication_date": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "original": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "calendar": {
+              "enum": [
+                "gregorian",
+                "solar_hijri",
+                "lunar_hijri",
+                "other",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "original",
+            "calendar"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "access_status": {
+      "enum": [
+        "not_attempted",
+        "available",
+        "restricted",
+        "unavailable",
+        "unknown"
+      ]
+    },
+    "accessed_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "inspection": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "enum": [
+            "none",
+            "snippet",
+            "abstract",
+            "partial",
+            "full"
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "level",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "version": {
+      "type": "object",
+      "properties": {
+        "publisher_version": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "publisher_version",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "lineage": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/source_ref"
+      },
+      "minItems": 0
+    },
+    "independence_group": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "methodology": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "coverage": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "conflicts_of_interest": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "methodology",
+        "coverage",
+        "currency",
+        "conflicts_of_interest"
+      ],
+      "additionalProperties": false
+    },
+    "reuse": {
+      "type": "object",
+      "properties": {
+        "license": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "redistribution": {
+          "enum": [
+            "allowed",
+            "forbidden",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "license",
+        "redistribution"
+      ],
+      "additionalProperties": false
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "record_version",
+    "created_at",
+    "updated_at",
+    "privacy",
+    "title",
+    "source_type",
+    "publisher",
+    "location",
+    "publication_date",
+    "access_status",
+    "accessed_at",
+    "inspection",
+    "version",
+    "lineage",
+    "independence_group",
+    "quality",
+    "reuse",
+    "limitations"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "inspection": {
+            "properties": {
+              "level": {
+                "enum": [
+                  "snippet",
+                  "abstract",
+                  "partial",
+                  "full"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "accessed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  ]
+}
