@@ -1,0 +1,62 @@
+{
+  "manifest_version": "1",
+  "name": "persian-editing",
+  "version": "0.1.0",
+  "files": [
+    {
+      "source": "skills/persian-editing/SKILL.md",
+      "target": "SKILL.md"
+    },
+    {
+      "source": "skills/persian-editing/references/modes-and-output.md",
+      "target": "references/modes-and-output.md"
+    },
+    {
+      "source": "skills/persian-editing/references/orthography-and-mixed-text.md",
+      "target": "references/orthography-and-mixed-text.md"
+    },
+    {
+      "source": "skills/persian-editing/references/genres.md",
+      "target": "references/genres.md"
+    },
+    {
+      "source": "skills/persian-editing/references/examples.md",
+      "target": "references/examples.md"
+    },
+    {
+      "source": "standards/fidelity-and-uncertainty.md",
+      "target": "references/shared/fidelity-and-uncertainty.md"
+    },
+    {
+      "source": "standards/privacy-and-source-protection.md",
+      "target": "references/shared/privacy-and-source-protection.md"
+    },
+    {
+      "source": "standards/permissions-and-publication.md",
+      "target": "references/shared/permissions-and-publication.md"
+    },
+    {
+      "source": "profiles/locales/fa-IR.yaml",
+      "target": "references/profiles/fa-IR.yaml"
+    },
+    {
+      "source": "profiles/house-style/default-fa.yaml",
+      "target": "references/profiles/default-fa.yaml"
+    },
+    {
+      "source": "LICENSE",
+      "target": "LICENSE"
+    },
+    {
+      "source": "THIRD_PARTY_NOTICES.md",
+      "target": "THIRD_PARTY_NOTICES.md"
+    }
+  ],
+  "entry_rewrites": {
+    "../../standards/fidelity-and-uncertainty.md": "references/shared/fidelity-and-uncertainty.md",
+    "../../standards/privacy-and-source-protection.md": "references/shared/privacy-and-source-protection.md",
+    "../../standards/permissions-and-publication.md": "references/shared/permissions-and-publication.md",
+    "../../profiles/locales/fa-IR.yaml": "references/profiles/fa-IR.yaml",
+    "../../profiles/house-style/default-fa.yaml": "references/profiles/default-fa.yaml"
+  }
+}
