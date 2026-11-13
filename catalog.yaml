@@ -2,12 +2,12 @@ schema_version: '0.1'
 project:
   name: Persian Journalism Skills for AI
   repository: https://github.com/alirezach/Persian-Journalism-skills-for-AI
-  release: '0.3.0-tooling'
-  lifecycle: tooling-experimental
+  release: '0.4.0-editing'
+  lifecycle: editing-experimental
   default_language: fa
   license: MIT
   updated: '2026-11-13'
-  note: 'All eight skills remain planned. Standards, record schemas, Persian profiles, working templates and a local record-validation CLI exist; no skill runtime is tested.'
+  note: 'Persian editing 0.1.0 has source instructions and a standalone package builder. Seven skills remain planned; model behavior and host compatibility are not tested.'
 
 lifecycle_values:
   planned: 'Design recorded; package does not yet exist.'
@@ -82,16 +82,19 @@ record_validator:
 
 local_test_run:
   date: '2026-11-13'
-  passed: 178
+  passed: 231
   failed: 0
   suites:
     schema_and_regression: 67
     validator_and_cli: 88
     profiles_and_templates: 23
+    editing_static_contracts: 16
+    editing_packager: 37
   tested_with:
     node: v22.23.1
     ajv: '6.15.0'
     js_yaml: '4.3.2'
+    python: '3.12.13'
   dependency_source: preinstalled
   complete_dependency_lock: false
   not_run: [network-install, npm-commands, ci, model-behavior, visual-rendering, full-security-audit, cross-platform-matrix]
@@ -99,9 +102,14 @@ local_test_run:
 skills:
   - name: persian-editing
     title_fa: ویرایش فارسی
-    status: planned
+    status: experimental
+    version: '0.1.0'
     path: skills/persian-editing/SKILL.md
-    intended_entry: true
+    intended_entry: false
+    build_manifest: skills/persian-editing/build-manifest.json
+    evaluation: docs/evaluations/persian-editing-0.1.0.md
+    model_behavior: not_run
+    host_compatibility: untested
     purpose: 'Edit Persian at the requested intervention level while preserving meaning and evidence.'
     collaborators: []
     context_policy: 'Persian locale; Iran context only when substantive content requires it.'

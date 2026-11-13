@@ -4,9 +4,9 @@
 
 A modular, tool-neutral collection for Persian editing, humanities translation, source verification, fact-checking, research synthesis, data analysis, visualization and data journalism, with a separate Iran context layer.
 
-**Status: experimental tooling, `0.3.0-tooling`.** Shared standards and record schemas, two Persian profiles, eight working templates and a record-validation CLI are available. No installable skills, automatic text editor, real-data analysis pipeline or skill distribution packages are shipped. Structural tests do not establish factual accuracy or model behavior.
+**Status: experimental editing package, `0.4.0-editing`.** [Persian editing 0.1.0](skills/persian-editing/README.md) now has three intervention levels and a standalone ZIP builder. Shared standards, record schemas, Persian profiles, working templates and the record validator remain available. The skill is model guidance, not an automatic text editor. Host installation and model behavior are untested; structural tests establish neither.
 
-## Planned capabilities
+## Capability map
 
 | Skill | Responsibility |
 |---|---|
@@ -19,7 +19,13 @@ A modular, tool-neutral collection for Persian editing, humanities translation, 
 | `data-visualization` | Represent data honestly and accessibly. |
 | `data-journalism` | Coordinate a reporting project without duplicating specialist procedures. |
 
-See [catalog.yaml](catalog.yaml). Every skill is currently `planned`.
+See [catalog.yaml](catalog.yaml). `persian-editing` is `experimental`; the other seven remain `planned`. Build its standalone ZIP with Python 3.10+ (standard library only):
+
+```bash
+python3 scripts/packaging/build-skill.py --output dist/persian-editing-0.1.0.zip
+```
+
+The output must not already exist. See the [packaging guide](scripts/packaging/README.md). Generated shared resources retain source hashes; source files remain canonical. No product-specific installation or adapter has been tested.
 
 ## Design commitments
 
@@ -57,7 +63,7 @@ node scripts/validation/validate-records.cjs --input examples/records/synthetic-
 
 The example is entirely synthetic. Exit zero may include warnings and does not grant publication authority. The validator guide covers setup, stdin, unresolved-reference mode, limits and error codes.
 
-All 178 local tests passed: 67 schema/regression, 88 validator/CLI and 23 profile/template checks, with Node.js v22.23.1, Ajv 6.15.0 and js-yaml 4.3.2. Existing libraries were used. Network installation, npm commands, CI, model behavior, visual rendering and comprehensive security audits were not tested. There is no complete transitive-dependency lockfile yet. There are no skill installation commands; adapters and skill packages remain planned.
+All 231 local tests passed: 67 schema/regression, 88 validator/CLI, 23 profile/template, 16 editing-source/fixture contracts and 37 packager tests. Environment: Node.js v22.23.1, Ajv 6.15.0, js-yaml 4.3.2 and Python 3.12.13; existing dependencies only. Twelve synthetic editing cases are defined but have not been run on models. See the [evaluation record](docs/evaluations/persian-editing-0.1.0.md). Network installation, npm commands, CI, host installation, model behavior, visual rendering and comprehensive security audits remain untested. No complete transitive-dependency lockfile is supplied.
 
 ## Contributing and licensing
 

@@ -2,7 +2,7 @@
 
 ## Current state
 
-This repository contains shared standards, experimental record schemas, declarative Persian profiles, blank working templates, a local record-validation CLI and deterministic tests, not working skill packages. Read `catalog.yaml`, `docs/architecture.md` and `docs/skill-boundaries.md` before proposing implementation. Planned paths in the catalog are intentional; do not claim they exist or are installable.
+This repository contains shared standards, experimental record schemas, declarative Persian profiles, blank working templates, a local record-validation CLI, deterministic tests and the experimental persian-editing skill. Its standalone ZIP builder is in scripts/packaging; model behavior and host compatibility remain unevaluated. Seven other skills remain planned. Read `catalog.yaml`, `docs/architecture.md` and `docs/skill-boundaries.md` before proposing implementation. Planned paths in the catalog are intentional; do not claim they exist or are installable.
 
 ## Scope and authority
 
