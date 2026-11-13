@@ -1,0 +1,43 @@
+profile_version: '0.1.0'
+id: default-fa
+kind: house-style
+locale_profile: fa-IR
+scope: replaceable-editorial-preferences
+register:
+  default: formal-human
+  selection_order:
+    - explicit-deliverable-instruction
+    - deliverable-type
+    - audience-and-destination
+    - house-style
+  infer_from_chat_tone: false
+  one_register_per_deliverable: true
+intervention:
+  default_for_edit_request: conservative-language-edit
+  proofread_preserves_structure: true
+  summarize_only_when_requested: true
+  keep_good_text_unchanged: true
+orthography:
+  ezafe_after_silent_heh: خانهٔ
+  alternatives_are_errors: false
+  formal_verb_forms: written
+  long_dash_preference: prefer-comma-colon-parentheses-outside-exact-quotes
+terminology:
+  consistency_unit: concept-and-context
+  original_on_first_use: when-specialist-audience-or-ambiguity-requires
+citations:
+  preserve_source_locator: true
+  preserve_bibliography_script: true
+  reformat_only_if_requested: true
+voice:
+  preserve_authorial_position: true
+  use_first_person_only_for_real_author_actions: true
+  forced_colloquial_social_posts: false
+  forbidden_word_list: []
+output:
+  revised_text_first: true
+  editorial_notes: separate-only-for-material-issues-or-requested-explanation
+precedence:
+  preferences_cannot_override_fidelity: true
+  preferences_cannot_override_privacy: true
+  preferences_cannot_override_evidence_strength: true

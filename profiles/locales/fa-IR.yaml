@@ -1,0 +1,49 @@
+profile_version: '0.1.0'
+id: fa-IR
+kind: locale
+language: fa
+presentation_region: IR
+automatic_iran_context: false
+scope: presentation-only
+text:
+  direction: rtl
+  language_tag: fa-IR
+  character_normalization: persian-prose-only
+  persian_yeh: ی
+  persian_kaf: ک
+  zwnj: contextual
+  preserve_hamza: true
+  preserve_paragraphs_and_indentation: true
+  preserve_exact:
+    - direct-quotations
+    - non-persian-passages
+    - urls-and-emails
+    - identifiers-and-codes
+    - formulas-and-statistical-notation
+    - software-versions
+    - bibliographic-source-strings
+numbers:
+  display_digits: persian
+  machine_digits: ascii
+  decimal_separator: '٫'
+  grouping_separator: '٬'
+  scientific_precision: preserve
+  rounding: presentation-only-with-explicit-rule
+punctuation:
+  comma: '،'
+  semicolon: '؛'
+  question_mark: '؟'
+  quotation_open: '«'
+  quotation_close: '»'
+bidi:
+  latin_spans: isolate-ltr-where-supported
+  latin_lead: prefer-natural-persian-lead-only-if-meaning-and-quotation-preserved
+  hidden_marks: only-for-demonstrated-display-defect-never-inside-identifiers
+calendar:
+  preserve_source_calendar: true
+  automatic_conversion: false
+  audit_timestamps: iso8601-with-timezone
+money:
+  preserve_source_unit: true
+  automatic_rial_toman_conversion: false
+  automatic_fx_conversion: false
