@@ -1,0 +1,48 @@
+# Secrets and credentials: this is not a security scanner.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+*credentials.local.*
+secrets/
+
+# Private project material and local profiles
+private/
+local/
+runs/
+workspaces/
+profiles/local/
+data/raw/
+data/restricted/
+
+# Python and analysis caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+
+# Build and dependency outputs
+node_modules/
+build/
+dist/
+*.egg-info/
+
+# Local logs and editor/OS artifacts
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*~
+
+# Examples and fixtures must be deliberately reviewed before tracking.

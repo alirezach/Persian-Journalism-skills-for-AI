@@ -1,0 +1,102 @@
+schema_version: '0.1'
+project:
+  name: Persian Journalism Skills for AI
+  repository: https://github.com/alirezach/Persian-Journalism-skills-for-AI
+  release: '0.1.0-design'
+  lifecycle: design-only
+  default_language: fa
+  license: MIT
+  updated: '2026-11-13'
+  note: 'All skill paths are planned. No installable packages or runtime tests are shipped.'
+
+lifecycle_values:
+  planned: 'Design recorded; package does not yet exist.'
+  experimental: 'Package exists; acceptance and compatibility evidence remain incomplete.'
+  tested: 'Named acceptance cases pass in recorded environments; not a universal guarantee.'
+  deprecated: 'Retained for migration; replacement and reason documented.'
+
+capability_levels:
+  - text-guidance
+  - local-files-and-code
+  - connected-services
+
+shared_layers:
+  standards: standards/
+  iran_context: contexts/iran/
+  locale_profiles: profiles/locales/
+  house_style_profiles: profiles/house-style/
+  versioned_knowledge: knowledge/
+  schemas: schemas/
+
+skills:
+  - name: persian-editing
+    title_fa: ویرایش فارسی
+    status: planned
+    path: skills/persian-editing/SKILL.md
+    intended_entry: true
+    purpose: 'Edit Persian at the requested intervention level while preserving meaning and evidence.'
+    collaborators: []
+    context_policy: 'Persian locale; Iran context only when substantive content requires it.'
+  - name: humanities-translation
+    title_fa: ترجمهٔ علوم انسانی
+    status: planned
+    path: skills/humanities-translation/SKILL.md
+    intended_entry: true
+    purpose: 'Translate humanities and policy texts with source fidelity and consistent terminology.'
+    collaborators: [persian-editing]
+    context_policy: 'Choose terminology by field and tradition; do not assume Iran from output language.'
+  - name: source-verification
+    title_fa: اعتبارسنجی منبع
+    status: planned
+    path: skills/source-verification/SKILL.md
+    intended_entry: true
+    purpose: 'Assess identity, provenance, authenticity, context and limits of supplied evidence.'
+    collaborators: []
+    context_policy: 'Activate jurisdiction and geography only when relevant to the item.'
+  - name: fact-checking
+    title_fa: راستی‌آزمایی ادعا
+    status: planned
+    path: skills/fact-checking/SKILL.md
+    intended_entry: true
+    purpose: 'Investigate scoped factual claims and document evidence-based assessments.'
+    collaborators: [source-verification, data-analysis]
+    context_policy: 'Load legal, statistical and geographic context according to claim scope.'
+  - name: research-synthesis
+    title_fa: ترکیب پژوهش
+    status: planned
+    path: skills/research-synthesis/SKILL.md
+    intended_entry: true
+    purpose: 'Answer bounded research questions through transparent selection and comparison of evidence.'
+    collaborators: [source-verification, fact-checking]
+    context_policy: 'Choose sources and context by research question, not language alone.'
+  - name: data-analysis
+    title_fa: تحلیل داده
+    status: planned
+    path: skills/data-analysis/SKILL.md
+    intended_entry: true
+    purpose: 'Validate, transform and analyze data with reproducible calculations and explicit limitations.'
+    collaborators: [source-verification]
+    context_policy: 'Apply dataset-specific units, calendars, populations and survey definitions.'
+  - name: data-visualization
+    title_fa: بصری‌سازی داده
+    status: planned
+    path: skills/data-visualization/SKILL.md
+    intended_entry: true
+    purpose: 'Create honest, accessible charts, maps and tables from identified data and definitions.'
+    collaborators: [data-analysis]
+    context_policy: 'Keep locale rendering distinct from geographic and analytical semantics.'
+  - name: data-journalism
+    title_fa: دیتاژورنالیسم
+    status: planned
+    path: skills/data-journalism/SKILL.md
+    intended_entry: true
+    purpose: 'Coordinate a reporting question through evidence, analysis, reporting and publication review.'
+    collaborators: [source-verification, fact-checking, research-synthesis, data-analysis, data-visualization, persian-editing]
+    context_policy: 'Load only relevant branches; a file inspection does not imply a full story.'
+
+packaging_policy:
+  collaborators_are_mandatory_installs: false
+  standalone_packages_required: true
+  fallback: 'If specialist capability is unavailable, report the limitation and do not claim its checks ran.'
+  generated_distributions: true
+  compatibility_status: untested
