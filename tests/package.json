@@ -1,12 +1,9 @@
 {
-  "name": "pjai-schema-tests",
-  "version": "0.1.0",
+  "name": "pjai-local-tests",
+  "version": "0.3.0-tooling",
   "private": true,
-  "description": "Local Draft-07 contract tests; no network or private input required.",
+  "description": "Compatibility test entry point. Install reviewed dependencies at the repository root.",
   "scripts": {
-    "test": "node schemas.test.cjs"
-  },
-  "devDependencies": {
-    "ajv": "6.15.0"
+    "test": "node schemas.test.cjs && node validator.test.cjs && node profiles.test.cjs"
   }
 }
