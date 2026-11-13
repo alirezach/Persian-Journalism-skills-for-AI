@@ -1,0 +1,598 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:pjai:schemas:common:0.1.0",
+  "title": "PJAI shared definitions",
+  "description": "Shared structural contracts. No network resolution is required; register this schema locally before validating records.",
+  "definitions": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nullable_text": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "classification": {
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        },
+        "contains_personal_data": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "release_status": {
+          "enum": [
+            "not_reviewed",
+            "approved",
+            "withheld"
+          ]
+        },
+        "review_ref": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "classification",
+        "contains_personal_data",
+        "release_status",
+        "review_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "release_status": {
+                "const": "approved"
+              }
+            },
+            "required": [
+              "release_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "classification": {
+                "const": "public"
+              },
+              "review_ref": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Classification applies to this record. Approval requires a real review reference and is not authorization to publish or transfer anything."
+    },
+    "period": {
+      "type": "object",
+      "properties": {
+        "original": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "calendar": {
+          "enum": [
+            "gregorian",
+            "solar_hijri",
+            "lunar_hijri",
+            "other",
+            "unknown"
+          ]
+        },
+        "start": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "original",
+        "calendar",
+        "start",
+        "end"
+      ],
+      "additionalProperties": false,
+      "description": "Preserve the source period and calendar. start/end are optional-in-meaning normalized Gregorian bounds: use null when unknown; do not invent conversions."
+    },
+    "unit": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "count",
+            "money",
+            "rate",
+            "ratio",
+            "index",
+            "duration",
+            "other",
+            "unknown"
+          ]
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency_namespace": {
+          "enum": [
+            "ISO4217",
+            "project",
+            "not_applicable",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "label",
+        "scale",
+        "currency",
+        "currency_namespace"
+      ],
+      "additionalProperties": false,
+      "description": "Unknown units remain explicit in draft records. IRR may use ISO4217; a local toman code must use project, not claim ISO membership. Codes and conversion factors need semantic review.",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "currency": {
+                "const": "IRT"
+              }
+            },
+            "required": [
+              "currency"
+            ]
+          },
+          "then": {
+            "properties": {
+              "currency_namespace": {
+                "const": "project"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "currency_namespace": {
+                "const": "ISO4217"
+              }
+            },
+            "required": [
+              "currency_namespace"
+            ]
+          },
+          "then": {
+            "properties": {
+              "currency": {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$",
+                "not": {
+                  "const": "IRT"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "check": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "status": {
+          "enum": [
+            "not_run",
+            "passed",
+            "failed",
+            "blocked"
+          ]
+        },
+        "performed_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "actor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "name",
+        "status",
+        "performed_at",
+        "actor",
+        "detail"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "not_run"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "performed_at": {
+                "type": "null"
+              },
+              "actor": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "passed",
+                  "failed",
+                  "blocked"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "performed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "actor": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "measure": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "original_value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "missing_reason": {
+          "enum": [
+            "not_missing",
+            "not_collected",
+            "not_applicable",
+            "suppressed",
+            "unavailable",
+            "unknown"
+          ]
+        },
+        "unit": {
+          "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/unit"
+        },
+        "denominator": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "original_value",
+        "missing_reason",
+        "unit",
+        "denominator"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "then": {
+            "properties": {
+              "missing_reason": {
+                "not": {
+                  "const": "not_missing"
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "missing_reason": {
+                "const": "not_missing"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/source_ref"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "relation": {
+          "enum": [
+            "supports",
+            "contradicts",
+            "context"
+          ]
+        },
+        "excerpt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "source",
+        "locator",
+        "relation",
+        "excerpt",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "source_ref": {
+      "type": "object",
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^src-[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+        },
+        "record_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "record_id",
+        "record_version"
+      ],
+      "additionalProperties": false
+    },
+    "claim_ref": {
+      "type": "object",
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^clm-[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+        },
+        "record_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "record_id",
+        "record_version"
+      ],
+      "additionalProperties": false
+    },
+    "dataset_ref": {
+      "type": "object",
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^dset-[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+        },
+        "record_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "record_id",
+        "record_version"
+      ],
+      "additionalProperties": false
+    },
+    "finding_ref": {
+      "type": "object",
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^fnd-[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+        },
+        "record_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "record_id",
+        "record_version"
+      ],
+      "additionalProperties": false
+    },
+    "record_ref": {
+      "type": "object",
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "pattern": "^(src|clm|dset|fnd|hnd)-[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+        },
+        "record_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "record_id",
+        "record_version"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

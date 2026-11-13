@@ -1,0 +1,426 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:pjai:schemas:dataset:0.1.0",
+  "title": "PJAI dataset",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "record_type": {
+      "const": "dataset"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^dset-[A-Za-z0-9][A-Za-z0-9._-]{0,79}$"
+    },
+    "record_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "privacy": {
+      "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/privacy"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/source_ref"
+      },
+      "minItems": 1
+    },
+    "observation_unit": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "population": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "covered": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "target",
+        "covered",
+        "exclusions"
+      ],
+      "additionalProperties": false
+    },
+    "sampling": {
+      "enum": [
+        "census",
+        "probability",
+        "non_probability",
+        "administrative",
+        "unknown"
+      ]
+    },
+    "period": {
+      "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/period"
+    },
+    "geography": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "level": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "boundary_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "level",
+          "code",
+          "boundary_version"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "raw": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "stored_copy",
+            "retrieval_manifest"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "mode",
+        "location",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "stored_copy"
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "properties": {
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "data_type": {
+            "enum": [
+              "string",
+              "integer",
+              "number",
+              "boolean",
+              "date",
+              "identifier"
+            ]
+          },
+          "unit": {
+            "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/unit"
+          },
+          "missing_tokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "data_type",
+          "unit",
+          "missing_tokens"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "weights": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "not_applicable",
+            "provided",
+            "required_missing",
+            "unknown"
+          ]
+        },
+        "variable": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "variable"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "provided"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "variable": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "not_applicable"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "variable": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "quality_checks": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:pjai:schemas:common:0.1.0#/definitions/check"
+      },
+      "minItems": 0
+    },
+    "transformations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "code_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rows_before": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rows_after": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "action",
+          "reason",
+          "code_ref",
+          "rows_before",
+          "rows_after"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "record_version",
+    "created_at",
+    "updated_at",
+    "privacy",
+    "title",
+    "sources",
+    "observation_unit",
+    "population",
+    "sampling",
+    "period",
+    "geography",
+    "raw",
+    "variables",
+    "weights",
+    "quality_checks",
+    "transformations",
+    "limitations",
+    "open_questions"
+  ],
+  "additionalProperties": false
+}
