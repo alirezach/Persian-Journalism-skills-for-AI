@@ -1,0 +1,729 @@
+{
+ "evaluation_id": "persian-editing-0.1.0-blind-pilot-H01-H03-20261113",
+ "status": "pilot_completed",
+ "comparison_type": "exploratory_blind_comparison_isolation_by_instruction_only",
+ "date": "2026-11-13",
+ "timezone": "Asia/Tehran",
+ "skill": {
+  "name": "persian-editing",
+  "version": "0.1.0",
+  "source_commit": "c38c093de0421ebe3b4149312ab7f3a942cd5c11",
+  "package_zip_sha256": "eed20d62cdf1334931967114ec2908a4ba8bdb0d3697d3056db5740b0756de0d",
+  "status_after_evaluation": "experimental"
+ },
+ "dataset": {
+  "author": "GPT 6 Astra",
+  "independent_human_dataset": false,
+  "cases": [
+   "H01",
+   "H02",
+   "H03"
+  ],
+  "synthetic": true
+ },
+ "design": {
+  "conditions": {
+   "baseline": "case prompt only",
+   "with_skill": "full SKILL.md and package resources inline before the identical case prompt"
+  },
+  "repetitions_per_case_condition": 1,
+  "generation_isolation": "one fresh subagent per request; no conversation history; instructed not to use memory, skills, web or other files",
+  "judging": "two model judges per case; random A/B with the order swapped for the second judge; no condition, skill, model or key in packets",
+  "unblinding": "condition key opened after all six verdicts were saved"
+ },
+ "orchestrator": {
+  "model": "Claude Opus 5.5",
+  "blind": false,
+  "reason": "request length revealed condition; outputs seen before unblinding"
+ },
+ "generators_self_reported_model": [
+  "unknown"
+ ],
+ "summary": {
+  "judge_preferences": {
+   "with_skill": 5,
+   "baseline": 1,
+   "equal": 0,
+   "insufficient_evidence": 0
+  },
+  "per_case": {
+   "H01": {
+    "when_baseline_shown_as_A": "with_skill",
+    "when_with_skill_shown_as_A": "with_skill"
+   },
+   "H02": {
+    "when_baseline_shown_as_A": "with_skill",
+    "when_with_skill_shown_as_A": "with_skill"
+   },
+   "H03": {
+    "when_baseline_shown_as_A": "baseline",
+    "when_with_skill_shown_as_A": "with_skill"
+   }
+  },
+  "case_level_reading": {
+   "H01": "with_skill_preferred_both_orders",
+   "H02": "with_skill_preferred_both_orders",
+   "H03": "split_position_A_preferred_both_times_inconclusive"
+  },
+  "rubric_critical_failures_flagged_by_judges": {
+   "baseline": {
+    "H01": 2,
+    "H02": 0,
+    "H03": 0
+   },
+   "with_skill": {
+    "H01": 0,
+    "H02": 0,
+    "H03": 0
+   }
+  },
+  "char_similarity_to_source_autojunk_false": {
+   "H01": {
+    "baseline": 0.936,
+    "with_skill": 0.981
+   },
+   "H02": {
+    "baseline": 0.824,
+    "with_skill": 0.939
+   },
+   "H03": {
+    "baseline": 0.518,
+    "with_skill": 0.788
+   }
+  }
+ },
+ "cases": [
+  {
+   "id": "H01",
+   "mode": "proofread",
+   "prompt": "این متن را فقط نمونه‌خوانی کن.\n\nمتن:\nپژوهشگران مي گویند بررسي ها تا روز پنجشنبه ادامه دارد. نمایندهٔ گروه گفت: «هيچ تصميمي براي تغيير زمان اعلام نكرده ايم.» شمارهٔ گزارش `R-007-B` است. جزئیات در https://example.org/report?id=007&lang=fa آمده است.",
+   "protected": [
+    "«هيچ تصميمي براي تغيير زمان اعلام نكرده ايم.»",
+    "`R-007-B`",
+    "https://example.org/report?id=007&lang=fa"
+   ],
+   "acceptance": [
+    "اصلاح نویسه و نیم‌فاصله فقط در نثر بیرون نقل‌قول و رشته‌های ماشینی.",
+    "حفظ جمله‌بندی و ترتیب در سطح نمونه‌خوانی.",
+    "حفظ نقل‌قول، شماره و URL عیناً."
+   ],
+   "critical_failures": [
+    "تصحیح املای داخل نقل‌قول مستقیم.",
+    "تغییر URL یا شمارهٔ گزارش.",
+    "تغییر خبر به تصمیم قطعی یا زمان تازه."
+   ]
+  },
+  {
+   "id": "H02",
+   "mode": "language-edit",
+   "prompt": "این خبر را از نظر زبانی روان‌تر کن.\n\nمتن:\nدر بررسی انجام‌شده در ۴۰ شعبه، سهم درخواست‌هایی که در همان روز پاسخ گرفتند، از ۶۰ درصد در خرداد به ۶۸ درصد در تیر رسید؛ این تغییر ۸ واحد درصد است. داده‌های پنج شعبه در تیر در دسترس نبود. هنوز معلوم نیست این تغییر ناشی از سامانهٔ تازه بوده باشد.",
+   "protected": [],
+   "acceptance": [
+    "حفظ ۴۰ شعبه، ۶۰ و ۶۸ درصد، خرداد و تیر، و ۸ واحد درصد.",
+    "حفظ نبود دادهٔ پنج شعبه در تیر؛ پنج می‌تواند به شکل ۵ نوشته شود.",
+    "حفظ نامعلوم‌بودن علت؛ سامانهٔ تازه نباید علت اثبات‌شده معرفی شود.",
+    "نثر روان‌تر بدون محاسبه، شاهد یا تعمیم تازه.",
+    "یادداشت جدا دربارهٔ ابهام پوشش دو ماه پذیرفتنی است، اما نباید مخرج ناشناخته حدس زده یا دادهٔ اصلی پنهانی اصلاح شود."
+   ],
+   "critical_failures": [
+    "تبدیل ۸ واحد درصد به رشد ۸ درصدی.",
+    "حذف محدودیت دادهٔ شعبه‌ها.",
+    "نسبت‌دادن قطعی تغییر به سامانه.",
+    "افزودن عدد محاسبه‌شده یا تعداد شعبهٔ مبنای درصد بدون شاهد."
+   ]
+  },
+  {
+   "id": "H03",
+   "mode": "rewrite",
+   "prompt": "این بند پژوهشی را برای خوانندهٔ عمومی بازنویسی کن.\n\nمتن:\nدر میان کارکنانی که به‌طور داوطلبانه در پژوهش شرکت کردند، نظارت دیجیتال با خودمختاری شغلی رابطهٔ منفی داشت. این رابطه در گروه کارکنان دورکار مشاهده نشد. داده‌ها مقطعی‌اند و مشخص نمی‌کنند افزایش نظارت سبب کاهش خودمختاری شده است یا نه. یافته‌ها دربارهٔ کارکنانی که در پژوهش شرکت نکرده‌اند داوری نمی‌کنند.",
+   "protected": [],
+   "acceptance": [
+    "حفظ داوطلبانه‌بودن مشارکت و محدودیت جمعیت مطالعه.",
+    "روشن‌کردن رابطهٔ منفی بدون تبدیل رابطه به علت یا اثر قطعی.",
+    "حفظ مشاهده‌نشدن رابطه در گروه دورکار، نه اثبات نبود هر نوع رابطه.",
+    "حفظ مقطعی‌بودن داده و ناتوانی آن در تعیین علت.",
+    "حفظ محدودیت دربارهٔ کارکنان خارج از مطالعه.",
+    "توضیح وفادارانهٔ خودمختاری شغلی با اختیار در انجام کار پذیرفتنی است؛ مثال یا ابزار نظارت مشخصِ بی‌شاهد پذیرفتنی نیست."
+   ],
+   "critical_failures": [
+    "معرفی نظارت به‌عنوان علت اثبات‌شدهٔ کاهش اختیار.",
+    "حذف استثنای دورکاران یا محدودیت مشارکت داوطلبانه.",
+    "تعمیم نتیجه به همهٔ کارکنان.",
+    "ساختن نوع ابزار نظارت، مصاحبه یا جزئیات پژوهش."
+   ]
+  }
+ ],
+ "runs": {
+  "run-01.txt": {
+   "case_id": "H02",
+   "condition": "baseline",
+   "response": "در بررسی ۴۰ شعبه، سهم درخواست‌هایی که همان روز پاسخ گرفتند، از ۶۰ درصد در خرداد به ۶۸ درصد در تیر افزایش یافت؛ یعنی ۸ واحد درصد رشد. بااین‌حال، داده‌های پنج شعبه در تیر در دسترس نبود و هنوز مشخص نیست این تغییر ناشی از راه‌اندازی سامانهٔ جدید بوده است.",
+   "meta": {
+    "self_reported_model": "unknown",
+    "tools_or_skills_used_besides_these_commands": [],
+    "notes": ""
+   },
+   "general": {
+    "source_chars": 244,
+    "output_chars": 251,
+    "length_ratio": 1.029,
+    "char_similarity_to_source": 0.824,
+    "output_lines": 1
+   },
+   "checks": {
+    "pre_registered": {
+     "all_source_numbers_kept": true,
+     "no_new_numbers": true,
+     "percentage_point_unit_kept": true,
+     "eight_percent_without_unit_flag": false
+    },
+    "post_hoc": {
+     "five_branches_kept": true,
+     "months_kept": true,
+     "missing_data_phrase_kept": true,
+     "uncertainty_phrase_present": true,
+     "causal_marker_flags": [],
+     "separate_editor_note_present": false
+    }
+   }
+  },
+  "run-02.txt": {
+   "case_id": "H03",
+   "condition": "baseline",
+   "response": "در میان کارکنانی که داوطلبانه در این پژوهش شرکت کردند، هرچه نظارت دیجیتال بر کار بیشتر بود، احساس اختیار و آزادی عمل در کار کمتر گزارش شد. بااین‌حال، این ارتباط در میان کارکنان دورکار دیده نشد. چون اطلاعات فقط در یک مقطع زمانی جمع‌آوری شده است، نمی‌توان گفت نظارت بیشتر باعث کاهش اختیار شده؛ ممکن است عوامل دیگری در این میان نقش داشته باشند. همچنین، این نتایج فقط دربارهٔ شرکت‌کنندگان داوطلب است و نمی‌توان آن را به کارکنانی که در پژوهش شرکت نکرده‌اند تعمیم داد.",
+   "meta": {
+    "self_reported_model": "unknown",
+    "tools_or_skills_used_besides_these_commands": [],
+    "notes": ""
+   },
+   "general": {
+    "source_chars": 302,
+    "output_chars": 462,
+    "length_ratio": 1.53,
+    "char_similarity_to_source": 0.518,
+    "output_lines": 1
+   },
+   "checks": {
+    "pre_registered_lexical_flags": {
+     "voluntary_sample": true,
+     "remote_worker_exception": true,
+     "cross_sectional_signal": true,
+     "non_participant_limit": true,
+     "causal_negation_signal": true,
+     "overgeneralization_terms": []
+    },
+    "post_hoc": {
+     "possible_added_detail_terms": [
+      "گزارش",
+      "عوامل دیگر"
+     ],
+     "technical_term_retained": false,
+     "separate_editor_note_present": false
+    }
+   }
+  },
+  "run-03.txt": {
+   "case_id": "H02",
+   "condition": "with_skill",
+   "response": "در بررسی انجام‌شده در ۴۰ شعبه، سهم درخواست‌هایی که همان روز پاسخ گرفتند، از ۶۰ درصد در خرداد به ۶۸ درصد در تیر رسید؛ یعنی ۸ واحد درصد افزایش یافت. داده‌های پنج شعبه در تیر در دسترس نبود. هنوز مشخص نیست که این تغییر ناشی از سامانهٔ تازه بوده باشد.",
+   "meta": {
+    "self_reported_model": "unknown",
+    "tools_or_skills_used_besides_these_commands": [],
+    "notes": ""
+   },
+   "general": {
+    "source_chars": 244,
+    "output_chars": 246,
+    "length_ratio": 1.008,
+    "char_similarity_to_source": 0.939,
+    "output_lines": 1
+   },
+   "checks": {
+    "pre_registered": {
+     "all_source_numbers_kept": true,
+     "no_new_numbers": true,
+     "percentage_point_unit_kept": true,
+     "eight_percent_without_unit_flag": false
+    },
+    "post_hoc": {
+     "five_branches_kept": true,
+     "months_kept": true,
+     "missing_data_phrase_kept": true,
+     "uncertainty_phrase_present": true,
+     "causal_marker_flags": [],
+     "separate_editor_note_present": false
+    }
+   }
+  },
+  "run-04.txt": {
+   "case_id": "H03",
+   "condition": "with_skill",
+   "response": "در میان کارکنانی که داوطلبانه در این پژوهش شرکت کردند، هرچه نظارت دیجیتال بیشتر بود، خودمختاری شغلی کمتر بود. این رابطه در میان کارکنان دورکار دیده نشد. چون داده‌ها در یک مقطع زمانی جمع‌آوری شده‌اند، نمی‌توان گفت افزایش نظارت باعث کاهش خودمختاری شده است. همچنین، این یافته‌ها دربارهٔ کارکنانی که در پژوهش شرکت نکرده‌اند، نتیجه‌ای ارائه نمی‌کنند.",
+   "meta": {
+    "self_reported_model": "unknown",
+    "tools_or_skills_used_besides_these_commands": [],
+    "notes": ""
+   },
+   "general": {
+    "source_chars": 302,
+    "output_chars": 345,
+    "length_ratio": 1.142,
+    "char_similarity_to_source": 0.788,
+    "output_lines": 1
+   },
+   "checks": {
+    "pre_registered_lexical_flags": {
+     "voluntary_sample": true,
+     "remote_worker_exception": true,
+     "cross_sectional_signal": true,
+     "non_participant_limit": true,
+     "causal_negation_signal": true,
+     "overgeneralization_terms": []
+    },
+    "post_hoc": {
+     "possible_added_detail_terms": [],
+     "technical_term_retained": true,
+     "separate_editor_note_present": false
+    }
+   }
+  },
+  "run-05.txt": {
+   "case_id": "H01",
+   "condition": "baseline",
+   "response": "پژوهشگران می‌گویند بررسی‌ها تا روز پنج‌شنبه ادامه دارد. نمایندهٔ گروه گفت: «هیچ تصمیمی برای تغییر زمان اعلام نکرده‌ایم.» شمارهٔ گزارش `R-007-B` است. جزئیات در https://example.org/report?id=007&lang=fa آمده است.",
+   "meta": {
+    "self_reported_model": "unknown",
+    "tools_or_skills_used_besides_these_commands": [],
+    "notes": ""
+   },
+   "general": {
+    "source_chars": 209,
+    "output_chars": 210,
+    "length_ratio": 1.005,
+    "char_similarity_to_source": 0.936,
+    "output_lines": 1
+   },
+   "checks": {
+    "pre_registered": {
+     "quote_exact": false,
+     "report_id_exact": true,
+     "url_exact": true,
+     "migoyand_fixed_in_prose": true,
+     "barresiha_fixed_in_prose": true,
+     "sentence_order_unchanged": true
+    },
+    "post_hoc": {
+     "arabic_yeh_kaf_outside_protected_spans": 0,
+     "thursday_form": "پنج‌شنبه",
+     "separate_editor_note_present": false
+    }
+   }
+  },
+  "run-06.txt": {
+   "case_id": "H01",
+   "condition": "with_skill",
+   "response": "پژوهشگران می‌گویند بررسی‌ها تا روز پنجشنبه ادامه دارد. نمایندهٔ گروه گفت: «هيچ تصميمي براي تغيير زمان اعلام نكرده ايم.» شمارهٔ گزارش `R-007-B` است. جزئیات در https://example.org/report?id=007&lang=fa آمده است.",
+   "meta": {
+    "self_reported_model": "unknown",
+    "tools_or_skills_used_besides_these_commands": [],
+    "notes": ""
+   },
+   "general": {
+    "source_chars": 209,
+    "output_chars": 209,
+    "length_ratio": 1.0,
+    "char_similarity_to_source": 0.981,
+    "output_lines": 1
+   },
+   "checks": {
+    "pre_registered": {
+     "quote_exact": true,
+     "report_id_exact": true,
+     "url_exact": true,
+     "migoyand_fixed_in_prose": true,
+     "barresiha_fixed_in_prose": true,
+     "sentence_order_unchanged": true
+    },
+    "post_hoc": {
+     "arabic_yeh_kaf_outside_protected_spans": 0,
+     "thursday_form": "پنجشنبه",
+     "separate_editor_note_present": false
+    }
+   }
+  }
+ },
+ "verdicts": {
+  "a3fa307d32f0": {
+   "case_id": "H01",
+   "order": {
+    "A": "with_skill",
+    "B": "baseline"
+   },
+   "preference_slot": "A",
+   "preferred_condition": "with_skill",
+   "confidence": "high",
+   "reason": "A اصلاح‌های مجاز را فقط در نثر بیرون نقل‌قول انجام داده و نقل‌قول، شماره و URL را عیناً حفظ کرده است؛ B نقل‌قول مستقیم را تغییر داده است.",
+   "by_condition": {
+    "with_skill": {
+     "slot": "A",
+     "run": "run-06.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [],
+     "critical_failures_matched": [],
+     "issues": []
+    },
+    "baseline": {
+     "slot": "B",
+     "run": "run-05.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "critical_issue",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "critical_issue",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [
+      "quotes_identifiers",
+      "intervention_level"
+     ],
+     "minor_ratings": [],
+     "critical_failures_matched": [
+      "تصحیح املای داخل نقل‌قول مستقیم."
+     ],
+     "issues": [
+      {
+       "dimension": "quotes_identifiers",
+       "severity": "critical",
+       "source_evidence": "«هيچ تصميمي براي تغيير زمان اعلام نكرده ايم.»",
+       "output_evidence": "«هیچ تصمیمی برای تغییر زمان اعلام نکرده‌ایم.»",
+       "explanation": "نقل‌قول مستقیم باید عیناً حفظ می‌شد، اما نویسه‌ها و فاصله‌ها درون آن اصلاح شده‌اند."
+      },
+      {
+       "dimension": "intervention_level",
+       "severity": "critical",
+       "source_evidence": "«هيچ تصميمي براي تغيير زمان اعلام نكرده ايم.»",
+       "output_evidence": "«هیچ تصمیمی برای تغییر زمان اعلام نکرده‌ایم.»",
+       "explanation": "سطح خواسته‌شده نمونه‌خوانی بود و تغییر املایی درون نقل‌قول مستقیم از محدودهٔ مجاز بیرون است."
+      }
+     ]
+    }
+   }
+  },
+  "50e49dab0a5f": {
+   "case_id": "H01",
+   "order": {
+    "A": "baseline",
+    "B": "with_skill"
+   },
+   "preference_slot": "B",
+   "preferred_condition": "with_skill",
+   "confidence": "high",
+   "reason": "B اصلاح‌های مجاز بیرون نقل‌قول را انجام داده و نقل‌قول، شمارهٔ گزارش و URL را عیناً حفظ کرده است؛ A نقل‌قول مستقیم را تغییر داده است.",
+   "by_condition": {
+    "baseline": {
+     "slot": "A",
+     "run": "run-05.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "critical_issue",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "critical_issue",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [
+      "quotes_identifiers",
+      "intervention_level"
+     ],
+     "minor_ratings": [],
+     "critical_failures_matched": [
+      "تصحیح املای داخل نقل‌قول مستقیم"
+     ],
+     "issues": [
+      {
+       "dimension": "quotes_identifiers",
+       "severity": "critical",
+       "source_evidence": "«هيچ تصميمي براي تغيير زمان اعلام نكرده ايم.»",
+       "output_evidence": "«هیچ تصمیمی برای تغییر زمان اعلام نکرده‌ایم.»",
+       "explanation": "نقل‌قول مستقیم باید عیناً حفظ می‌شد، اما نویسه‌ها و فاصلهٔ آن اصلاح شده‌اند."
+      },
+      {
+       "dimension": "intervention_level",
+       "severity": "critical",
+       "source_evidence": "«هيچ تصميمي براي تغيير زمان اعلام نكرده ايم.»",
+       "output_evidence": "«هیچ تصمیمی برای تغییر زمان اعلام نکرده‌ایم.»",
+       "explanation": "در سطح نمونه‌خوانی، اصلاح داخل نقل‌قول مستقیم خارج از میزان مداخلهٔ مجاز است."
+      }
+     ]
+    },
+    "with_skill": {
+     "slot": "B",
+     "run": "run-06.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [],
+     "critical_failures_matched": [],
+     "issues": []
+    }
+   }
+  },
+  "6abed8394247": {
+   "case_id": "H02",
+   "order": {
+    "A": "baseline",
+    "B": "with_skill"
+   },
+   "preference_slot": "B",
+   "preferred_condition": "with_skill",
+   "confidence": "high",
+   "reason": "B همهٔ معنا، عدد، واحد، محدودیت داده و نامعلوم‌بودن انتساب را بدون افزودن مفهوم تازه حفظ می‌کند؛ A با افزودن «راه‌اندازی» علت را اندکی تغییر می‌دهد.",
+   "by_condition": {
+    "baseline": {
+     "slot": "A",
+     "run": "run-01.txt",
+     "ratings": {
+      "meaning": "minor_issue",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [
+      "meaning"
+     ],
+     "critical_failures_matched": [],
+     "issues": [
+      {
+       "dimension": "meaning",
+       "severity": "minor",
+       "source_evidence": "این تغییر ناشی از سامانهٔ تازه بوده باشد",
+       "output_evidence": "این تغییر ناشی از راه‌اندازی سامانهٔ جدید بوده است",
+       "explanation": "افزودن «راه‌اندازی» علت را از خودِ سامانهٔ تازه به راه‌اندازی آن تغییر می‌دهد و مفهوم تازه‌ای وارد می‌کند؛ هرچند نامعلوم‌بودن علت همچنان حفظ شده است."
+      }
+     ]
+    },
+    "with_skill": {
+     "slot": "B",
+     "run": "run-03.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [],
+     "critical_failures_matched": [],
+     "issues": []
+    }
+   }
+  },
+  "f741e645889c": {
+   "case_id": "H02",
+   "order": {
+    "A": "with_skill",
+    "B": "baseline"
+   },
+   "preference_slot": "A",
+   "preferred_condition": "with_skill",
+   "confidence": "high",
+   "reason": "خروجی A همهٔ معنا، اعداد، محدودیت داده و عدم‌قطعیت متن اصلی را بدون افزودن جزئیات حفظ می‌کند؛ خروجی B با افزودن «راه‌اندازی» علت را بی‌دلیل مشخص‌تر می‌کند.",
+   "by_condition": {
+    "with_skill": {
+     "slot": "A",
+     "run": "run-03.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [],
+     "critical_failures_matched": [],
+     "issues": []
+    },
+    "baseline": {
+     "slot": "B",
+     "run": "run-01.txt",
+     "ratings": {
+      "meaning": "minor_issue",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [
+      "meaning"
+     ],
+     "critical_failures_matched": [],
+     "issues": [
+      {
+       "dimension": "meaning",
+       "severity": "minor",
+       "source_evidence": "این تغییر ناشی از سامانهٔ تازه بوده باشد.",
+       "output_evidence": "این تغییر ناشی از راه‌اندازی سامانهٔ جدید بوده است.",
+       "explanation": "افزودن «راه‌اندازی» علت را مشخص‌تر از متن اصلی می‌کند؛ متن اصلی فقط از خودِ سامانهٔ تازه نام می‌برد و دربارهٔ علت قطعیتی نمی‌دهد."
+      }
+     ]
+    }
+   }
+  },
+  "732e35901a9b": {
+   "case_id": "H03",
+   "order": {
+    "A": "baseline",
+    "B": "with_skill"
+   },
+   "preference_slot": "A",
+   "preferred_condition": "baseline",
+   "confidence": "high",
+   "reason": "هر دو خروجی همهٔ محدودیت‌ها و معنای متن اصلی را حفظ می‌کنند؛ A با توضیح «احساس اختیار و آزادی عمل» و بیان روشن‌تر محدودیت علیت و تعمیم‌پذیری، برای خوانندهٔ عمومی روان‌تر و قابل‌فهم‌تر است.",
+   "by_condition": {
+    "baseline": {
+     "slot": "A",
+     "run": "run-02.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [],
+     "critical_failures_matched": [],
+     "issues": []
+    },
+    "with_skill": {
+     "slot": "B",
+     "run": "run-04.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [],
+     "critical_failures_matched": [],
+     "issues": []
+    }
+   }
+  },
+  "d0f425792a71": {
+   "case_id": "H03",
+   "order": {
+    "A": "with_skill",
+    "B": "baseline"
+   },
+   "preference_slot": "A",
+   "preferred_condition": "with_skill",
+   "confidence": "high",
+   "reason": "هر دو خروجی اجزای اصلی، محدودیت علیت، استثنای کارکنان دورکار و محدودیت جمعیت مطالعه را حفظ می‌کنند؛ A بدون افزودن القای روش سنجش، معنای اصلی را دقیق‌تر منتقل می‌کند.",
+   "by_condition": {
+    "with_skill": {
+     "slot": "A",
+     "run": "run-04.txt",
+     "ratings": {
+      "meaning": "pass",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [],
+     "critical_failures_matched": [],
+     "issues": []
+    },
+    "baseline": {
+     "slot": "B",
+     "run": "run-02.txt",
+     "ratings": {
+      "meaning": "minor_issue",
+      "numbers_units_time": "pass",
+      "quotes_identifiers": "pass",
+      "negation_certainty_attribution": "pass",
+      "coverage": "pass",
+      "intervention_level": "pass",
+      "fluency_register": "pass"
+     },
+     "critical_ratings": [],
+     "minor_ratings": [
+      "meaning"
+     ],
+     "critical_failures_matched": [],
+     "issues": [
+      {
+       "dimension": "meaning",
+       "severity": "minor",
+       "source_evidence": "در میان کارکنانی که به‌طور داوطلبانه در پژوهش شرکت کردند، نظارت دیجیتال با خودمختاری شغلی رابطهٔ منفی داشت.",
+       "output_evidence": "در میان کارکنانی که داوطلبانه در این پژوهش شرکت کردند، هرچه نظارت دیجیتال بر کار بیشتر بود، احساس اختیار و آزادی عمل در کار کمتر گزارش شد.",
+       "explanation": "عبارت «کمتر گزارش شد» می‌تواند به‌طور افزوده القا کند که خودمختاری به‌صورت خودگزارشی سنجیده شده است، درحالی‌که متن اصلی فقط از رابطه با خودمختاری می‌گوید؛ «کمتر بود» وفادارتر است."
+      }
+     ]
+    }
+   }
+  }
+ },
+ "check_revisions": [
+  "H02 check for 8 percent without the percentage-point unit first matched the 8 inside 68 percent; fixed with a digit lookbehind before reporting",
+  "character similarity computed with difflib autojunk disabled; the first computation used the default heuristic"
+ ],
+ "orchestrator_observations_not_blind": [
+  "H01 with_skill preserved the quote but did not add the separate note that SKILL.md asks for about suspected errors in protected spans",
+  "H01 critical failure for baseline reflects the project quote policy; many newsrooms normalize Arabic yeh and kaf in transcribed quotes",
+  "H03 with_skill kept the technical term without a faithful gloss for general readers",
+  "H03 baseline added a sentence about other possible factors that is not in the source; no judge recorded it",
+  "H02 neither output noted that the two monthly figures may not cover the same set of branches"
+ ],
+ "limitations": [
+  "pilot with one run per case and condition; no statistical claim",
+  "subagent model and settings not confirmed; subagent system instructions not visible",
+  "skill resources were inlined; automatic activation, staged loading and host compatibility were not tested",
+  "model judges, not humans; label blinding only; position bias observed in H03",
+  "cases and rubric were written by the same model that wrote the skill",
+  "no human review"
+ ],
+ "github_changed": true
+}
