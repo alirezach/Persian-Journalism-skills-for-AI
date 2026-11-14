@@ -2,12 +2,12 @@ schema_version: '0.1'
 project:
   name: Persian Journalism Skills for AI
   repository: https://github.com/alirezach/Persian-Journalism-skills-for-AI
-  release: '0.4.0-editing'
+  release: '0.4.3-editing'
   lifecycle: editing-experimental
   default_language: fa
   license: MIT
-  updated: '2026-11-13'
-  note: 'Persian editing 0.1.0 has source instructions and a standalone package builder. Seven skills remain planned; model behavior has only a one-run blind pilot and host compatibility is not tested.'
+  updated: '2026-11-14'
+  note: 'Experimental 0.1.3: frozen scoped helper and guidance. Native acceptance stopped incomplete by project-owner decision; limited private host checks and one metadata-eligible Astra run do not establish a valid baseline, general compatibility or editorial superiority. Earlier evidence remains separate. Seven skills remain planned.'
 
 lifecycle_values:
   planned: 'Design recorded; package does not yet exist.'
@@ -45,7 +45,9 @@ contracts:
 
 profiles:
   status: experimental
-  version: '0.1.0'
+  version: '0.1.3'
+  locale_version: '0.1.0'
+  house_style_version: '0.1.3'
   locale: profiles/locales/fa-IR.yaml
   house_style: profiles/house-style/default-fa.yaml
   guide: profiles/README.md
@@ -81,15 +83,18 @@ record_validator:
   not_verified: [factual-accuracy, analysis-method, publication-authority, privacy-safety, real-inspection, model-behavior]
 
 local_test_run:
-  date: '2026-11-13'
-  passed: 231
+  date: '2026-11-14'
+  status: passed-local-software-checks
+  passed: 338
   failed: 0
   suites:
     schema_and_regression: 67
     validator_and_cli: 88
-    profiles_and_templates: 23
-    editing_static_contracts: 16
-    editing_packager: 37
+    profiles_and_templates: 32
+    editing_static_contracts: 20
+    editorial_source_contracts: 16
+    editing_packager: 41
+    transcription_normalization: 74
   tested_with:
     node: v22.23.1
     ajv: '6.15.0'
@@ -103,14 +108,21 @@ skills:
   - name: persian-editing
     title_fa: ویرایش فارسی
     status: experimental
-    version: '0.1.0'
+    version: '0.1.3'
     path: skills/persian-editing/SKILL.md
     intended_entry: false
     build_manifest: skills/persian-editing/build-manifest.json
-    evaluation: docs/evaluations/persian-editing-0.1.0.md
-    model_behavior: pilot_blind_n1
-    model_evaluation_record: docs/evaluations/persian-editing-0.1.0-blind-pilot-2026-11-13.json
-    host_compatibility: untested
+    evaluation: docs/evaluations/persian-editing-0.1.3.md
+    model_behavior: stopped_incomplete
+    model_evaluation_record: docs/evaluations/persian-editing-0.1.3-release-status.md
+    evaluation_limits: [no-valid-native-baseline, no-human-review, caller-classified-spans, partial-private-host-evidence, self-reported-model-and-tool-use, automatic-context, no-new-test-execution-for-release-status-edits]
+    previous_model_evaluation_record: docs/evaluations/persian-editing-0.1.2-astra-opus-2026-11-14.json
+    optional_helper: scripts/editing/normalize_transcribed_fa.py
+    helper_scope: caller-authorized-and-reviewed-persian-transcription-spans
+    helper_fixture: tests/fixtures/transcription-normalization-0.1.3.json
+    editorial_principles: standards/persian-editorial-principles.md
+    editorial_fixture: tests/fixtures/editorial-cases-0.1.2.json
+    host_compatibility: partial_private_check_not_certified
     purpose: 'Edit Persian at the requested intervention level while preserving meaning and evidence.'
     collaborators: []
     context_policy: 'Persian locale; Iran context only when substantive content requires it.'
@@ -176,4 +188,4 @@ packaging_policy:
   standalone_packages_required: true
   fallback: 'If specialist capability is unavailable, report the limitation and do not claim its checks ran.'
   generated_distributions: true
-  compatibility_status: untested
+  compatibility_status: partial_private_check_not_certified
