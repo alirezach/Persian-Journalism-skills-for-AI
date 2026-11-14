@@ -14,6 +14,8 @@ import zipfile
 CONFIG = 'skills/persian-editing/build-manifest.json'
 MAX_FILE = 1024 * 1024
 MAX_TOTAL = 4 * MAX_FILE
+HELPER = 'scripts/editing/normalize_transcribed_fa.py'
+HELPER_TARGET = 'scripts/normalize_transcribed_fa.py'
 
 
 def digest(data):
@@ -85,10 +87,14 @@ def prepare(root):
         relative(source); relative(target)
         if target == 'PACKAGE-MANIFEST.json' or target.casefold() in folded or source in sources:
             raise ValueError('Duplicate or reserved path')
-        if not (source.startswith(('skills/persian-editing/','standards/','profiles/locales/','profiles/house-style/')) or source in ('LICENSE','THIRD_PARTY_NOTICES.md')):
+        if not (source.startswith(('skills/persian-editing/','standards/','profiles/locales/','profiles/house-style/')) or source in ('LICENSE','THIRD_PARTY_NOTICES.md',HELPER)):
             raise ValueError('Source outside supported public areas')
-        if not (source.endswith(('.md','.yaml')) or source == 'LICENSE'):
+        if not (source.endswith(('.md','.yaml')) or source in ('LICENSE',HELPER)):
             raise ValueError('Unsupported source type')
+        if source == HELPER and target != HELPER_TARGET:
+            raise ValueError('Unexpected helper destination')
+        if target == HELPER_TARGET and source != HELPER:
+            raise ValueError('Unexpected helper source')
         data = read_source(root,source)
         total += len(data)
         if total > MAX_TOTAL:
