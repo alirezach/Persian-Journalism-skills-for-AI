@@ -4,7 +4,7 @@
 
 A modular, tool-neutral collection for Persian editing, humanities translation, source verification, fact-checking, research synthesis, data analysis, visualization and data journalism, with a separate Iran context layer.
 
-**Status: experimental editing package, `0.4.0-editing`.** [Persian editing 0.1.0](skills/persian-editing/README.md) now has three intervention levels and a standalone ZIP builder. Shared standards, record schemas, Persian profiles, working templates and the record validator remain available. The skill is model guidance, not an automatic text editor. Host installation and model behavior are untested; structural tests establish neither.
+**Status: experimental, `0.4.3-editing`.** [Persian editing 0.1.3](skills/persian-editing/README.md) includes an optional two-character mapping helper and exact candidate auditing. Permission, language and span classification remain caller responsibilities. Acceptance is incomplete and further testing has been stopped by the project owner. See the [release-status record](docs/evaluations/persian-editing-0.1.3-release-status.md); this is not a validated production release.
 
 ## Capability map
 
@@ -22,10 +22,10 @@ A modular, tool-neutral collection for Persian editing, humanities translation, 
 See [catalog.yaml](catalog.yaml). `persian-editing` is `experimental`; the other seven remain `planned`. Build its standalone ZIP with Python 3.10+ (standard library only):
 
 ```bash
-python3 scripts/packaging/build-skill.py --output dist/persian-editing-0.1.0.zip
+python3 scripts/packaging/build-skill.py --output dist/persian-editing-0.1.3.zip
 ```
 
-The output must not already exist. See the [packaging guide](scripts/packaging/README.md). Generated shared resources retain source hashes; source files remain canonical. No product-specific installation or adapter has been tested.
+The output must not already exist. See the [packaging guide](scripts/packaging/README.md). Generated shared resources retain source hashes; source files remain canonical. A separate private ClickUp adapter received limited installation/readback checks. It is not shipped here and does not establish general host compatibility.
 
 ## Design commitments
 
@@ -63,7 +63,11 @@ node scripts/validation/validate-records.cjs --input examples/records/synthetic-
 
 The example is entirely synthetic. Exit zero may include warnings and does not grant publication authority. The validator guide covers setup, stdin, unresolved-reference mode, limits and error codes.
 
-All 231 local tests passed: 67 schema/regression, 88 validator/CLI, 23 profile/template, 16 editing-source/fixture contracts and 37 packager tests. Environment: Node.js v22.23.1, Ajv 6.15.0, js-yaml 4.3.2 and Python 3.12.13; existing dependencies only. Twelve synthetic editing cases are defined but have not been run on models. See the [evaluation record](docs/evaluations/persian-editing-0.1.0.md). Network installation, npm commands, CI, host installation, model behavior, visual rendering and comprehensive security audits remain untested. No complete transitive-dependency lockfile is supplied.
+The frozen pre-release candidate had 338 recorded passing local technical checks; no new suite was run for these release-status edits: 67 schema/regression, 88 validator/CLI, 32 profile/template, 20 editing-source/fixture checks, 16 editorial-source contracts, 41 packager tests and 74 transcription-helper tests. See the [0.1.3 report](docs/evaluations/persian-editing-0.1.3.md). The two previously failed quotation outputs remain rejected by the new audit; historical responses were not repaired or replaced.
+
+The [supplementary 0.1.2 record](docs/evaluations/persian-editing-0.1.2-astra-opus-2026-11-14.md) distinguishes earlier unknown-model comparisons from the later open-book Astra retest and returned Opus review. Eight responses received 47 applicable pass labels, with one minor issue and incomplete blinding; this is not a general success rate or proof of a repaired skill. Identity relies on runtime declarations, not provider request metadata.
+
+Environment of earlier checks: Node.js v22.23.1, Ajv 6.15.0, js-yaml 4.3.2 and Python 3.12.13. A later native record declared GPT-6 Astra and met its reported with-skill conditions, while a baseline was invalidated by additional editing guidance. No valid paired native baseline, independent provider verification, complete context isolation or human review was established. Network installation, npm commands, CI, visual rendering and comprehensive security audits remain untested. No complete transitive-dependency lockfile is supplied. See the release-status record for the partial host evidence and the decision to stop further tests.
 
 ## Contributing and licensing
 
