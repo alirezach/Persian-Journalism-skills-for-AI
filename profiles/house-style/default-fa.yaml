@@ -1,4 +1,4 @@
-profile_version: '0.1.0'
+profile_version: '0.1.3'
 id: default-fa
 kind: house-style
 locale_profile: fa-IR
@@ -22,9 +22,61 @@ orthography:
   alternatives_are_errors: false
   formal_verb_forms: written
   long_dash_preference: prefer-comma-colon-parentheses-outside-exact-quotes
+punctuation:
+  scope: editable-persian-prose-only
+  spacing:
+    before_sentence_marks: none
+    after_sentence_marks: one-space-before-following-word
+    inside_pairs: none
+    outside_pairs: context-dependent
+    exceptions: [paragraph-boundary, adjacent-closing-mark, punctuation-cluster, nested-pairs, structured-syntax]
+  ellipsis:
+    preferred_character: '…'
+    normalize_only_when_role_is_clear: true
+    terminal_extra_period: omit-unless-selected-style-requires
+    distinguish: [unfinished-list, hesitation, interrupted-speech, source-omission, form-placeholder]
+    automatic_excerpting: false
+    infer_missing_content_or_length: false
+  dash:
+    classify_before_changing: [parenthetical, dialogue, range, route, compound, machine-string]
+    automatic_replacement: false
+    manual_end_of_line_word_splitting: false
+editorial_judgment:
+  lexical_replacement: context-and-equivalence-required
+  preserve_event_stage_and_evidence_type: true
+  resolve_material_ambiguity_by_guessing: false
 terminology:
   consistency_unit: concept-and-context
   original_on_first_use: when-specialist-audience-or-ambiguity-requires
+  general_audience_rewrite: faithful-everyday-equivalent-or-brief-first-use-gloss
+  gloss_must_not_invent_method_or_finding: true
+  gloss_preserves_comparison_negation_and_scope: true
+  review_all_comprehension_critical_terms: true
+quotation_policy:
+  default: verbatim
+  suspected_error_note: required-when-protected-text-is-retained
+  transcribed_fa_character_normalization:
+    enabled: false
+    activation: explicit-task-permission-or-explicitly-selected-enabled-profile
+    scope: confirmed-persian-transcription-only
+    mappings:
+      - {from: 'ي', to: 'ی'}
+      - {from: 'ك', to: 'ک'}
+    exclusions:
+      - exact-documentary-or-forensic-evidence
+      - linguistic-evidence
+      - arabic-or-unknown-language-passages
+      - machine-strings-and-identifiers
+      - bibliographic-source-strings
+    preserve_spacing_punctuation_numbers_and_words: true
+    preserve_input_original: true
+    separate_change_note: required
+    note_basis: verified-source-to-result-diff
+    zero_actual_changes_note: omit
+    original_retention: separate-record-or-unchanged-source
+    echo_original_in_response: only-when-requested-or-format-required
+    scope_review_required: true
+    unverified_success_claim: forbidden
 citations:
   preserve_source_locator: true
   preserve_bibliography_script: true
@@ -36,7 +88,7 @@ voice:
   forbidden_word_list: []
 output:
   revised_text_first: true
-  editorial_notes: separate-only-for-material-issues-or-requested-explanation
+  editorial_notes: separate-for-material-issues-including-retained-protected-errors-and-authorized-quote-normalization
 precedence:
   preferences_cannot_override_fidelity: true
   preferences_cannot_override_privacy: true
