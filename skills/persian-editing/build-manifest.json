@@ -1,8 +1,16 @@
 {
   "manifest_version": "1",
   "name": "persian-editing",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "files": [
+    {
+      "source": "scripts/editing/normalize_transcribed_fa.py",
+      "target": "scripts/normalize_transcribed_fa.py"
+    },
+    {
+      "source": "skills/persian-editing/references/quotation-normalization.md",
+      "target": "references/quotation-normalization.md"
+    },
     {
       "source": "skills/persian-editing/SKILL.md",
       "target": "SKILL.md"
@@ -26,6 +34,10 @@
     {
       "source": "standards/fidelity-and-uncertainty.md",
       "target": "references/shared/fidelity-and-uncertainty.md"
+    },
+    {
+      "source": "standards/persian-editorial-principles.md",
+      "target": "references/shared/persian-editorial-principles.md"
     },
     {
       "source": "standards/privacy-and-source-protection.md",
@@ -53,6 +65,8 @@
     }
   ],
   "entry_rewrites": {
+    "../../scripts/editing/normalize_transcribed_fa.py": "scripts/normalize_transcribed_fa.py",
+    "../../standards/persian-editorial-principles.md": "references/shared/persian-editorial-principles.md",
     "../../standards/fidelity-and-uncertainty.md": "references/shared/fidelity-and-uncertainty.md",
     "../../standards/privacy-and-source-protection.md": "references/shared/privacy-and-source-protection.md",
     "../../standards/permissions-and-publication.md": "references/shared/permissions-and-publication.md",
