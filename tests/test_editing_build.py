@@ -31,7 +31,7 @@ class BuildTests(unittest.TestCase):
         data,m=b.prepare(self.root)
         with zipfile.ZipFile(io.BytesIO(data)) as z:
             files={n.removeprefix('persian-editing/'):z.read(n) for n in z.namelist()}
-            self.assertEqual(len(files),13);b.link_check(files)
+            self.assertEqual(len(files),16);b.link_check(files)
             self.assertNotIn(b'../../',files['SKILL.md'])
             for row in m['files']:
                 self.assertEqual(row['output_sha256'],b.digest(files[row['target']]))
@@ -41,7 +41,7 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(before,{p:p.read_bytes() for p in before})
     def test_output_report(self):
         out=Path(self.tmp.name)/'a.zip';report=b.build(self.root,out)
-        self.assertEqual(report['sha256'],b.digest(out.read_bytes()));self.assertEqual(report['files'],13)
+        self.assertEqual(report['sha256'],b.digest(out.read_bytes()));self.assertEqual(report['files'],16)
     def test_existing_output_preserved(self):
         out=Path(self.tmp.name)/'a.zip';out.write_bytes(b'keep')
         with self.assertRaises(FileExistsError):b.build(self.root,out)
@@ -66,6 +66,21 @@ class BuildTests(unittest.TestCase):
         real=Path(self.tmp.name)/'real';real.mkdir();link=Path(self.tmp.name)/'link';link.symlink_to(real,target_is_directory=True)
         with self.assertRaises(ValueError):b.build(self.root,link/'a.zip')
         self.assertFalse((real/'a.zip').exists())
+    def test_other_python_source_rejected(self):
+        other=self.root/'skills/persian-editing/other.py';other.write_text('print(1)')
+        self.cfg['files'].append({'source':'skills/persian-editing/other.py','target':'other.py'});self.bad()
+    def test_helper_destination_rejected(self):
+        next(r for r in self.cfg['files'] if r['source']==b.HELPER)['target']='other.py';self.bad()
+    def test_helper_source_spoof_rejected(self):
+        next(r for r in self.cfg['files'] if r['source']==b.HELPER)['source']='LICENSE';self.bad()
+    def test_packaged_helper_runs_without_repository(self):
+        data,_=b.prepare(self.root);dest=Path(self.tmp.name)/'standalone'
+        with zipfile.ZipFile(io.BytesIO(data)) as z:z.extractall(dest)
+        request={'request_version':'1','source':'يك كار','authorization':'explicit-task-permission','confirmed_persian_transcription':True,'scope_reviewed':True,'eligible_spans':[{'start':0,'end':6,'text':'يك كار'}],'protected_spans':[]}
+        script=dest/'persian-editing/scripts/normalize_transcribed_fa.py'
+        p=subprocess.run([sys.executable,str(script),'-'],input=json.dumps(request),text=True,capture_output=True,cwd=dest)
+        self.assertEqual(p.returncode,0,p.stderr);result=json.loads(p.stdout)
+        self.assertEqual(result['text'],'یک کار');self.assertEqual(result['original_text'],'يك كار')
     def test_large_file(self):(self.root/'LICENSE').write_bytes(b'x'*(b.MAX_FILE+1));self.bad()
     def test_total_limit(self):
         for row in self.cfg['files'][:5]:(self.root/row['source']).write_bytes(b'x'*b.MAX_FILE)
