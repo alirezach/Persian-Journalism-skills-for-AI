@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a planned translation candidate only; Python 3.10+, standard library.
+"""Build a translation archive with its explicitly configured lifecycle; Python 3.10+, standard library.
 Trusted checkout required. No tests, model calls, installation or network access.
 """
 import argparse
@@ -91,7 +91,7 @@ def prepare(root):
     spec = json.loads(raw)
     if set(spec) != {'manifest_version', 'name', 'version', 'status', 'baseline_revision', 'files'}:
         raise ValueError('Invalid manifest fields')
-    if spec['manifest_version'] != '1' or spec['name'] != NAME or spec['status'] != 'planned':
+    if spec['manifest_version'] != '1' or spec['name'] != NAME or spec['status'] not in ('planned', 'experimental'):
         raise ValueError('Unsupported package or status')
     if not isinstance(spec['version'], str) or not re.fullmatch(r'\d+\.\d+\.\d+', spec['version']):
         raise ValueError('Invalid version')
@@ -123,8 +123,8 @@ def prepare(root):
             if not text.startswith('---\n') or '\n---\n' not in text[4:]:
                 raise ValueError('Missing front matter')
             front = text.split('---\n', 2)[1]
-            if not re.search(r'^  status: "planned"$', front, re.M):
-                raise ValueError('Entry status is not planned')
+            if not re.search(r'^  status: "' + re.escape(spec['status']) + r'"$', front, re.M):
+                raise ValueError('Entry status differs from configured lifecycle')
             if not re.search(r'^  version: "' + re.escape(spec['version']) + r'"$', front, re.M):
                 raise ValueError('Entry version mismatch')
         rewrites = []
@@ -158,9 +158,10 @@ def prepare(root):
                 if resolved is not None and resolved[0] not in files:
                     raise ValueError('Unresolved output link')
     manifest = {'manifest_version': '1', 'name': NAME, 'version': spec['version'],
-                'status': 'planned', 'artifact_stage': 'candidate',
+                'status': spec['status'],
+                'artifact_stage': 'candidate' if spec['status'] == 'planned' else 'experimental',
                 'baseline_revision': spec['baseline_revision'],
-                'revision_scope': 'Baseline before packaging additions; hashes identify actual inputs, not a claim all files came from that commit.',
+                'revision_scope': 'Baseline before this build; hashes identify actual inputs, not a claim all files came from that commit.',
                 'source_config_sha256': digest(raw),
                 'builder_sha256': digest(Path(__file__).read_bytes()),
                 'files': sorted(records, key=lambda x: x['target']),
@@ -169,7 +170,7 @@ def prepare(root):
                 'limitations': ['Trusted checkout only; not a sandbox or secret scanner.',
                                 'Simple inline Markdown only; anchors and external URLs are not verified.',
                                 'License labels record project provenance, not an independent legal audit.',
-                                'ZIP creation does not promote planned status or certify quality or compatibility.']}
+                                'Lifecycle is explicitly configured; ZIP creation alone does not authorize promotion or certify quality or compatibility.']}
     files[GENERATED] = (json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, 'w', compression=zipfile.ZIP_STORED) as archive:
@@ -192,8 +193,8 @@ def build(root, output):
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open('xb') as stream:
         stream.write(data)
-    return {'name': NAME, 'version': manifest['version'], 'status': 'planned',
-            'artifact_stage': 'candidate', 'build': 'completed', 'files': len(manifest['files']) + 1,
+    return {'name': NAME, 'version': manifest['version'], 'status': manifest['status'],
+            'artifact_stage': manifest['artifact_stage'], 'build': 'completed', 'files': len(manifest['files']) + 1,
             'bytes': len(data), 'sha256': digest(data), 'test_suites': 'not_run',
             'model_evaluation': 'not_run', 'host_installation': 'not_run'}
 
