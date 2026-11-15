@@ -1,0 +1,79 @@
+{
+  "manifest_version": "1",
+  "name": "humanities-translation",
+  "version": "0.1.0",
+  "status": "planned",
+  "baseline_revision": "d357048904a89951163db00b9a5d3b0c119a327f",
+  "files": [
+    {
+      "source": "skills/humanities-translation/SKILL.md",
+      "target": "SKILL.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/humanities-translation/references/terminology.md",
+      "target": "references/terminology.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/humanities-translation/references/fidelity.md",
+      "target": "references/fidelity.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/humanities-translation/references/long-text.md",
+      "target": "references/long-text.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/humanities-translation/references/examples.md",
+      "target": "references/examples.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/fidelity-and-uncertainty.md",
+      "target": "references/shared/fidelity-and-uncertainty.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/privacy-and-source-protection.md",
+      "target": "references/shared/privacy-and-source-protection.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/permissions-and-publication.md",
+      "target": "references/shared/permissions-and-publication.md",
+      "license": "MIT"
+    },
+    {
+      "source": "profiles/locales/fa-IR.yaml",
+      "target": "references/profiles/fa-IR.yaml",
+      "license": "MIT"
+    },
+    {
+      "source": "profiles/house-style/default-fa.yaml",
+      "target": "references/profiles/default-fa.yaml",
+      "license": "MIT"
+    },
+    {
+      "source": "templates/translation-decisions.csv",
+      "target": "templates/translation-decisions.csv",
+      "license": "MIT"
+    },
+    {
+      "source": "LICENSE",
+      "target": "LICENSE",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/humanities-translation/package-README.md",
+      "target": "README.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/humanities-translation/package-NOTICES.md",
+      "target": "THIRD_PARTY_NOTICES.md",
+      "license": "MIT"
+    }
+  ]
+}
