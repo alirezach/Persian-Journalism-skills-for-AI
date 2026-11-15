@@ -2,8 +2,8 @@
   "manifest_version": "1",
   "name": "humanities-translation",
   "version": "0.1.0",
-  "status": "planned",
-  "baseline_revision": "d357048904a89951163db00b9a5d3b0c119a327f",
+  "status": "experimental",
+  "baseline_revision": "cdfbb25cfe58bf277e8e2dda8448b3382700e763",
   "files": [
     {
       "source": "skills/humanities-translation/SKILL.md",

@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   version: "0.1.0"
-  status: "planned"
+  status: "experimental"
   language: "fa"
   implementation: "source-only"
 ---
