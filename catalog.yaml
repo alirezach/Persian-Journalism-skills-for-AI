@@ -6,7 +6,7 @@ project:
   lifecycle: editing-experimental
   default_language: fa
   license: MIT
-  updated: '2026-11-15'
+  updated: '2026-11-16'
   note: 'Persian editing 0.1.3 and humanities translation 0.1.0 are experimental; six other skills remain planned. Translation was explicitly promoted by project-owner decision without new test suites, model evaluation or installation. The project release identifier remains 0.4.3-editing; no new GitHub Release or tag was created. Earlier editing evidence remains separate and does not transfer to translation.'
 
 lifecycle_values:
@@ -180,11 +180,24 @@ skills:
   - name: data-analysis
     title_fa: تحلیل داده
     status: planned
+    version: '0.1.0'
+    implementation: source-only
     path: skills/data-analysis/SKILL.md
     intended_entry: true
+    guide: skills/data-analysis/README.md
+    contract: docs/data-analysis-contract.md
+    test_suites: not_run
+    model_behavior: not_run
+    human_review: not_run
+    host_compatibility: not_tested
+    packaging:
+      status: not_built
+      lifecycle_promoted: false
+      host_installation: not_run
     purpose: 'Validate, transform and analyze data with reproducible calculations and explicit limitations.'
     collaborators: [source-verification]
     context_policy: 'Apply dataset-specific units, calendars, populations and survey definitions.'
+    note: 'The design contract, main guidance and README exist. This is source-only guidance, not an analysis library or standalone installable package. No dedicated executable code, real-data analysis, test suites, model evaluation, human review or host installation has been performed for this skill. Historical local_test_run counts do not apply to it. Tests are deferred, not passed; planned status is unchanged.'
   - name: data-visualization
     title_fa: بصری‌سازی داده
     status: planned
