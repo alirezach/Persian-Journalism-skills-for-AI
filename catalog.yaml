@@ -7,7 +7,7 @@ project:
   default_language: fa
   license: MIT
   updated: '2026-11-15'
-  note: 'Experimental 0.1.3: frozen scoped helper and guidance. Native acceptance stopped incomplete by project-owner decision; limited private host checks and one metadata-eligible Astra run do not establish a valid baseline, general compatibility or editorial superiority. Earlier evidence remains separate. Seven skills remain planned. Translation has a built candidate archive without lifecycle promotion, installation or new test suites.'
+  note: 'Persian editing 0.1.3 and humanities translation 0.1.0 are experimental; six other skills remain planned. Translation was explicitly promoted by project-owner decision without new test suites, model evaluation or installation. The project release identifier remains 0.4.3-editing; no new GitHub Release or tag was created. Earlier editing evidence remains separate and does not transfer to translation.'
 
 lifecycle_values:
   planned: 'Not designated for experimental release; design, source guidance or a preparation-stage candidate archive may exist. Packaging does not promote lifecycle status.'
@@ -128,23 +128,28 @@ skills:
     context_policy: 'Persian locale; Iran context only when substantive content requires it.'
   - name: humanities-translation
     title_fa: ترجمهٔ علوم انسانی
-    status: planned
+    status: experimental
     version: '0.1.0'
     path: skills/humanities-translation/SKILL.md
     intended_entry: true
     build_manifest: skills/humanities-translation/build-manifest.json
     builder: scripts/packaging/build-translation.py
+    promotion_record: docs/humanities-translation-0.1.0-experimental-decision.md
+    model_behavior: not_run
+    host_compatibility: not_tested
     packaging:
-      status: candidate-built
+      status: experimental-built
       date: '2026-11-15'
       files: 15
-      bytes: 66612
-      sha256: b242051c6270825bcad596de70ecbb80bbca0d4d60767571ce59cdb23986d0ab
-      lifecycle_promoted: false
+      bytes: 68881
+      sha256: 88f626aae078fc75f236e711e4c00bf2f7c6f530f2a62185ff76f751de2fbbef
+      lifecycle_promoted: true
+      promotion_basis: explicit-project-owner-decision-not-test-acceptance
+      previous_planned_sha256: b242051c6270825bcad596de70ecbb80bbca0d4d60767571ce59cdb23986d0ab
       test_suites: not_run
       model_evaluation: not_run
       host_installation: not_run
-      note: 'Build-time path/link checks and archive hash comparison only; not acceptance evidence. Historical local_test_run counts do not apply to this builder.'
+      note: 'Build-time path/link checks and archive integrity comparison only; not acceptance evidence. Historical local_test_run counts do not apply to translation. Tests are deferred, not passed.'
     purpose: 'Translate humanities and policy texts with source fidelity and consistent terminology.'
     collaborators: [persian-editing]
     context_policy: 'Choose terminology by field and tradition; do not assume Iran from output language.'
