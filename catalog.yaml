@@ -7,7 +7,7 @@ project:
   default_language: fa
   license: MIT
   updated: '2026-11-16'
-  note: 'Persian editing 0.1.3 and humanities translation 0.1.0 are experimental; six other skills remain planned. Translation was explicitly promoted by project-owner decision without new test suites, model evaluation or installation. The project release identifier remains 0.4.3-editing; no new GitHub Release or tag was created. Earlier editing evidence remains separate and does not transfer to translation.'
+  note: 'Persian editing 0.1.3 and humanities translation 0.1.0 are experimental; six other skills remain planned. Translation was explicitly promoted by project-owner decision without new test suites, model evaluation or installation. The project release identifier remains 0.4.3-editing; no new GitHub Release or tag was created. Earlier editing evidence remains separate and does not transfer to translation. Main source guidance now exists for all eight capabilities; the six planned skills remain source-only and unpackaged. Their guidance and documentation do not constitute executed investigations, analyses, visualizations or journalism, or acceptance evidence.'
 
 lifecycle_values:
   planned: 'Not designated for experimental release; design, source guidance or a preparation-stage candidate archive may exist. Packaging does not promote lifecycle status.'
@@ -58,9 +58,10 @@ profiles:
 templates:
   status: experimental
   guide: templates/README.md
-  count: 8
+  count: 9
   serialization: human-working-forms-not-canonical-json
   automatic_csv_conversion: false
+  note: 'Nine working templates; templates/README.md is documentation and is not counted. An empty form is not a completed review. Historical template-test counts do not establish acceptance of later additions.'
 
 record_validator:
   status: experimental
@@ -156,27 +157,75 @@ skills:
   - name: source-verification
     title_fa: اعتبارسنجی منبع
     status: planned
+    version: '0.1.0'
+    implementation: source-only
     path: skills/source-verification/SKILL.md
     intended_entry: true
+    guide: skills/source-verification/README.md
+    contract: docs/skill-boundaries.md
+    schema_mapping: schemas/README.md
+    reference_guides:
+      - skills/source-verification/references/evidence-types.md
+    human_review_template: templates/source-claim-human-review.md
+    test_suites: not_run
+    model_behavior: not_run
+    human_review: not_run
+    host_compatibility: not_tested
+    packaging:
+      status: not_built
+      lifecycle_promoted: false
+      host_installation: not_run
     purpose: 'Assess identity, provenance, authenticity, context and limits of supplied evidence.'
     collaborators: []
     context_policy: 'Activate jurisdiction and geography only when relevant to the item.'
+    note: 'Main guidance, an evidence-types guide and README exist. The shared boundary document and schema mapping are the contract references; no separate source-verification contract file is implied. The human-review form is a blank working template, not an executed human review. No standalone package, skill-specific test suites, model evaluation or host installation has been performed; historical local_test_run counts do not apply.'
   - name: fact-checking
     title_fa: راستی‌آزمایی ادعا
     status: planned
+    version: '0.1.0'
+    implementation: source-only
     path: skills/fact-checking/SKILL.md
     intended_entry: true
+    guide: skills/fact-checking/README.md
+    contract: docs/skill-boundaries.md
+    schema_mapping: schemas/README.md
+    reference_guides:
+      - skills/fact-checking/references/statistics.md
+      - skills/fact-checking/references/quotations.md
+    human_review_template: templates/source-claim-human-review.md
+    test_suites: not_run
+    model_behavior: not_run
+    human_review: not_run
+    host_compatibility: not_tested
+    packaging:
+      status: not_built
+      lifecycle_promoted: false
+      host_installation: not_run
     purpose: 'Investigate scoped factual claims and document evidence-based assessments.'
     collaborators: [source-verification, data-analysis]
     context_policy: 'Load legal, statistical and geographic context according to claim scope.'
+    note: 'Main guidance, statistics and quotations guides, and README exist. The contract uses the shared boundary document and existing schema mapping; no separate fact-checking contract file is implied. Educational examples are not executed investigations or acceptance tests. No standalone package, test suites, model evaluation, human review or host installation has been performed; historical local_test_run counts do not apply.'
   - name: research-synthesis
     title_fa: ترکیب پژوهش
     status: planned
+    version: '0.1.0'
+    implementation: source-only
     path: skills/research-synthesis/SKILL.md
     intended_entry: true
+    guide: skills/research-synthesis/README.md
+    contract: docs/research-synthesis-contract.md
+    test_suites: not_run
+    model_behavior: not_run
+    human_review: not_run
+    host_compatibility: not_tested
+    packaging:
+      status: not_built
+      lifecycle_promoted: false
+      host_installation: not_run
     purpose: 'Answer bounded research questions through transparent selection and comparison of evidence.'
     collaborators: [source-verification, fact-checking]
     context_policy: 'Choose sources and context by research question, not language alone.'
+    note: 'The design contract, main guidance and README exist. A standalone evidence-matrix template has not been created. The current finding schema is unchanged; qualitative synthesis must not invent a calculation reference or checked status. No standalone package, test suites, model evaluation, human review or host installation has been performed; historical local_test_run counts do not apply.'
   - name: data-analysis
     title_fa: تحلیل داده
     status: planned
@@ -201,19 +250,45 @@ skills:
   - name: data-visualization
     title_fa: بصری‌سازی داده
     status: planned
+    version: '0.1.0'
+    implementation: source-only
     path: skills/data-visualization/SKILL.md
     intended_entry: true
+    guide: skills/data-visualization/README.md
+    contract: docs/data-visualization-contract.md
+    test_suites: not_run
+    model_behavior: not_run
+    human_review: not_run
+    host_compatibility: not_tested
+    packaging:
+      status: not_built
+      lifecycle_promoted: false
+      host_installation: not_run
     purpose: 'Create honest, accessible charts, maps and tables from identified data and definitions.'
-    collaborators: [data-analysis]
+    collaborators: [data-analysis, source-verification, fact-checking]
     context_policy: 'Keep locale rendering distinct from geographic and analytical semantics.'
+    note: 'The design contract, main guidance and README exist. No real chart, dedicated rendering code, executable template, chart schema or standalone package has been created. No test suites, model evaluation, visual-output acceptance, human review or host installation has been performed. Historical local_test_run counts do not apply. Rendering guidance does not establish data validity or accessibility conformance.'
   - name: data-journalism
     title_fa: دیتاژورنالیسم
     status: planned
+    version: '0.1.0'
+    implementation: source-only
     path: skills/data-journalism/SKILL.md
     intended_entry: true
+    guide: skills/data-journalism/README.md
+    contract: docs/data-journalism-contract.md
+    test_suites: not_run
+    model_behavior: not_run
+    human_review: not_run
+    host_compatibility: not_tested
+    packaging:
+      status: not_built
+      lifecycle_promoted: false
+      host_installation: not_run
     purpose: 'Coordinate a reporting question through evidence, analysis, reporting and publication review.'
     collaborators: [source-verification, fact-checking, research-synthesis, data-analysis, data-visualization, persian-editing]
     context_policy: 'Load only relevant branches; a file inspection does not imply a full story.'
+    note: 'The design contract, main guidance and README exist. This is orchestration guidance, not an executed reporting project or publication system. No real analysis, interview, outreach, story publication, new story schema or standalone package has been produced. No test suites, model evaluation, human review or host installation has been performed; historical local_test_run counts do not apply. Internal handoff readiness is not publication authority.'
 
 packaging_policy:
   collaborators_are_mandatory_installs: false
