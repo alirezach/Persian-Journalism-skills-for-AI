@@ -6,6 +6,8 @@ A modular, tool-neutral collection for Persian editing, humanities translation, 
 
 **Status: experimental, `0.4.3-editing`.** [Persian editing 0.1.3](skills/persian-editing/README.md) includes an optional two-character mapping helper and exact candidate auditing. Permission, language and span classification remain caller responsibilities. Acceptance is incomplete and further testing has been stopped by the project owner. See the [release-status record](docs/evaluations/persian-editing-0.1.3-release-status.md); this is not a validated production release.
 
+**Humanities translation 0.1.0 is also experimental.** Its [guidance and standalone package](skills/humanities-translation/README.md) were explicitly promoted by the project owner on 2026-11-15 for experimental use with output review, without running test suites, model evaluation or installation. The [promotion decision](docs/humanities-translation-0.1.0-experimental-decision.md) records limits and both archive hashes. The previous planned candidate and its historical coverage matrix are preserved. The project release identifier remains unchanged; no GitHub Release or tag was created.
+
 ## Capability map
 
 | Skill | Responsibility |
@@ -19,13 +21,14 @@ A modular, tool-neutral collection for Persian editing, humanities translation, 
 | `data-visualization` | Represent data honestly and accessibly. |
 | `data-journalism` | Coordinate a reporting project without duplicating specialist procedures. |
 
-See [catalog.yaml](catalog.yaml). `persian-editing` is `experimental`; the other seven remain `planned`. Build its standalone ZIP with Python 3.10+ (standard library only):
+See [catalog.yaml](catalog.yaml). `persian-editing` and `humanities-translation` are `experimental`; the other six remain `planned`. Experimental does not mean tested. Build their separate standalone ZIPs with Python 3.10+ (standard library only):
 
 ```bash
 python3 scripts/packaging/build-skill.py --output dist/persian-editing-0.1.3.zip
+python3 scripts/packaging/build-translation.py --output dist/humanities-translation-0.1.0-experimental.zip
 ```
 
-The output must not already exist. See the [packaging guide](scripts/packaging/README.md). Generated shared resources retain source hashes; source files remain canonical. A separate private ClickUp adapter received limited installation/readback checks. It is not shipped here and does not establish general host compatibility.
+The output must not already exist. See the [packaging guide](scripts/packaging/README.md). Generated shared resources retain source hashes; source files remain canonical. A separate private ClickUp adapter for editing received limited installation/readback checks. It is not shipped here and does not establish general host compatibility. Those checks do not transfer to translation.
 
 ## Design commitments
 
@@ -63,6 +66,8 @@ node scripts/validation/validate-records.cjs --input examples/records/synthetic-
 
 The example is entirely synthetic. Exit zero may include warnings and does not grant publication authority. The validator guide covers setup, stdin, unresolved-reference mode, limits and error codes.
 
+The following historical counts concern editing and its supporting infrastructure, not translation. Only build-time controls and archive integrity comparison were performed for translation; no project test suites, model evaluation or host installation were run.
+
 The frozen pre-release candidate had 338 recorded passing local technical checks; no new suite was run for these release-status edits: 67 schema/regression, 88 validator/CLI, 32 profile/template, 20 editing-source/fixture checks, 16 editorial-source contracts, 41 packager tests and 74 transcription-helper tests. See the [0.1.3 report](docs/evaluations/persian-editing-0.1.3.md). The two previously failed quotation outputs remain rejected by the new audit; historical responses were not repaired or replaced.
 
 The [supplementary 0.1.2 record](docs/evaluations/persian-editing-0.1.2-astra-opus-2026-11-14.md) distinguishes earlier unknown-model comparisons from the later open-book Astra retest and returned Opus review. Eight responses received 47 applicable pass labels, with one minor issue and incomplete blinding; this is not a general success rate or proof of a repaired skill. Identity relies on runtime declarations, not provider request metadata.
@@ -71,4 +76,4 @@ Environment of earlier checks: Node.js v22.23.1, Ajv 6.15.0, js-yaml 4.3.2 and P
 
 ## Contributing and licensing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md) and [SECURITY.md](SECURITY.md). Original project material is [MIT licensed](LICENSE); third-party material retains its own license. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md) and [SECURITY.md](SECURITY.md). Original project material is [MIT licensed](LICENSE); third-party material retains its own license. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the [translation package notices](skills/humanities-translation/package-NOTICES.md). Exact editorial source URLs were added from existing records, without redistributing their articles or conducting a new license or web review.
