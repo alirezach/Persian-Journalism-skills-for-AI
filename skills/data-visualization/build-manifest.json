@@ -1,0 +1,112 @@
+{
+  "manifest_version": "1",
+  "name": "data-visualization",
+  "version": "0.1.1",
+  "status": "planned",
+  "baseline_revision": "2ae2ce4025a4bdff9941d59e8853da30623e7c65",
+  "files": [
+    {
+      "source": "LICENSE",
+      "target": "LICENSE",
+      "license": "MIT"
+    },
+    {
+      "source": "docs/data-visualization-contract.md",
+      "target": "references/contracts/data-visualization-contract.md",
+      "license": "MIT"
+    },
+    {
+      "source": "docs/skill-boundaries.md",
+      "target": "references/contracts/skill-boundaries.md",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/README.md",
+      "target": "schemas/README.md",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/claim-record.schema.json",
+      "target": "schemas/claim-record.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/common.schema.json",
+      "target": "schemas/common.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/dataset-record.schema.json",
+      "target": "schemas/dataset-record.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/finding-record.schema.json",
+      "target": "schemas/finding-record.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/handoff.schema.json",
+      "target": "schemas/handoff.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/source-record.schema.json",
+      "target": "schemas/source-record.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/data-visualization/SKILL.md",
+      "target": "SKILL.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/data-visualization/package-NOTICES.md",
+      "target": "THIRD_PARTY_NOTICES.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/data-visualization/package-README.md",
+      "target": "README.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/accessibility.md",
+      "target": "references/shared/accessibility.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/corrections-and-disclosure.md",
+      "target": "references/shared/corrections-and-disclosure.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/permissions-and-publication.md",
+      "target": "references/shared/permissions-and-publication.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/privacy-and-source-protection.md",
+      "target": "references/shared/privacy-and-source-protection.md",
+      "license": "MIT"
+    },
+    {
+      "source": "templates/publication-checklist.md",
+      "target": "templates/publication-checklist.md",
+      "license": "MIT"
+    },
+    {
+      "source": "templates/visualization-review.md",
+      "target": "templates/visualization-review.md",
+      "license": "MIT"
+    }
+  ],
+  "external_references": {
+    "docs/humanities-translation-0.1.0-experimental-decision.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/docs/humanities-translation-0.1.0-experimental-decision.md",
+    "scripts/validation/README.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/scripts/validation/README.md",
+    "skills/data-analysis/SKILL.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/skills/data-analysis/SKILL.md",
+    "skills/data-visualization/README.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/skills/data-visualization/README.md",
+    "skills/fact-checking/SKILL.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/skills/fact-checking/SKILL.md",
+    "skills/source-verification/SKILL.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/skills/source-verification/SKILL.md"
+  }
+}
