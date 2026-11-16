@@ -43,8 +43,17 @@ const headers={
 for(const [name,expected] of Object.entries(headers))test('empty CSV contract '+name,()=>{
   const text=fs.readFileSync(path.join(root,'templates',name),'utf8');const lines=text.trimEnd().split(/\r?\n/);assert.strictEqual(lines.length,1);const cols=lines[0].split(',');assert.deepStrictEqual(cols,expected);assert.strictEqual(new Set(cols).size,cols.length);cols.forEach(c=>assert(/^[a-z][a-z0-9_]*$/.test(c)));
 });
-test('exactly eight human working templates are supplied',()=>{
-  const expected=['README.md','project-brief.md','translation-decisions.csv','claim-ledger.csv','data-dictionary.csv','methodology.md','publication-checklist.md','correction-log.csv','handoff.md'];assert.deepStrictEqual(fs.readdirSync(path.join(root,'templates')).sort(),expected.sort());
+test('working template inventory matches its contract and catalog without counting README',()=>{
+  const dir=path.join(root,'templates');
+  const entries=fs.readdirSync(dir,{withFileTypes:true});
+  assert(entries.every(entry=>entry.isFile()),'template inventory must contain regular files');
+  assert(entries.some(entry=>entry.name==='README.md'),'template guide must be present');
+  const actual=entries.map(entry=>entry.name).filter(name=>name!=='README.md').sort();
+  const expected=['project-brief.md','translation-decisions.csv','claim-ledger.csv','data-dictionary.csv','methodology.md','publication-checklist.md','correction-log.csv','handoff.md','source-claim-human-review.md','evidence-matrix.csv','visualization-review.md'].sort();
+  assert.deepStrictEqual(actual,expected);
+  const templates=load('catalog.yaml').templates;
+  assert.strictEqual(templates.guide,'templates/README.md');
+  assert.strictEqual(templates.count,actual.length);
 });
 test('publication checklist starts unreviewed',()=>{const text=fs.readFileSync(path.join(root,'templates/publication-checklist.md'),'utf8');assert(text.includes('- [ ]'));assert(!/- \[[xX]\]/.test(text));assert(text.includes('بررسی‌نشده'));});
 test('handoff form does not grant external authority',()=>{const text=fs.readFileSync(path.join(root,'templates/handoff.md'),'utf8');assert(text.includes('not_authorized_by_this_record'));assert(text.includes('مجوز انتشار نیست'));});
