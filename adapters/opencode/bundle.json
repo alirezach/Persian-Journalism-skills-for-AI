@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "bundle_version": "0.1.0",
+  "host": "opencode",
+  "skill_root": ".opencode/skills",
+  "skills": [
+    {"name": "persian-editing", "version": "0.1.3", "status": "experimental"},
+    {"name": "humanities-translation", "version": "0.1.0", "status": "experimental"},
+    {"name": "source-verification", "version": "0.1.1", "status": "planned"},
+    {"name": "fact-checking", "version": "0.1.1", "status": "planned"},
+    {"name": "research-synthesis", "version": "0.1.1", "status": "planned"},
+    {"name": "data-analysis", "version": "0.1.1", "status": "planned"},
+    {"name": "data-visualization", "version": "0.1.1", "status": "planned"},
+    {"name": "data-journalism", "version": "0.1.1", "status": "planned"}
+  ]
+}
