@@ -7,7 +7,7 @@ project:
   default_language: fa
   license: MIT
   updated: '2026-11-16'
-  note: 'Persian editing 0.1.3 and humanities translation 0.1.0 are experimental; six other skills remain planned. Translation was explicitly promoted by project-owner decision without new test suites, model evaluation or installation. The project release identifier remains 0.4.3-editing; no new GitHub Release or tag was created. Earlier editing evidence remains separate and does not transfer to translation. Main source guidance now exists for all eight capabilities; the six planned skills remain source-only and unpackaged. Their guidance and documentation do not constitute executed investigations, analyses, visualizations or journalism, or acceptance evidence.'
+  note: 'Persian editing 0.1.3 and humanities translation 0.1.0 remain experimental; the other six skills have source-only 0.1.1 planned candidate archives. The project release identifier remains 0.4.3-editing. No lifecycle promotion, host installation, GitHub Release or tag was performed for these candidates. Their technical packaging evidence is separate from historical editing checks and does not establish behavioral acceptance, human review or compatibility.'
 
 lifecycle_values:
   planned: 'Not designated for experimental release; design, source guidance or a preparation-stage candidate archive may exist. Packaging does not promote lifecycle status.'
@@ -58,10 +58,10 @@ profiles:
 templates:
   status: experimental
   guide: templates/README.md
-  count: 9
+  count: 11
   serialization: human-working-forms-not-canonical-json
   automatic_csv_conversion: false
-  note: 'Nine working templates; templates/README.md is documentation and is not counted. An empty form is not a completed review. Historical template-test counts do not establish acceptance of later additions.'
+  note: 'Eleven working templates including evidence-matrix.csv and visualization-review.md; templates/README.md is documentation and is not counted. An empty form is not a completed review. Historical template-test counts do not establish acceptance of later additions.'
 
 record_validator:
   status: experimental
@@ -104,6 +104,25 @@ local_test_run:
   dependency_source: preinstalled
   complete_dependency_lock: false
   not_run: [network-install, npm-commands, ci, model-behavior, visual-rendering, full-security-audit, cross-platform-matrix]
+
+candidate_test_run:
+  date: '2026-11-16'
+  source_version: '0.1.1'
+  status: passed-limited-packaging-checks
+  builder: scripts/packaging/build-candidates.py
+  suite: tests/test_candidate_build.py
+  unittest_methods_passed: 40
+  unittest_methods_failed: 0
+  archives_checked: 6
+  repeated_builds_same_environment: identical
+  python: '3.12.13'
+  report: docs/evaluations/six-skills-0.1.1-technical.md
+  decision: docs/six-skills-0.1.1-candidate-decision.md
+  behavioral_cases: tests/fixtures/candidate-behavioral-cases-0.1.1.json
+  behavioral_prompts_prepared: 18
+  behavioral_runs: 0
+  not_run: [official-skills-ref, model-behavior, independent-judging, human-review, host-installation, cross-platform-reproduction]
+  note: 'Synthetic builder unit tests plus actual archive integrity, hashes, metadata and local-link checks. Not skill acceptance. Historical local_test_run is preserved separately and was not rerun.'
 
 skills:
   - name: persian-editing
@@ -157,9 +176,11 @@ skills:
   - name: source-verification
     title_fa: اعتبارسنجی منبع
     status: planned
-    version: '0.1.0'
+    version: '0.1.1'
     implementation: source-only
     path: skills/source-verification/SKILL.md
+    build_manifest: skills/source-verification/build-manifest.json
+    builder: scripts/packaging/build-candidates.py
     intended_entry: true
     guide: skills/source-verification/README.md
     contract: docs/skill-boundaries.md
@@ -167,24 +188,30 @@ skills:
     reference_guides:
       - skills/source-verification/references/evidence-types.md
     human_review_template: templates/source-claim-human-review.md
-    test_suites: not_run
+    test_suites: passed_packaging_only
     model_behavior: not_run
     human_review: not_run
     host_compatibility: not_tested
     packaging:
-      status: not_built
+      status: candidate-built
+      date: '2026-11-16'
+      files: 18
+      bytes: 138091
+      sha256: 6f31a685b040d971d9c329178b03f9e98d9ee7645e73b97dbc9ff2705f3968c3
       lifecycle_promoted: false
       host_installation: not_run
     purpose: 'Assess identity, provenance, authenticity, context and limits of supplied evidence.'
     collaborators: []
     context_policy: 'Activate jurisdiction and geography only when relevant to the item.'
-    note: 'Main guidance, an evidence-types guide and README exist. The shared boundary document and schema mapping are the contract references; no separate source-verification contract file is implied. The human-review form is a blank working template, not an executed human review. No standalone package, skill-specific test suites, model evaluation or host installation has been performed; historical local_test_run counts do not apply.'
+    note: 'Independent candidate archive with explicit resources; shared boundary and schema mapping remain the contracts. The human-review form is blank. candidate_test_run covers packaging only; model evaluation, human review and installation remain unrun.'
   - name: fact-checking
     title_fa: راستی‌آزمایی ادعا
     status: planned
-    version: '0.1.0'
+    version: '0.1.1'
     implementation: source-only
     path: skills/fact-checking/SKILL.md
+    build_manifest: skills/fact-checking/build-manifest.json
+    builder: scripts/packaging/build-candidates.py
     intended_entry: true
     guide: skills/fact-checking/README.md
     contract: docs/skill-boundaries.md
@@ -193,102 +220,134 @@ skills:
       - skills/fact-checking/references/statistics.md
       - skills/fact-checking/references/quotations.md
     human_review_template: templates/source-claim-human-review.md
-    test_suites: not_run
+    test_suites: passed_packaging_only
     model_behavior: not_run
     human_review: not_run
     host_compatibility: not_tested
     packaging:
-      status: not_built
+      status: candidate-built
+      date: '2026-11-16'
+      files: 25
+      bytes: 197012
+      sha256: 1a85eba39643883cb282451111a682bf27e80ece336012c741cfd5ce87c8b2e0
       lifecycle_promoted: false
       host_installation: not_run
     purpose: 'Investigate scoped factual claims and document evidence-based assessments.'
     collaborators: [source-verification, data-analysis]
     context_policy: 'Load legal, statistical and geographic context according to claim scope.'
-    note: 'Main guidance, statistics and quotations guides, and README exist. The contract uses the shared boundary document and existing schema mapping; no separate fact-checking contract file is implied. Educational examples are not executed investigations or acceptance tests. No standalone package, test suites, model evaluation, human review or host installation has been performed; historical local_test_run counts do not apply.'
+    note: 'Independent candidate archive includes required statistics, quotations and evidence resources. The shared boundary and schema mapping remain the contracts. candidate_test_run covers packaging only; educational prompts are unrun, and no model evaluation, human review or installation is claimed.'
   - name: research-synthesis
     title_fa: ترکیب پژوهش
     status: planned
-    version: '0.1.0'
+    version: '0.1.1'
     implementation: source-only
     path: skills/research-synthesis/SKILL.md
+    build_manifest: skills/research-synthesis/build-manifest.json
+    builder: scripts/packaging/build-candidates.py
+    evidence_matrix: templates/evidence-matrix.csv
     intended_entry: true
     guide: skills/research-synthesis/README.md
     contract: docs/research-synthesis-contract.md
-    test_suites: not_run
+    test_suites: passed_packaging_only
     model_behavior: not_run
     human_review: not_run
     host_compatibility: not_tested
     packaging:
-      status: not_built
+      status: candidate-built
+      date: '2026-11-16'
+      files: 25
+      bytes: 199077
+      sha256: 82cdfbe65dc9e8f2eab701934e10ef28ca26b0fc26d70536aee2359c4f44a1c5
       lifecycle_promoted: false
       host_installation: not_run
     purpose: 'Answer bounded research questions through transparent selection and comparison of evidence.'
     collaborators: [source-verification, fact-checking]
     context_policy: 'Choose sources and context by research question, not language alone.'
-    note: 'The design contract, main guidance and README exist. A standalone evidence-matrix template has not been created. The current finding schema is unchanged; qualitative synthesis must not invent a calculation reference or checked status. No standalone package, test suites, model evaluation, human review or host installation has been performed; historical local_test_run counts do not apply.'
+    note: 'Independent candidate archive and blank evidence matrix exist. The finding schema is unchanged; qualitative synthesis must not invent a calculation reference or checked status. candidate_test_run covers packaging only; behavioral evaluation, human review and installation remain unrun.'
   - name: data-analysis
     title_fa: تحلیل داده
     status: planned
-    version: '0.1.0'
+    version: '0.1.1'
     implementation: source-only
     path: skills/data-analysis/SKILL.md
+    build_manifest: skills/data-analysis/build-manifest.json
+    builder: scripts/packaging/build-candidates.py
+    reference_guides:
+      - skills/data-analysis/references/data-quality-and-joins.md
     intended_entry: true
     guide: skills/data-analysis/README.md
     contract: docs/data-analysis-contract.md
-    test_suites: not_run
+    test_suites: passed_packaging_only
     model_behavior: not_run
     human_review: not_run
     host_compatibility: not_tested
     packaging:
-      status: not_built
+      status: candidate-built
+      date: '2026-11-16'
+      files: 22
+      bytes: 195249
+      sha256: 206e51aa1ae79c8eae11ad2ed4cc0b93cd6e5e9802945df4ac62b846935489e7
       lifecycle_promoted: false
       host_installation: not_run
     purpose: 'Validate, transform and analyze data with reproducible calculations and explicit limitations.'
     collaborators: [source-verification]
     context_policy: 'Apply dataset-specific units, calendars, populations and survey definitions.'
-    note: 'The design contract, main guidance and README exist. This is source-only guidance, not an analysis library or standalone installable package. No dedicated executable code, real-data analysis, test suites, model evaluation, human review or host installation has been performed for this skill. Historical local_test_run counts do not apply to it. Tests are deferred, not passed; planned status is unchanged.'
+    note: 'Independent text-guidance candidate with a quality-and-joins guide, not an analysis library. No real-data analysis or dedicated analysis code was produced. candidate_test_run covers packaging only; behavioral evaluation, human review and installation remain unrun.'
   - name: data-visualization
     title_fa: بصری‌سازی داده
     status: planned
-    version: '0.1.0'
+    version: '0.1.1'
     implementation: source-only
     path: skills/data-visualization/SKILL.md
+    build_manifest: skills/data-visualization/build-manifest.json
+    builder: scripts/packaging/build-candidates.py
+    review_template: templates/visualization-review.md
     intended_entry: true
     guide: skills/data-visualization/README.md
     contract: docs/data-visualization-contract.md
-    test_suites: not_run
+    test_suites: passed_packaging_only
     model_behavior: not_run
     human_review: not_run
     host_compatibility: not_tested
     packaging:
-      status: not_built
+      status: candidate-built
+      date: '2026-11-16'
+      files: 20
+      bytes: 162158
+      sha256: 975c99b7d8b3ed9532a4502f194cfe474b793681e91be44397005060699c7b8e
       lifecycle_promoted: false
       host_installation: not_run
     purpose: 'Create honest, accessible charts, maps and tables from identified data and definitions.'
     collaborators: [data-analysis, source-verification, fact-checking]
     context_policy: 'Keep locale rendering distinct from geographic and analytical semantics.'
-    note: 'The design contract, main guidance and README exist. No real chart, dedicated rendering code, executable template, chart schema or standalone package has been created. No test suites, model evaluation, visual-output acceptance, human review or host installation has been performed. Historical local_test_run counts do not apply. Rendering guidance does not establish data validity or accessibility conformance.'
+    note: 'Independent candidate archive and blank visualization-review form exist. No real chart, dedicated rendering code, executable template or chart schema was created. candidate_test_run covers packaging only; no visual acceptance, model evaluation, human review, installation or accessibility certification is claimed.'
   - name: data-journalism
     title_fa: دیتاژورنالیسم
     status: planned
-    version: '0.1.0'
+    version: '0.1.1'
     implementation: source-only
     path: skills/data-journalism/SKILL.md
+    build_manifest: skills/data-journalism/build-manifest.json
+    builder: scripts/packaging/build-candidates.py
     intended_entry: true
     guide: skills/data-journalism/README.md
     contract: docs/data-journalism-contract.md
-    test_suites: not_run
+    test_suites: passed_packaging_only
     model_behavior: not_run
     human_review: not_run
     host_compatibility: not_tested
     packaging:
-      status: not_built
+      status: candidate-built
+      date: '2026-11-16'
+      files: 25
+      bytes: 172425
+      sha256: 37df1114bb946bf71775da1db7fa0bc054920dddb3f002eafa3af3694e5affb1
       lifecycle_promoted: false
       host_installation: not_run
     purpose: 'Coordinate a reporting question through evidence, analysis, reporting and publication review.'
     collaborators: [source-verification, fact-checking, research-synthesis, data-analysis, data-visualization, persian-editing]
     context_policy: 'Load only relevant branches; a file inspection does not imply a full story.'
-    note: 'The design contract, main guidance and README exist. This is orchestration guidance, not an executed reporting project or publication system. No real analysis, interview, outreach, story publication, new story schema or standalone package has been produced. No test suites, model evaluation, human review or host installation has been performed; historical local_test_run counts do not apply. Internal handoff readiness is not publication authority.'
+    note: 'Independent orchestration-guidance candidate, not an executed reporting project or publication system. No real analysis, interview, outreach, story publication or story schema was produced. candidate_test_run covers packaging only; behavioral evaluation, human review and installation remain unrun. Handoff readiness is not publication authority.'
 
 packaging_policy:
   collaborators_are_mandatory_installs: false
