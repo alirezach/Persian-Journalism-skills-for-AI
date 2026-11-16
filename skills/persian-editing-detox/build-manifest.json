@@ -1,0 +1,17 @@
+{
+  "files": {
+    "LICENSE": "e03f0ebada35558f252c4b590aa68978e8c114fe08077a7391b8680349cea9dc",
+    "README.md": "17057027fd6608349aa10d6c8c5f6dbdd2c3922fed45dcc182b3f368d1639f4f",
+    "SKILL.md": "e43ddbc614f6d3f806fa73bb72ecf760717e1992b046e353832f563311901314",
+    "THIRD_PARTY_NOTICES.md": "c6c2f8a668de670bbf5535f1dddbb5fce6de30c0d31ca4d8139949f8404a21f6",
+    "references/acceptance-cases.md": "0de2e4bf0e875b6923e87040eaaeb07d3c48c3c47cec01f2f00e959499ba7db2",
+    "references/ai-detox.md": "834699d979457fb3244544f2b3a4124fa8087626e94195d2f341463189afbf83",
+    "references/language-editing.md": "27142da4cfa2e627d9e9791a52154b72b2fe2d198c5a3397365c51a69f810acc",
+    "references/source-decisions.md": "0fc3bd0d46c4f634abdcb49fa6fb1b0dc2b3cb4153a62b2c6c1c8fe953915542",
+    "references/technical-editing.md": "e119faf865206630e90ea87a1be4b344d1bee785c76cea8b8bde1d3ee564b725"
+  },
+  "name": "persian-editing-detox",
+  "schema_version": 1,
+  "status": "experimental",
+  "version": "0.1.0"
+}
