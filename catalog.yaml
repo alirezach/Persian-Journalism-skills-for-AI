@@ -22,11 +22,40 @@ capability_levels:
 
 shared_layers:
   standards: standards/
-  iran_context: contexts/iran/
+  iran_context_requirements: docs/iran-requirements.md
   locale_profiles: profiles/locales/
   house_style_profiles: profiles/house-style/
-  versioned_knowledge: knowledge/
   schemas: schemas/
+
+planned_layers:
+  iran_context: contexts/iran/
+  versioned_knowledge: knowledge/
+  note: 'Design targets, not existing runtime resources; Persian locale does not automatically activate Iran context.'
+
+opencode_adapter:
+  version: '0.1.0'
+  status: candidate-bundle
+  config: adapters/opencode/bundle.json
+  builder: scripts/packaging/build-opencode.py
+  guide: docs/adapters/opencode.md
+  tests: tests/test_opencode_build.py
+  report: docs/evaluations/opencode-0.1.0-technical.md
+  target: .opencode/skills
+  selection: explicit-subset-or-all-eight
+  installs_to_host: false
+  changes_host_config: false
+  host_execution: not_run
+  behavioral_evaluation: not_run
+  lifecycle_promoted: false
+  note: 'Generated layout from the canonical builders and current source hashes. Historical package evidence below is preserved, not reassigned to the new bundle. No automatic installer or model/API credentials.'
+
+structural_test_repair:
+  date: '2026-11-16'
+  commit: '748606b537f840609b78ec344e1488d301cf86d9'
+  suites: [tests/profiles.test.cjs, tests/editing-package.test.cjs, tests/editorial-sources.test.cjs]
+  passed: 68
+  failed: 0
+  scope: 'Only three structural suites; full repository and behavioral evaluations were not rerun. Original counts in local_test_run remain historical.'
 
 contracts:
   schema_version: '0.1.0'

@@ -1,5 +1,23 @@
 # بسته‌بندی اسکیل‌ها
 
+## چیدمان OpenCode ۰.۱.۰
+
+`build-opencode.py` از سه سازندهٔ کانونی موجود، بستهٔ مستقل مهارت‌های انتخاب‌شده را در حافظه می‌سازد و بدون تغییر فایل‌های بسته، زیر `.opencode/skills/<name>/` قرار می‌دهد. پیکربندی نسخه‌ها در [bundle.json](../../adapters/opencode/bundle.json) است. سازنده‌های قبلی تغییر نکرده‌اند و ZIPهای تاریخی بازنویسی نمی‌شوند.
+
+```bash
+python3 scripts/packaging/build-opencode.py --output dist/pjai-opencode-0.1.0.zip
+python3 scripts/packaging/build-opencode.py --skills persian-editing data-analysis --output dist/pjai-opencode-0.1.0-selected.zip
+python3 -m unittest discover -s tests -p 'test_opencode_build.py' -v
+```
+
+Python 3.10+ و کتابخانهٔ استاندارد کافی است. مقصد باید ZIP تازه باشد؛ نصب یا دانلود وابستگی، اجرای مدل و OpenCode انجام نمی‌شود. کد سازنده‌های محلی از checkout مورداعتماد import می‌شود؛ این مرز امنیتی نیست. از `--help` برای مشاهدهٔ گزینه‌ها استفاده کنید.
+
+خروجی شامل منابع کامل مهارت‌های منتخب، `START-HERE-fa.md` و `BUNDLE-MANIFEST.json` است. manifest نسخه و وضعیت مهارت‌ها، هش آرشیوهای داخلی، سازنده‌ها، پیکربندی و فایل‌های خروجی را ثبت می‌کند؛ هش خودش ثبت نمی‌شود. ترتیب، زمان، مجوز و ZIP_STORED ثابت‌اند. بررسی بایت‌های واقعی و تکرارپذیری در محیط اجرا در [گزارش فنی](../../docs/evaluations/opencode-0.1.0-technical.md) ثبت می‌شود، نه به‌عنوان سازگاری بین سیستم‌عامل‌ها.
+
+کنترل‌ها شامل نام/نسخه/وضعیت، حضور ورودی و مجوز، تطبیق manifest و هش خروجی‌ها، رد مسیر غیرمجاز، symlink، تعارض نام و فایل/پوشه، فایل غیرمتنی و سقف اندازه‌اند. نحو metadata محدود به قالب این پروژه است؛ parser عمومی YAML یا اعتبارسنج رسمی Agent Skills نیست. منابع هر بسته با قواعد همان سازندهٔ کانونی حل می‌شوند؛ قواعد قدیمی ویرایش و بسته‌های دیگر یکسان فرض نمی‌شوند. پیوندهای وب و لنگرها دوباره تأیید نمی‌شوند.
+
+نصب انتخابی دستی و کنترل تعارض در [راهنمای OpenCode](../../docs/adapters/opencode.md) آمده است. سازنده هیچ `AGENTS.md`، تنظیم permission، کلید API یا فایل تنظیمات میزبان را ایجاد/جایگزین نمی‌کند. منابع مشترک جاری ممکن است با بستهٔ تاریخی فرق داشته باشند؛ هش تازه و گزارش آن مستقل‌اند. ساخت، وضعیت planned/experimental را ارتقا نمی‌دهد و سابقهٔ پذیرش را به بستهٔ تازه منتقل نمی‌کند.
+
 ## شش نامزد متنی ۰.۱.۱
 
 `build-candidates.py` فقط source-verification، fact-checking، research-synthesis، data-analysis، data-visualization و data-journalism را با وضعیت `planned` می‌سازد. Python 3.10+ و کتابخانهٔ استاندارد کافی‌اند. سازنده‌های قدیمی ویرایش و ترجمه تغییر نکرده‌اند.
