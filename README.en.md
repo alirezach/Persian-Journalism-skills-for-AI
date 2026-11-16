@@ -2,7 +2,7 @@
 
 [فارسی](README.md)
 
-A modular, tool-neutral collection for Persian editing, humanities translation, source verification, fact-checking, research synthesis, data analysis, visualization and data journalism, with a separate Iran context layer.
+A modular, tool-neutral collection for Persian editing, humanities translation, source verification, fact-checking, research synthesis, data analysis, visualization and data journalism. Iran-specific requirements are documented separately; the planned contexts/iran/ and knowledge/ directories are not existing runtime resources.
 
 **Status: experimental, `0.4.3-editing`.** [Persian editing 0.1.3](skills/persian-editing/README.md) includes an optional two-character mapping helper and exact candidate auditing. Permission, language and span classification remain caller responsibilities. Acceptance is incomplete and further testing has been stopped by the project owner. See the [release-status record](docs/evaluations/persian-editing-0.1.3-release-status.md); this is not a validated production release.
 
@@ -30,6 +30,24 @@ python3 scripts/packaging/build-translation.py --output dist/humanities-translat
 
 The output must not already exist. See the [packaging guide](scripts/packaging/README.md). Generated shared resources retain source hashes; source files remain canonical. A separate private ClickUp adapter for editing received limited installation/readback checks. It is not shipped here and does not establish general host compatibility. Those checks do not transfer to translation.
 
+## OpenCode bundle 0.1.0
+
+The [OpenCode guide](docs/adapters/opencode.md) describes a generated project-local layout for all eight skills or an explicit subset. The wrapper calls the existing canonical builders, preserves their output resources, and places them under `.opencode/skills/<name>/`. It does not install or invoke OpenCode, modify AGENTS.md or host configuration, set credentials, or promote any skill.
+
+```bash
+python3 scripts/packaging/build-opencode.py --output dist/pjai-opencode-0.1.0.zip
+python3 scripts/packaging/build-opencode.py --skills persian-editing data-analysis --output dist/pjai-opencode-0.1.0-selected.zip
+python3 -m unittest discover -s tests -p 'test_opencode_build.py' -v
+```
+
+Extract to a new temporary directory first; inspect the manifest and conflicts before copying selected skill directories into a working project. Do not overwrite an existing skill blindly. Explicit invocation such as `@data-analysis` and actual reference access require a separate host check. Local files do not imply a local model or private processing.
+
+See the [technical record](docs/evaluations/opencode-0.1.0-technical.md) for executed software/archive checks and unrun host/model checks. Earlier archives and their evidence remain frozen. Current shared-resource changes can change package hashes without changing the entry skill version; the bundle version, publication commit and actual hashes identify this output.
+
+The three stale structural suites were repaired before this adapter work: 68 checks passed across those three suites, not the whole repository. Template documentation is not counted as a working form, and editing checks no longer depend on the lifecycle count of unrelated skills.
+
+The other six skills already have source-only 0.1.1 planned candidates. Their 40 historical builder-unit tests and archive integrity checks do not establish behavioral acceptance. Eighteen prepared scenarios remain unrun. No new GitHub Release or tag is created by this adapter.
+
 ## Design commitments
 
 - Separate language, geography, methodology and personal house style.
@@ -55,7 +73,7 @@ The design documents are currently in Persian:
 ## Available tooling
 
 - [Persian profiles](profiles/README.md): declarative locale and replaceable house-style guidance, not a text-rewriting engine or automatic Iran-context selector.
-- [Eight working templates](templates/README.md): blank human forms, not completed reviews or automatic JSON exports.
+- [Eleven working templates](templates/README.md): blank human forms, not completed reviews or automatic JSON exports.
 - [Record validator](scripts/validation/README.md): one JSON record or an array; local schema and versioned-reference checks. It does not fetch sources, execute declared calculations or modify the input file.
 
 With Node.js and the reviewed dependencies available, run from the repository root:
