@@ -4,7 +4,7 @@ description: >-
   برای طراحی، نگارش یا بازبینی گزارش داده‌محور، پرسش عمومی را به شواهد، تحلیل، روایت و کنترل انتشار متصل کن؛ فقط مسیرهای لازم را فعال کن.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   status: "planned"
   language: "fa"
   implementation: "source-only"
