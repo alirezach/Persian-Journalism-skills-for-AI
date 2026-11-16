@@ -1,0 +1,135 @@
+{
+  "manifest_version": "1",
+  "name": "research-synthesis",
+  "version": "0.1.1",
+  "status": "planned",
+  "baseline_revision": "2ae2ce4025a4bdff9941d59e8853da30623e7c65",
+  "files": [
+    {
+      "source": "LICENSE",
+      "target": "LICENSE",
+      "license": "MIT"
+    },
+    {
+      "source": "docs/research-synthesis-contract.md",
+      "target": "references/contracts/research-synthesis-contract.md",
+      "license": "MIT"
+    },
+    {
+      "source": "docs/skill-boundaries.md",
+      "target": "references/contracts/skill-boundaries.md",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/README.md",
+      "target": "schemas/README.md",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/claim-record.schema.json",
+      "target": "schemas/claim-record.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/common.schema.json",
+      "target": "schemas/common.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/dataset-record.schema.json",
+      "target": "schemas/dataset-record.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/finding-record.schema.json",
+      "target": "schemas/finding-record.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/handoff.schema.json",
+      "target": "schemas/handoff.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "schemas/source-record.schema.json",
+      "target": "schemas/source-record.schema.json",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/fact-checking/references/statistics.md",
+      "target": "references/collaborators/fact-checking/statistics.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/research-synthesis/SKILL.md",
+      "target": "SKILL.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/research-synthesis/package-NOTICES.md",
+      "target": "THIRD_PARTY_NOTICES.md",
+      "license": "MIT"
+    },
+    {
+      "source": "skills/research-synthesis/package-README.md",
+      "target": "README.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/corrections-and-disclosure.md",
+      "target": "references/shared/corrections-and-disclosure.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/evidence-and-provenance.md",
+      "target": "references/shared/evidence-and-provenance.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/fidelity-and-uncertainty.md",
+      "target": "references/shared/fidelity-and-uncertainty.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/permissions-and-publication.md",
+      "target": "references/shared/permissions-and-publication.md",
+      "license": "MIT"
+    },
+    {
+      "source": "standards/privacy-and-source-protection.md",
+      "target": "references/shared/privacy-and-source-protection.md",
+      "license": "MIT"
+    },
+    {
+      "source": "templates/evidence-matrix.csv",
+      "target": "templates/evidence-matrix.csv",
+      "license": "MIT"
+    },
+    {
+      "source": "templates/handoff.md",
+      "target": "templates/handoff.md",
+      "license": "MIT"
+    },
+    {
+      "source": "templates/methodology.md",
+      "target": "templates/methodology.md",
+      "license": "MIT"
+    },
+    {
+      "source": "templates/publication-checklist.md",
+      "target": "templates/publication-checklist.md",
+      "license": "MIT"
+    },
+    {
+      "source": "templates/source-claim-human-review.md",
+      "target": "templates/source-claim-human-review.md",
+      "license": "MIT"
+    }
+  ],
+  "external_references": {
+    "docs/humanities-translation-0.1.0-experimental-decision.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/docs/humanities-translation-0.1.0-experimental-decision.md",
+    "scripts/validation/README.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/scripts/validation/README.md",
+    "skills/fact-checking/SKILL.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/skills/fact-checking/SKILL.md",
+    "skills/source-verification/SKILL.md": "https://github.com/alirezach/Persian-Journalism-skills-for-AI/blob/2ae2ce4025a4bdff9941d59e8853da30623e7c65/skills/source-verification/SKILL.md"
+  }
+}
