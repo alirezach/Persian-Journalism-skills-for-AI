@@ -12,7 +12,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 NAME = 'persian-editing-detox'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 STATUS = 'experimental'
 FILES = (
     'LICENSE', 'README.md', 'SKILL.md', 'THIRD_PARTY_NOTICES.md',
@@ -125,11 +125,11 @@ def build(root, output, format_name):
     members = {prefix + name: data for name, data in payload.items()}
     start = (
         '# بستهٔ ویرایش و دیتاکس فارسی\n\n'
-        'نسخهٔ ۰.۱.۰، آزمایشی. [راهنما](' + prefix + 'README.md) و '
+        'نسخهٔ ۰.۱.۱، آزمایشی. [راهنما](' + prefix + 'README.md) و '
         '[دستور اصلی](' + prefix + 'SKILL.md).\n\n'
         'پیش از کپی، مقصد موجود را بررسی کنید؛ هیچ فایل یا تنظیمی را خودکار بازنویسی نکنید. '
         'این بسته نصب‌کننده ندارد. در OpenCode پوشهٔ مخفی .opencode را نیز بررسی کنید. '
-        'بارگذاری و مجوزها به میزبان بستگی دارند؛ آزمون رفتاری و اجرای واقعی این مهارت انجام نشده‌اند.\n'
+        'بارگذاری و مجوزها به میزبان بستگی دارند؛ آزمون رفتاری و اجرای واقعی این نسخه انجام نشده‌اند.\n'
     )
     members['START-HERE-fa.md'] = start.encode('utf-8')
     check_links(members)

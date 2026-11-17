@@ -54,6 +54,14 @@ Jamditis/claude-skills-journalism was read for comparison during research, but i
 
 ## Provenance and limits
 
-Created with GPT-6 Astra for the Persian-Journalism-skills-for-AI project. Technical packaging checks are not independent editorial evaluation or model acceptance. Three [behavioral scenarios](acceptance-cases.md) are prepared and unrun. The owner's report that an earlier OpenCode bundle worked is not runtime evidence for this new skill.
+Created with GPT-6 Astra for the Persian-Journalism-skills-for-AI project. Technical packaging checks are not independent editorial evaluation or model acceptance. Four [behavioral scenarios](acceptance-cases.md) are prepared and unrun. The owner's report that an earlier OpenCode bundle worked is not runtime evidence for this skill.
+
+### Revision 0.1.1: common source-comparison check
+
+The separate ACADEMIC-01 exercise on version 0.1.0 used one synthetic academic input and three same-conversation outputs. Generation and review were by the same declared model, GPT-6 Astra; it was neither blind nor independent and did not run OpenCode. It did not execute C01-C03. Literal checks and self-review found preserved statistical anchors but one shared omission: the outputs retained the author's claim of disagreement between sources about different constructs without flagging the ambiguity in an editorial note.
+
+Version 0.1.1 adds a common comparability check to the entry point for all three modes, based only on supplied content. It distinguishes flagging a consequential ambiguity from rewriting the author's reasoning, and respects explicit text-only requests. C04 adds an ambiguous-comparison variant, a legitimate-contrast control and a text-only variant; they remain unrun. This is project evaluation-derived guidance, not a newly attributed rule from Zolfaghari or the upstream Persian-writing repository.
+
+No new model evaluation or OpenCode runtime test was performed for this revision. Technical checks do not show that the behavioral omission has been eliminated. Version 0.1.1 remains experimental; historical 0.1.0 artifacts are preserved.
 
 See [third-party notices](../THIRD_PARTY_NOTICES.md) for the complete upstream MIT notice and the distinction between licensed repository material and the unbundled book compilation.

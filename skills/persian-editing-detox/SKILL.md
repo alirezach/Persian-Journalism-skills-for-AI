@@ -2,7 +2,7 @@
 name: persian-editing-detox
 description: "Edit existing Persian prose or remove formulaic AI-style phrasing while preserving meaning, evidence and voice. Use for Persian proofreading, language editing, AI detox, humanizing or explicitly requested rewriting. Supports editing-only, detox-only and combined modes."
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   status: experimental
 license: MIT; see THIRD_PARTY_NOTICES.md
 ---
@@ -41,6 +41,15 @@ Preserve protected spans exactly unless the user specifically authorizes their c
 Choose changes that solve a real reading problem. Context and fidelity outrank replacement lists. A precise technical term, legitimate passive, meaningful hedge or useful three-item list is not a defect. Natural writing is not necessarily informal writing. Preserve the author's point of view and real interpretation, distinguished from claims attributed to another source.
 
 In combined mode, first protect anchors, then address empty rhetoric and language problems together, and finish with technical proofreading. Do not run competing passes that undo each other's register or terminology decisions.
+
+### Shared check: are the source claims comparable?
+
+Apply this check in editing-only, detox-only and combined modes, including technical-only requests, without expanding the authorized editing scope. Use only the supplied text. When the author asserts agreement, disagreement, contrast or a conclusion from multiple sources, inspect the specific claims before treating that relationship as established. Cues such as برخلاف، در مقابل، همسو با and از این اختلاف are prompts to inspect context, not banned phrases.
+
+- Compare constructs and outcomes, population, period, level of analysis, conditions, measures and claim strength where the supplied context makes them relevant. Similar words need not name the same construct; different constructs do not automatically imply either conflict or agreement.
+- If a consequential comparison is unclear or unsupported by the supplied passages, retain the source claims, quotations, attribution and author's interpretation. Do not silently delete, reconcile, strengthen or replace that interpretation, invent a synthesis, or research missing sources without separate authorization.
+- Unless the user explicitly requests text only, add a short separate editorial note identifying the exact mismatch and what needs clarification. For example: «یکی از دو منبع دربارهٔ احساس کنترل و دیگری دربارهٔ احساس امنیت سخن می‌گوید؛ از نقل‌های موجود روشن نیست چرا این رابطه اختلاف تلقی شده است. توضیح نویسنده یا متن کامل منابع لازم است.» Do not declare either source wrong or assert that there is no disagreement when context is incomplete.
+- Preserve a legitimate contrast when the supplied claims and relevant context support it. Do not add generic warnings to every comparison. With an explicit text-only request, keep unresolved wording unchanged and omit the note; never silently repair the argument or imply it was verified.
 
 ## 4. Compare before delivering
 
