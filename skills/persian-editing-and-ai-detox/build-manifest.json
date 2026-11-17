@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "name": "persian-editing-and-ai-detox",
+  "version": "0.2.0",
+  "status": "experimental",
+  "components": {
+    "persian-editing": "0.2.0",
+    "persian-ai-detox": "0.1.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "entry_rewrites": {
+    "../persian-editing/SKILL.md": "components/persian-editing/INSTRUCTIONS.md",
+    "../persian-ai-detox/SKILL.md": "components/persian-ai-detox/INSTRUCTIONS.md"
+  }
+}

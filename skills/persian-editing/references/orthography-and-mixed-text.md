@@ -1,44 +1,23 @@
-# رسم‌الخط و متن مختلط
+# Orthography and mixed-script text
 
-پروفایل فارسی و شیوه‌نامهٔ معرفی‌شده در دستور اصلی مرجع انتخاب‌اند. قواعد این راهنما به نثر فارسیِ قابل‌ویرایش مربوط‌اند، نه به همهٔ نویسه‌های فایل.
+## Word boundaries
 
-## قطعه‌های محافظت‌شده
+Distinguish the lexical word, a productive affix and independent syntactic words before joining or separating. Use ZWNJ where the selected style requires it: می‌شود، نمی‌دانم، کتاب‌ها، خانه‌ام. Do not insert it into every adjacent word or replace all spaces inside a compound. Established lexicalized compounds and accepted alternatives need a consistent dictionary/house-style decision, not a substring rule.
 
-قبل از یکدست‌سازی، نقل‌قول مستقیم، کد و کد درون‌خطی، فرمول، مسیر، URL، ایمیل، شناسه، نسخه، ارجاع و عبارت غیرفارسی را مشخص کن. رشته‌ای مانند `case_1403_A` یا `p < 0.05` را با رقم فارسی، نیم‌فاصله یا علامت جهت پنهان خراب نکن. پرانتز یا نقطهٔ آخر URL ممکن است بخشی از خود نشانی باشد؛ حدس نزن.
+## Hamza, heh and ezafe
 
-## استثنای محدود برای رونویسی فارسی
+Preserve a meaningful hamza and distinguish original spelling, accepted variants and transcription. Do not erase hamza globally. Distinguish pronounced ه from silent final ه before attaching suffixes. The project default for ezafe after silent heh is خانهٔ; the compilation often uses خانه‌ی. A consistent explicitly requested alternative is not an error. In colloquial speech, test whether final ـه is the copula or an erroneous ezafe spelling: کتابِ من is not کتابه من. Do not rewrite an entire voice to solve a local spelling issue.
 
-پیش‌فرض نقل‌قول، حفظ عین نویسه‌هاست. گزینهٔ `quotation_policy.transcribed_fa_character_normalization.enabled` در شیوه‌نامه خاموش است؛ وجود این گزینه یا فارسی‌بودن متن به‌تنهایی آن را فعال نمی‌کند.
+## Pronouns, copulas and suffixes
 
-فقط وقتی هر دو شرط روشن‌اند، «ي» (U+064A) را به «ی» (U+06CC) و «ك» (U+0643) را به «ک» (U+06A9) تبدیل کن:
+Check attached pronouns, written forms of copular verbs, plural and comparative endings against pronunciation, grammatical function and chosen style. Keep lexical exceptions such as established words distinct from productive affix rules. A spelling change must not change person, number or tense. Use diacritics only where they resolve a genuine ambiguity, are requested, or occur in protected material; do not vocalize ordinary prose mechanically.
 
-1. کاربر همین تبدیل را صریحاً مجاز کرده، یا شیوه‌نامه‌ای را صریحاً انتخاب کرده که گزینه در آن فعال است؛ درخواست کلی «ویرایش کن» کافی نیست.
-2. قطعه مشخصاً رونویسی فارسی است، نه نقل عین سند، شاهد قضایی یا زبانی، نام و شناسه، عبارت عربی یا منبعی با زبان نامعلوم. «فلانی گفت» به‌تنهایی رونویسی‌بودن را ثابت نمی‌کند.
+## Character and display boundaries
 
-دامنهٔ تبدیل فقط همان دو نویسه در بخش واجد شرایط است؛ فاصله، نیم‌فاصله، نشانه، اعراب، عدد، واژگان و نحو را دست نزن. قطعهٔ عربی و رشتهٔ ماشینیِ داخل نقل‌قول هم محفوظ می‌ماند. مجوز مبهم یا متعارض یعنی حفظ اصل و یادداشت، نه اصلاح آزمایشی. اصل ورودی را جدا نگه دار و فقط تبدیلِ واقعاً مقابله‌شده را در یادداشت اعلام کن. این گزینه اصلاح واقعیت یا راستی‌آزمایی منبع نیست.
+Use Persian ی and ک in eligible Persian prose. Preserve Arabic passages, linguistic evidence, names as cited, URLs, email, code, versions, identifiers and formula strings. Preserve paragraph breaks and meaningful indentation. Never apply a whole-file replacement without excluding protected spans. Digits inside machine strings remain unchanged.
 
-برای اجرا، «رویهٔ تبدیل و مقابله» معرفی‌شده در دستور اصلی را بخوان. بخش‌های مجاز را دور استثناهای درونی جدا کن؛ تبدیل و کنترل باید روی یک اصل ثابت و دامنه‌های یکسان باشند. با امکان اجرای کد، ابزار محدود را به جای بازتولید آزاد متن به کار ببر و قطعهٔ نهایی را پس از درج در پاسخ دوباره بررسی کن. در نبود کنترل قابل‌اعتماد، اصل را حفظ و تکمیل‌نشدن تبدیل را آشکار کن؛ موفقیتِ بررسی‌نشده ادعا نکن. نرمال‌سازی عمومی Unicode و یکدست‌کردن فاصله‌ها جای تبدیل دو نویسه نیستند.
+RTL text does not authorize reversing formulas, table data or code. Where the output format supports directional isolation, apply it only to a demonstrated display need and never inside an identifier. Do not assert that font shaping or PDF reading order was checked without viewing the actual output.
 
-نویسهٔ عربی در عبارت عربی خطا نیست. در نقل‌قول فارسی با نویسه یا فاصلهٔ مشکوک، اگر اجازهٔ اصلاح وجود ندارد، عین متن را نگه دار و یک یادداشت کوتاه بده؛ از آن دربارهٔ سواد یا بیان گوینده نتیجه نگیر.
+## Quotation exception
 
-## نویسه و فاصله
-
-در نثر فارسی، ي/ك عربی را در صورت نیاز به ی/ک فارسی تبدیل کن، نه در نقل‌قول عربی یا رشتهٔ منبع. نیم‌فاصله را با تشخیص ساخت واژه بگذار؛ نه میان هر دو جزء و نه با جایگزینی سراسری فاصله. شکست بند و تورفتگی را حفظ کن، مگر سطح بازنویسی تغییر ساختار را مجاز کرده باشد.
-
-همزه یا «ه» را سراسری حذف نکن. «خانهٔ» ترجیح پیش‌فرض پروژه است؛ صورت‌های پذیرفتنی دیگر را خطای قطعی ننام. نام خاص و اصطلاح تثبیت‌شده را بدون قرینه «تصحیح» نکن. اعرابِ معنادار در نام و نقل‌قول را نگه دار.
-
-## رقم و نشانه
-
-رقمِ نمایشی نثر از رقمِ ماشینی جداست. تغییر شکل 12 به ۱۲ مقدار را عوض نمی‌کند، اما تغییر جداکننده در `1,250` بدون شناخت قرارداد ورودی ممکن است مقدار را عوض کند. ابهام را حفظ و مطرح کن. مقدارهای منفی، بازه، درصد، واحد درصد، توان، دقت اعشاری و نشانهٔ تقریبی را مقابله کن. در این مرحله تبدیل ریال/تومان، ارز یا تاریخ انجام نده.
-
-برای فاصلهٔ نشانه‌ها، سه‌نقطه و خط تیره، بخش مربوط در «اصول ویراستاری فارسی» معرفی‌شده در دستور اصلی را به کار ببر. نخست نثرِ قابل‌ویرایش را از نقل‌قول، فرمول، شناسه و قالب ساختاری جدا کن. شیوه‌نامهٔ تازه برای ارجاع‌ها فقط با درخواست جدا اعمال شود.
-
-در هکسره، «کتابِ من» را از «این کتابه» در گفت‌وگوی محاوره‌ای و «نامه» به‌عنوان واژه جدا کن. حذف سراسری «ه» یا افزودن سراسری کسره راه اصلاح نیست. اگر «نامه» می‌تواند اسم یا «نام است» در گفتار باشد، بافت را بخوان؛ در ابهام مؤثر، یک معنا را تحمیل نکن. صورت «خانهٔ» ترجیح شیوه‌نامه است و این ترجیح به نقل‌قول دقیق تسری ندارد.
-
-املای واژه‌های هم‌آوا را از معنا تشخیص بده؛ «خوار» و «خار» هر دو واژه‌اند. اعراب یا ویرگولی که یک خوانش معنایی را قطعی می‌کند فقط با قرینهٔ کافی اضافه شود. نشانه‌گذاری نباید راه پنهانیِ رفع ابهام با حدس باشد.
-
-## راست‌به‌چپ
-
-جهت پاراگراف فارسی و قطعهٔ لاتین را در قالبی که واقعاً پشتیبانی می‌کند تنظیم کن. فقط برای نقص نمایشی مشاهده‌شده از جداسازی جهت استفاده کن؛ به متن ساده نشانه‌های پنهان اضافه نکن و داخل شناسه‌ها هرگز آن‌ها را نگذار. تغییر ترتیب واقعی حروف راه‌حل نمایش نیست.
-
-بررسی نویسه‌ها با مشاهدهٔ رندر فرق دارد. بدون دیدن خروجی همان محیط، نمایش Word، PDF، مرورگر یا شبکهٔ اجتماعی را تأییدشده گزارش نکن.
+`quotation_policy.transcribed_fa_character_normalization.enabled` is off by default. A generic editing request به‌تنهایی آن را فعال نمی‌کند. Persian-looking text رونویسی‌بودن را ثابت نمی‌کند. Only explicit permission, confirmed Persian transcription, reviewed eligible spans and the narrow two-character mapping can enable the exception described in the quotation guide. Spacing and punctuation corrections remain outside that exception.

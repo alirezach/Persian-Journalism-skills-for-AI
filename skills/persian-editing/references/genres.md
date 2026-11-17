@@ -1,23 +1,12 @@
-# گونه و لحن
+# Genre and authorial voice
 
-راهنمای مربوط به مقصد را انتخاب کن؛ همهٔ بخش‌ها لازم نیست. دستور صریح خروجی، گونه و مخاطب بر شیوه‌نامهٔ پیش‌فرض مقدم‌اند. هیچ‌کدام مجوز تغییر معنا یا حذف قید علمی نیستند.
+Use genre to choose among valid editorial forms, not to retarget the text. The audience named in the brief outranks the user's casual chat tone. An explicitly requested style may replace a presentation preference, but not change evidence or authorship.
 
-## خبر و تحلیل
+- Academic and policy prose: maintain technical concepts, conventional headings, necessary hedges, attribution and method/result distinctions. Do not gloss a term with invented method, participant experience or causal explanation. If a clarification is needed, query it or use a supplied definition.
+- News and reporting: preserve who said what, when, where and with what level of verification. A shorter headline must retain the claim's scope. Do not turn reported speech into an established fact.
+- Administrative and legal text: keep functionally necessary formulae, obligations, conditions, dates, identifiers and defined terms. Stylistic simplification must not change legal effect; uncertainty needs specialist review, not a confident rewrite.
+- Literary and personal prose: preserve intentional rhythm, dialect, character speech and figurative language. A nonstandard form can be deliberate. Do not flatten all voices into standard academic Persian.
+- Educational and technical text: preserve sequence, prerequisites, warnings and exact code or interface labels. Clarify a local sentence without inventing a step or changing an instruction's effect.
+- Captions and short public text: compactness does not authorize dropping qualifications. Check consistency with the supplied image/table only if it is actually available.
 
-انتساب، زمان، مکان، جمعیت و محدودیت آمار را نگه دار. تیتر یا لید را فقط در دامنهٔ درخواست تغییر بده؛ تیتر نباید از متن قطعی‌تر باشد. ادعا، گزارش یک ادعا و واقعیت تأییدشده را یکی نکن. تحلیلِ صاحب موضع را برای «بی‌طرف»شدن خنثی نکن و خبر را با صفت‌های ارزشی به نظر شخصی تبدیل نکن. دادهٔ اداری را دربارهٔ همهٔ مردم تعمیم نده. پیشنهاد، تصویب، اجرا و پرداخت مرحله‌های متفاوت‌اند.
-
-## دانشگاهی و پژوهشی
-
-روانی را با حذف تمایز نظری یکی نکن. همبستگی، علیت، برآورد، نتیجهٔ معنادار آماری و اهمیت عملی جای هم نمی‌نشینند. اصطلاح را بر اساس مفهوم و بافت ثابت نگه دار. استناد و محل ارجاع باید همراه ادعای مربوط جابه‌جا شود. «به زبان ساده» اجازهٔ ساختن تعریف نادرست یا حذف استثنا نیست.
-
-## اداری
-
-کنش، مخاطب، موعد و مسئولیت را روشن‌تر کن، اما الزام نساز. «پیشنهاد می‌شود»، «مجاز است» و «موظف است» معادل نیستند. شمارهٔ نامه، پیوست، تاریخ و مبنای قانونی را دقیق نگه دار. عبارت تشریفاتیِ بی‌کارکرد را می‌توان در ویرایش زبانی کم کرد؛ شرط حقوقی را نه. اگر درخواست صرفاً نمونه‌خوانی است، ساخت نامه را بازطراحی نکن.
-
-## آموزشی و عمومی
-
-ترتیب گام‌ها و پیش‌نیازها را روشن کن. در بازنویسی عمومی، اصطلاح لازم اما دشوار را در نخستین کاربرد با بیان روزمرهٔ وفادار توضیح بده؛ باقی‌ماندن واژهٔ تخصصیِ بی‌توضیح نباید مانع فهم شود. در متن تخصصی صرفاً برای تنوع چنین جایگزینی نکن. هشدار، شرط و استثنای لازم را نگه دار. مثال تازه تنها اگر خواسته شده باشد، جدا از متن منبع و با وضعیت روشن ارائه شود. تجربهٔ شخصی، روش سنجش یا نتیجهٔ اجرای تمرین را جعل نکن.
-
-## شبکهٔ اجتماعی
-
-کوتاهی و صمیمیت را از درخواست بگیر. کپشن لزوماً عامیانه نیست؛ ایموجی، هشتگ، پرسش پایانی و دعوت به اقدام الزامی نیستند. اگر محدودیت طول با حفظ محتوا تعارض دارد، حذف‌های پیشنهادی را روشن کن. برای جلب توجه، آمار یا قطعیت را بیشتر نکن.
+A request to convert a thesis into a public essay or a formal letter into a conversational post is not ordinary editing. Identify that separate rewriting scope; do not silently enable it through this genre guide.

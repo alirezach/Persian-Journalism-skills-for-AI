@@ -31,7 +31,7 @@ class BuildTests(unittest.TestCase):
         data,m=b.prepare(self.root)
         with zipfile.ZipFile(io.BytesIO(data)) as z:
             files={n.removeprefix('persian-editing/'):z.read(n) for n in z.namelist()}
-            self.assertEqual(len(files),16);b.link_check(files)
+            self.assertEqual(len(files),26);b.link_check(files)
             self.assertNotIn(b'../../',files['SKILL.md'])
             for row in m['files']:
                 self.assertEqual(row['output_sha256'],b.digest(files[row['target']]))
@@ -41,7 +41,7 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(before,{p:p.read_bytes() for p in before})
     def test_output_report(self):
         out=Path(self.tmp.name)/'a.zip';report=b.build(self.root,out)
-        self.assertEqual(report['sha256'],b.digest(out.read_bytes()));self.assertEqual(report['files'],16)
+        self.assertEqual(report['sha256'],b.digest(out.read_bytes()));self.assertEqual(report['files'],26)
     def test_existing_output_preserved(self):
         out=Path(self.tmp.name)/'a.zip';out.write_bytes(b'keep')
         with self.assertRaises(FileExistsError):b.build(self.root,out)

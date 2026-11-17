@@ -1,33 +1,21 @@
-# سطح مداخله و قرارداد خروجی
+# Editing levels and output contract
 
-## انتخاب سطح
+All resource paths in these guides are relative to the skill root. Use the supplied text and explicit brief, not a presumed ideal author voice.
 
-«غلط‌ها و نیم‌فاصله را بگیر» یعنی نمونه‌خوانی. «روان‌ترش کن» معمولاً ویرایش زبانی است. «برای مخاطب عمومی از نو بنویس» بازنویسی است. «کوتاهش کن» درخواست تلخیص هم دارد؛ میزان کاهش و چیزهایی که باید بماند از درخواست تعیین شود. اگر خواسته‌ها متعارض‌اند، تعارض را به یک انتخاب مشخص تبدیل کن، نه اینکه بی‌صدا یکی را کنار بگذاری.
+## Technical proofreading
 
-در درخواست بدون سطح، ویرایش زبانی محافظه‌کارانه کافی است. اطلاعات مخاطب و مقصد را اگر در متن و درخواست روشن است دوباره نپرس. نبود اطلاعات، مجوز انتخاب صدای تبلیغاتی یا محاوره‌ای نیست.
+Correct unambiguous typing, spelling, spacing and punctuation errors. Preserve correct vocabulary, sentence order, paragraph order, register and argument. Do not shorten a sentence merely because it sounds formal. Plain-text proofreading is not proof-stage layout inspection: report typography, running heads, page breaks or cross-page references as checked only if the actual pages were inspected.
 
-## نمونه‌خوانی
+## Conservative language editing
 
-غلط روشن «می رود» در نثر فارسی می‌تواند «می‌رود» شود. واژهٔ درست و ساخت جمله را صرفاً به خاطر پسند شخصی عوض نکن. غلط دستوری‌ای که اصلاحش محتاج انتخاب معنای تازه است، مسئلهٔ ابهام است نه غلط تایپی. رشتهٔ محافظت‌شده و نقل‌قول از این اصلاح‌ها مستثنا هستند؛ مجوز محدود تبدیل دو نویسه در رونویسی فارسی، مجوز اصلاح فاصله یا املا نیست.
+Correct local syntax, agreement, attachment, reference and genuinely redundant wording. Split a sentence only if the condition, attribution and logical relation remain attached to the right proposition. Retain terminological repetition needed for precision. Do not replace a valid technical expression with a fashionable synonym.
 
-## ویرایش زبانی
+## Deeper local language editing
 
-عبارت‌های تشریفاتی را فقط وقتی کم کن که کارکرد اداری یا معنایی لازم ندارند. «توسط کمیته بررسی شد» را می‌توان با همان کمیته بازنوشت؛ «بررسی شد» را بدون شاهد به «وزارتخانه بررسی کرد» تبدیل نکن. «حذف نشد» لزوماً معادل «حفظ شد» نیست؛ نفی را برای مثبت‌نویسی مکانیکی عوض نکن.
+When explicitly requested, resolve overloaded clause order and local cohesion more extensively while keeping every proposition, exception, actor, qualification and argumentative role. Record consequential interventions when requested. This remains editing: no new introduction, retargeting for a different audience, invented example, deleted finding or reordered overall argument. If the task requires those, identify the different scope rather than pretending ordinary editing covers it.
 
-حذف فعل را با قرینه و نقش اجزای جمله بسنج؛ کوتاه‌سازی نباید فعل لازم را حذف یا معنای تازه‌ای بسازد. جای «را» و حرف اضافه نیز با گروه نحوی و وابسته‌های آن تعیین می‌شود، نه جایگزینی سراسری. قاعده‌ها و نمونه‌های مرزی در «اصول ویراستاری فارسی» معرفی‌شده در دستور اصلی آمده‌اند.
+## Output and queries
 
-## بازنویسی
+Default output is the edited text. A short separate note names a specific unresolved issue and the decision needed: for example, two reported totals for the same population, an unknown pronoun antecedent, or a claimed disagreement across different outcomes. Do not hide uncertainty in a confident replacement. With explicit text-only instructions, leave the unresolved passage unchanged and omit routine notes. A change log, when requested, records location, original, revision and reason.
 
-پیش از جابه‌جایی بندها، فهرست ذهنی گزاره‌ها، استثناها و نسبت استدلالی‌شان را نگه دار. مثال توضیحی تازه فقط در صورت درخواست افزوده شود و از ادعای نویسنده جدا بماند. عنوان و لید تازه باید به متن موجود متکی باشند. برای جذابیت، صحنه، شخصیت، انگیزه یا نتیجهٔ قطعی نساز.
-
-در بازنویسی عمومی، حفظ اصطلاح به‌تنهایی کافی نیست اگر فهم جمله به آن وابسته باشد. معنای روشن در بافت را با واژهٔ روزمره بیان کن یا یک توضیح کوتاه کنار اصطلاح بیاور؛ این بررسی به اصطلاح‌های مشهور محدود نیست و مفهوم آماریِ مؤثر بر فهم نتیجه را هم در بر می‌گیرد. اگر معنای تخصصی چندپهلوست، تعریف حدسی نساز؛ اصطلاح را حفظ و ابهام را جدا مطرح کن. توضیح نباید «اندازه‌گیری شد»، «افراد گفتند» یا «احساس کردند» را وقتی روش یا خوداظهاری در اصل نیامده، القا کند. روشن‌کردن مفهوم مجاز است؛ تکمیل پژوهش از ذهن نه. در بدل یا توضیح، «کمتر»، «بیشتر» و نفیِ عبارت اصلی را نگه دار؛ نام یک مفهوم را هم‌ارز کاهش یا افزایش آن ننویس.
-
-## خروجی
-
-پیش‌فرض: متن آمادهٔ استفاده، سپس یادداشت کوتاه فقط برای ابهام معنایی، تناقض، خطای محتملِ منبع یا تغییر مهم. پیش از تحویل، قطعه‌های محافظت‌شده را مرور کن: خطای احتمالیِ دست‌نخورده یا تبدیل مجاز نویسه در نقل‌قول، یادداشت لازم دارد. برای نویسه و فاصلهٔ مشکوکِ نقل‌قول، یک سطر با محل و تصمیم کافی است: «یادداشت ویرایشی: نویسه و فاصلهٔ مشکوک در نقل‌قول سخنگو عیناً حفظ شد؛ اصلاح آن به اجازهٔ جدا نیاز دارد.» این یادداشت نباید خطای رونویسی را به گوینده نسبت بدهد. موارد مشابه را یک‌جا گزارش کن؛ برای نقل‌قول سالم یادداشت بی‌دلیل نساز.
-
-پس از تبدیل مجاز، یادداشت را از اختلاف واقعیِ تأییدشده بساز؛ اگر تغییری رخ نداده یادداشت تبدیل نده. حفظ بقیهٔ نقل‌قول را فقط پس از مقابلهٔ کامل اعلام کن. اصل ورودی در منبع دست‌نخورده یا رکورد جدا بماند؛ حفظ اصل به معنی الزام بازچاپ آن در متن تحویلی نیست. گزارش اصلاحات ریزِ نثر و نسخهٔ قبل/بعد را فقط اگر خواسته شد بده. جدول برای متن بلند معمولاً خوانایی را کم می‌کند.
-
-یادداشت را با چیزی مانند «یادداشت ویرایشی: مرجع «آن‌ها» روشن نیست؛ عبارت دست‌نخورده ماند» از متن جدا کن. یادداشت ویراستار را به جملهٔ نویسنده یا نقل‌قول اضافه نکن. نگفتنِ نتیجهٔ راستی‌آزمایی به معنی تأیید محتوا نیست.
-
-اگر فایل باید ویرایش شود، دامنهٔ مجاز را رعایت کن و اصل را بدون اختیار بازنویسی نکن. تحویل متن در گفت‌وگو با ذخیره، ارسال و انتشار آن متفاوت است. ابزار اختیاری همراه فقط تبدیل دو نویسه را در دامنهٔ صریحاً مجاز و بازبینی‌شده محاسبه یا مقابله می‌کند؛ متن ورودی را روی دیسک بازنویسی نمی‌کند و ویرایشگر عمومی یا تشخیص‌دهندهٔ زبان نیست.
+For long documents, maintain the chosen spellings, terms, number style and exceptions across sections. State the actual processed range and remaining sections. Do not repeatedly polish the beginning while omitting the ending. Source research, translation comparison, summarization, creative rewriting and publication are outside this skill. «تکمیل پژوهش از ذهن نه»: a smoother sentence does not justify inventing its missing premise.
