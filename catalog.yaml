@@ -6,8 +6,8 @@ project:
   lifecycle: editing-experimental
   default_language: fa
   license: MIT
-  updated: '2026-11-16'
-  note: 'Persian editing 0.1.3 and humanities translation 0.1.0 remain experimental; the other six skills have source-only 0.1.1 planned candidate archives. The project release identifier remains 0.4.3-editing. No lifecycle promotion, host installation, GitHub Release or tag was performed for these candidates. Their technical packaging evidence is separate from historical editing checks and does not establish behavioral acceptance, human review or compatibility.'
+  updated: '2026-11-17'
+  note: 'Branch-only language refactor: ten catalog entries. Editing 0.2.0, detox 0.1.0, combined 0.2.0 and translation 0.1.0 are experimental; six remain planned. Project release identifier stays 0.4.3-editing. No merge, installation, new model evaluation, Release or tag. Historical evidence below is not acceptance of new versions.'
 
 lifecycle_values:
   planned: 'Not designated for experimental release; design, source guidance or a preparation-stage candidate archive may exist. Packaging does not promote lifecycle status.'
@@ -33,13 +33,13 @@ planned_layers:
   note: 'Design targets, not existing runtime resources; Persian locale does not automatically activate Iran context.'
 
 opencode_adapter:
-  version: '0.1.0'
+  version: '0.2.0'
   status: candidate-bundle
   config: adapters/opencode/bundle.json
   builder: scripts/packaging/build-opencode.py
   guide: docs/adapters/opencode.md
   tests: tests/test_opencode_build.py
-  report: docs/evaluations/opencode-0.1.0-technical.md
+  historical_report: docs/evaluations/opencode-0.1.0-technical.md
   target: .opencode/skills
   selection: explicit-subset-or-all-eight
   installs_to_host: false
@@ -48,6 +48,19 @@ opencode_adapter:
   behavioral_evaluation: not_run
   lifecycle_promoted: false
   note: 'Generated layout from the canonical builders and current source hashes. Historical package evidence below is preserved, not reassigned to the new bundle. No automatic installer or model/API credentials.'
+
+persian_language_suite:
+  version: '0.1.0'
+  guide: docs/persian-language-suite.md
+  builder: scripts/packaging/build-persian-language-suite.py
+  tests: tests/test_persian_language_suite.py
+  compatibility_command: scripts/packaging/build-editing-detox.py
+  skills: [persian-editing, persian-ai-detox, persian-editing-and-ai-detox]
+  retired_id: persian-editing-detox
+  complete_component_embedding: true
+  model_behavior: not_run
+  host_execution: not_run
+  installation: not_run
 
 structural_test_repair:
   date: '2026-11-16'
@@ -157,22 +170,24 @@ skills:
   - name: persian-editing
     title_fa: ویرایش فارسی
     status: experimental
-    version: '0.1.3'
+    version: '0.2.0'
     path: skills/persian-editing/SKILL.md
     intended_entry: false
     build_manifest: skills/persian-editing/build-manifest.json
-    evaluation: docs/evaluations/persian-editing-0.1.3.md
-    model_behavior: stopped_incomplete
-    model_evaluation_record: docs/evaluations/persian-editing-0.1.3-release-status.md
-    evaluation_limits: [no-valid-native-baseline, no-human-review, caller-classified-spans, partial-private-host-evidence, self-reported-model-and-tool-use, automatic-context, no-new-test-execution-for-release-status-edits]
+    guide: skills/persian-editing/README.md
+    source_coverage: skills/persian-editing/references/source-coverage.md
+    model_behavior: not_run
+    historical_evaluation: docs/evaluations/persian-editing-0.1.3.md
+    historical_model_evaluation_record: docs/evaluations/persian-editing-0.1.3-release-status.md
+    evaluation_limits: [technical-checks-only, no-new-model-runs, no-human-acceptance, no-host-installation, original-book-not-inspected]
     previous_model_evaluation_record: docs/evaluations/persian-editing-0.1.2-astra-opus-2026-11-14.json
     optional_helper: scripts/editing/normalize_transcribed_fa.py
     helper_scope: caller-authorized-and-reviewed-persian-transcription-spans
     helper_fixture: tests/fixtures/transcription-normalization-0.1.3.json
     editorial_principles: standards/persian-editorial-principles.md
     editorial_fixture: tests/fixtures/editorial-cases-0.1.2.json
-    host_compatibility: partial_private_check_not_certified
-    purpose: 'Edit Persian at the requested intervention level while preserving meaning and evidence.'
+    host_compatibility: not_tested
+    purpose: 'Technical and language editing based on the supplied Zolfaghari compilation; no free rewriting, retargeting, summarization or detox mission.'
     collaborators: []
     context_policy: 'Persian locale; Iran context only when substantive content requires it.'
   - name: humanities-translation
@@ -377,6 +392,34 @@ skills:
     collaborators: [source-verification, fact-checking, research-synthesis, data-analysis, data-visualization, persian-editing]
     context_policy: 'Load only relevant branches; a file inspection does not imply a full story.'
     note: 'Independent orchestration-guidance candidate, not an executed reporting project or publication system. No real analysis, interview, outreach, story publication or story schema was produced. candidate_test_run covers packaging only; behavioral evaluation, human review and installation remain unrun. Handoff readiness is not publication authority.'
+
+  - name: persian-ai-detox
+    title_fa: دیتاکس نثر فارسی
+    status: experimental
+    version: '0.1.0'
+    path: skills/persian-ai-detox/SKILL.md
+    guide: skills/persian-ai-detox/README.md
+    build_manifest: skills/persian-ai-detox/build-manifest.json
+    builder: scripts/packaging/build-persian-language-suite.py
+    model_behavior: not_run
+    host_compatibility: not_tested
+    purpose: 'Contextual treatment of formulaic Persian prose with full T1-T18 guidance and evidence-sensitive constraints.'
+    collaborators: []
+  - name: persian-editing-and-ai-detox
+    title_fa: ویرایش فارسی و دیتاکس
+    status: experimental
+    version: '0.2.0'
+    path: skills/persian-editing-and-ai-detox/SKILL.md
+    guide: skills/persian-editing-and-ai-detox/README.md
+    build_manifest: skills/persian-editing-and-ai-detox/build-manifest.json
+    builder: scripts/packaging/build-persian-language-suite.py
+    replaces: persian-editing-detox
+    components: {persian-editing: '0.2.0', persian-ai-detox: '0.1.0'}
+    complete_component_embedding: true
+    model_behavior: not_run
+    host_compatibility: not_tested
+    purpose: 'One routed package containing both complete standalone components and all dependencies without summarization.'
+    collaborators: []
 
 packaging_policy:
   collaborators_are_mandatory_installs: false

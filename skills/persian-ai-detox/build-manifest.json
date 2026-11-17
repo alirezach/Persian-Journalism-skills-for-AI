@@ -1,0 +1,19 @@
+{
+  "files": {
+    "LICENSE": "e03f0ebada35558f252c4b590aa68978e8c114fe08077a7391b8680349cea9dc",
+    "README.md": "4a2be0e3e75916e14b3e9e3f3e0e4cc9806fe3a7e472043468cf6878ea978e9c",
+    "SKILL.md": "d85d262e1f86b7da614040393b47d56e954fce093d64041ee85d46d6bd3565fa",
+    "THIRD_PARTY_NOTICES.md": "f45c880e2025d15d527d8f733e64c0224f76c4b31c30d3232eddb54ef0d9922d",
+    "references/academic-and-evidence-sensitive.md": "f7ad7a6b21ae05ae4705ebdab404f92785defa914adf64d8b27c7a9080cdfe4a",
+    "references/acceptance-cases.md": "05c6a34f9bf492a51c95f02bbe40b50bedab64d83da5301eb09e67be872be0fc",
+    "references/pattern-catalog.md": "308a8e0d5c9b4f862203ac7a64f554842102e2e477e62f2ea9b39d4ac9272247",
+    "references/register-and-voice.md": "60b8d42a3b9b94e39353d2f16bde934884a224cec042ce27885a36733625e54a",
+    "references/source-decisions.md": "12cb41ca9b0e34718c28c58be67c0224c5c932cdfeb934c311189a55319f908e",
+    "references/structure-and-rhythm.md": "86b35ed4a59f4bb441f2d6e27eb301f7a99abc5e5194bc7e9938f9fab8a5fd87",
+    "references/workflow-and-quality.md": "9bc116a1ea092f677e297e27bd2dac1d846b4a397636286b343058ee52c419a8"
+  },
+  "name": "persian-ai-detox",
+  "schema_version": 1,
+  "status": "experimental",
+  "version": "0.1.0"
+}

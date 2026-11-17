@@ -2,6 +2,18 @@
 
 [فارسی](README.md)
 
+## Current branch: Persian language suite
+
+The catalog now contains ten skills. [Persian editing 0.2.0](skills/persian-editing/README.md) performs technical and language editing only. [Persian AI detox 0.1.0](skills/persian-ai-detox/README.md) addresses formulaic prose without inventing facts. [Persian editing and AI detox 0.2.0](skills/persian-editing-and-ai-detox/README.md) embeds both complete canonical packages, not summaries.
+
+All three are experimental. Editing adapts the supplied Zolfaghari compilation, not a checked original book; detox adapts the pinned persian-writing source with its MIT notice. See the [current build and migration guide](docs/persian-language-suite.md). The original eight-skill OpenCode bundle is now 0.2.0 with revised editing; the three-skill language suite is a separate output. Translation remains experimental and the other six remain planned.
+
+The project identifier remains 0.4.3-editing. This branch refactor does not merge, install, create a Release/tag or execute new model evaluations. Old archives and evaluation records remain historical, not acceptance of the new versions.
+
+## Historical documentation through 2026-11-16
+
+Version labels, eight-skill counts, commands and results below are preserved history. Use the current guide and catalog above for new builds.
+
 A modular, tool-neutral collection for Persian editing, humanities translation, source verification, fact-checking, research synthesis, data analysis, visualization and data journalism. Iran-specific requirements are documented separately; the planned contexts/iran/ and knowledge/ directories are not existing runtime resources.
 
 **Status: experimental, `0.4.3-editing`.** [Persian editing 0.1.3](skills/persian-editing/README.md) includes an optional two-character mapping helper and exact candidate auditing. Permission, language and span classification remain caller responsibilities. Acceptance is incomplete and further testing has been stopped by the project owner. See the [release-status record](docs/evaluations/persian-editing-0.1.3-release-status.md); this is not a validated production release.

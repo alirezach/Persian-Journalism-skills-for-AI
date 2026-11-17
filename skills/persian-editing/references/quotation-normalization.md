@@ -58,3 +58,7 @@ python scripts/normalize_transcribed_fa.py request.json
 ## پشتوانهٔ فنی
 
 تبدیل قراردادی دو نویسه با نرمال‌سازی عمومی Unicode یکی نیست. [توضیح Unicode دربارهٔ نرمال‌سازی](https://www.unicode.org/faq/normalization.html) تفاوت فرم‌ها و امکان تغییر بازنمایی را شرح می‌دهد. ابزار حاضر عمداً آن عملیات را روی نقل‌قول اجرا نمی‌کند. [مستندات رشته‌های Python](https://docs.python.org/3/builtins/stdtypes.html) مرجع عملیات رشته‌ای است؛ هیچ‌یک از این منابع، مجوز ویرایش نقل‌قول کاربر را تعیین نمی‌کنند.
+
+## Editing-only integration
+
+This exception concerns character identity in authorized transcription, not style, punctuation, paraphrase or semantic correction. It grants no free-rewriting path. Preserve the original and report only verified actual differences; if the user requests text only and the required disclosure cannot be supplied, do not perform this optional normalization silently.
