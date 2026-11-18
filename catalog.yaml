@@ -6,8 +6,8 @@ project:
   lifecycle: editing-experimental
   default_language: fa
   license: MIT
-  updated: '2026-11-17'
-  note: 'Branch-only language refactor: ten catalog entries. Editing 0.2.0, detox 0.1.0, combined 0.2.0 and translation 0.1.0 are experimental; six remain planned. Project release identifier stays 0.4.3-editing. No merge, installation, new model evaluation, Release or tag. Historical evidence below is not acceptance of new versions.'
+  updated: '2026-11-18'
+  note: 'Language refactor merged into main through PR #1 on 2026-11-17. Ten catalog entries: editing 0.2.0, detox 0.1.0, combined 0.2.0 and translation 0.1.0 are experimental; six remain planned. Project identifier stays 0.4.3-editing. Documentation updated 2026-11-18; see main_test_run for the recorded full technical run. No lifecycle promotion, host installation, new model evaluation, Release or tag is claimed. Historical run fields retain their original dates and limits.'
 
 lifecycle_values:
   planned: 'Not designated for experimental release; design, source guidance or a preparation-stage candidate archive may exist. Packaging does not promote lifecycle status.'
@@ -125,6 +125,35 @@ record_validator:
     displayed_issues: 100
   not_verified: [factual-accuracy, analysis-method, publication-authority, privacy-safety, real-inspection, model-behavior]
 
+main_test_run:
+  execution_date: '2026-11-17'
+  documentation_date: '2026-11-18'
+  commit: a5a85c7a12e5b963ecb72f5d03a5c426c5f4600e
+  status: passed-isolated-software-checks
+  report: docs/evaluations/main-full-tests-2026-11-17.md
+  unique_checks_passed: 455
+  failed: 0
+  javascript_checks: 223
+  python_tests: 232
+  npm_test_checks: 297
+  duplicate_normalization_checks_excluded: 74
+  compatibility_entry_passed: true
+  tracked_files_verified_before_and_after: 176
+  tested_with:
+    node: v24.22.1
+    python: '3.13.18'
+    ajv: '6.15.0'
+    js_yaml: '4.3.2'
+  dependency_source: isolated-network-install
+  complete_dependency_lock: false
+  commands:
+    - npm test
+    - python3 -m unittest discover -s tests -p 'test_*.py' -v
+    - npm --prefix tests test
+  not_run: [ci, model-behavior, independent-judging, human-acceptance, host-installation, host-execution, visual-rendering, full-security-audit, cross-platform-matrix]
+  note: 'Recorded run on the named merge commit, not a fresh run during this documentation update. Repeat executions are excluded from 455. No line/branch coverage percentage or automatic lifecycle promotion. Raw logs are not committed with this summary; historical local_test_run and candidate_test_run remain unchanged.'
+
+# Historical run: its environment and not_run fields apply to its own date.
 local_test_run:
   date: '2026-11-14'
   status: passed-local-software-checks

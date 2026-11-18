@@ -2,108 +2,83 @@
 
 [فارسی](README.md)
 
-## Current branch: Persian language suite
+Independent, modular guidance for Persian editing, humanities translation, source verification, fact-checking and data journalism. Each skill has its own scope and limits. A source file or package is not proof of model-output quality.
 
-The catalog now contains ten skills. [Persian editing 0.2.0](skills/persian-editing/README.md) performs technical and language editing only. [Persian AI detox 0.1.0](skills/persian-ai-detox/README.md) addresses formulaic prose without inventing facts. [Persian editing and AI detox 0.2.0](skills/persian-editing-and-ai-detox/README.md) embeds both complete canonical packages, not summaries.
+## Current status
 
-All three are experimental. Editing adapts the supplied Zolfaghari compilation, not a checked original book; detox adapts the pinned persian-writing source with its MIT notice. See the [current build and migration guide](docs/persian-language-suite.md). The original eight-skill OpenCode bundle is now 0.2.0 with revised editing; the three-skill language suite is a separate output. Translation remains experimental and the other six remain planned.
+Documentation updated: **2026-11-18**. The three-skill language refactor was merged into `main` on 2026-11-17 through [PR #1](https://github.com/alirezach/Persian-Journalism-skills-for-AI/pull/1). The project identifier remains `0.4.3-editing`; this documentation update does not create a version, Release or tag.
 
-The project identifier remains 0.4.3-editing. This branch refactor does not merge, install, create a Release/tag or execute new model evaluations. Old archives and evaluation records remain historical, not acceptance of the new versions.
+- The catalog contains **10 skills: four experimental and six planned**.
+- OpenCode bundle **0.2.0** contains the original eight skills, with editing updated to 0.2.0.
+- Persian language suite **0.1.0** separately provides editing, detox and the combined skill. There is no claimed unified ten-skill bundle.
+- The merged snapshot passed **455 unique technical checks, zero failures**. This is not model acceptance, host installation or a security certification. [Recorded test run](docs/evaluations/main-full-tests-2026-11-17.md)
 
-## Historical documentation through 2026-11-16
+## Choose a skill
 
-Version labels, eight-skill counts, commands and results below are preserved history. Use the current guide and catalog above for new builds.
+| Need | Skill | Version | Status |
+|---|---|---|---|
+| Technical and language editing, without automatic detox | [persian-editing](skills/persian-editing/README.md) | 0.2.0 | experimental |
+| Address formulaic prose while preserving meaning and voice | [persian-ai-detox](skills/persian-ai-detox/README.md) | 0.1.0 | experimental |
+| Editing and detox in one package with both full components | [persian-editing-and-ai-detox](skills/persian-editing-and-ai-detox/README.md) | 0.2.0 | experimental |
+| Humanities and policy translation | [humanities-translation](skills/humanities-translation/README.md) | 0.1.0 | experimental |
+| Evidence identity, provenance and authenticity | [source-verification](skills/source-verification/README.md) | 0.1.1 | planned |
+| Investigate a specific claim | [fact-checking](skills/fact-checking/README.md) | 0.1.1 | planned |
+| Compare and synthesize research | [research-synthesis](skills/research-synthesis/README.md) | 0.1.1 | planned |
+| Prepare and analyze data | [data-analysis](skills/data-analysis/README.md) | 0.1.1 | planned |
+| Tables, charts and maps | [data-visualization](skills/data-visualization/README.md) | 0.1.1 | planned |
+| Coordinate a data-journalism project | [data-journalism](skills/data-journalism/README.md) | 0.1.1 | planned |
 
-A modular, tool-neutral collection for Persian editing, humanities translation, source verification, fact-checking, research synthesis, data analysis, visualization and data journalism. Iran-specific requirements are documented separately; the planned contexts/iran/ and knowledge/ directories are not existing runtime resources.
+Choose only the route needed for a text. The combined package does not require the two sibling skills to be installed. The six planned skills have text guidance and candidate ZIPs, not operational acceptance. [catalog.yaml](catalog.yaml) records versions and limitations.
 
-**Status: experimental, `0.4.3-editing`.** [Persian editing 0.1.3](skills/persian-editing/README.md) includes an optional two-character mapping helper and exact candidate auditing. Permission, language and span classification remain caller responsibilities. Acceptance is incomplete and further testing has been stopped by the project owner. See the [release-status record](docs/evaluations/persian-editing-0.1.3-release-status.md); this is not a validated production release.
+## Build and install selectively
 
-**Humanities translation 0.1.0 is also experimental.** Its [guidance and standalone package](skills/humanities-translation/README.md) were explicitly promoted by the project owner on 2026-11-15 for experimental use with output review, without running test suites, model evaluation or installation. The [promotion decision](docs/humanities-translation-0.1.0-experimental-decision.md) records limits and both archive hashes. The previous planned candidate and its historical coverage matrix are preserved. The project release identifier remains unchanged; no GitHub Release or tag was created.
-
-## Capability map
-
-| Skill | Responsibility |
-|---|---|
-| `persian-editing` | Improve prose at the requested intervention level without altering evidence or meaning. |
-| `humanities-translation` | Translate meaning, terminology, voice and qualifications faithfully. |
-| `source-verification` | Establish provenance, authenticity, context and evidentiary limits. |
-| `fact-checking` | Investigate specific claims and document defensible assessments. |
-| `research-synthesis` | Answer research questions through critical comparison of sources. |
-| `data-analysis` | Produce reproducible transformations, calculations and findings. |
-| `data-visualization` | Represent data honestly and accessibly. |
-| `data-journalism` | Coordinate a reporting project without duplicating specialist procedures. |
-
-See [catalog.yaml](catalog.yaml). `persian-editing` and `humanities-translation` are `experimental`; the other six remain `planned`. Experimental does not mean tested. Build their separate standalone ZIPs with Python 3.10+ (standard library only):
+From the repository root, with Python 3.10+ and its standard library, build the combined skill in OpenCode layout:
 
 ```bash
-python3 scripts/packaging/build-skill.py --output dist/persian-editing-0.1.3.zip
+python3 scripts/packaging/build-persian-language-suite.py --skill persian-editing-and-ai-detox --format opencode --output dist/persian-editing-and-ai-detox-0.2.0-opencode.zip
+```
+
+For all three Persian language skills, or the original eight skills:
+
+```bash
+python3 scripts/packaging/build-persian-language-suite.py --output dist/pjai-persian-language-suite-0.1.0-opencode.zip
+python3 scripts/packaging/build-opencode.py --output dist/pjai-opencode-0.2.0.zip
+```
+
+The output file must not already exist. No automatic installation occurs: extract into a temporary directory, inspect the manifest and conflicts, then copy only the selected skill directory into the destination project's `.opencode/skills/`. Do not overwrite an existing installation without a backup and an explicit decision. Verify discovery and reference loading in your actual host version; ZIP creation does not establish this.
+
+See the [Persian language suite guide](docs/persian-language-suite.md) and [packaging guide](scripts/packaging/README.md) for standalone packages, other selections and migration. Translation has its own builder:
+
+```bash
 python3 scripts/packaging/build-translation.py --output dist/humanities-translation-0.1.0-experimental.zip
 ```
 
-The output must not already exist. See the [packaging guide](scripts/packaging/README.md). Generated shared resources retain source hashes; source files remain canonical. A separate private ClickUp adapter for editing received limited installation/readback checks. It is not shipped here and does not establish general host compatibility. Those checks do not transfer to translation.
+## Technical checks
 
-## OpenCode bundle 0.1.0
-
-The [OpenCode guide](docs/adapters/opencode.md) describes a generated project-local layout for all eight skills or an explicit subset. The wrapper calls the existing canonical builders, preserves their output resources, and places them under `.opencode/skills/<name>/`. It does not install or invoke OpenCode, modify AGENTS.md or host configuration, set credentials, or promote any skill.
+With Node.js 20+, project dependencies and Python available, these commands together cover all current test modules:
 
 ```bash
-python3 scripts/packaging/build-opencode.py --output dist/pjai-opencode-0.1.0.zip
-python3 scripts/packaging/build-opencode.py --skills persian-editing data-analysis --output dist/pjai-opencode-0.1.0-selected.zip
-python3 -m unittest discover -s tests -p 'test_opencode_build.py' -v
+npm test
+python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-Extract to a new temporary directory first; inspect the manifest and conflicts before copying selected skill directories into a working project. Do not overwrite an existing skill blindly. Explicit invocation such as `@data-analysis` and actual reference access require a separate host check. Local files do not imply a local model or private processing.
+`npm test` alone runs 297 checks and omits 158 packaging checks. Python discovery runs 232 tests, including 74 normalization tests already run by npm: the unique total is 455. No new unified command, CI workflow or complete dependency lockfile is added by this documentation update. [Testing strategy and environment setup](docs/testing-strategy.md)
 
-See the [technical record](docs/evaluations/opencode-0.1.0-technical.md) for executed software/archive checks and unrun host/model checks. Earlier archives and their evidence remain frozen. Current shared-resource changes can change package hashes without changing the entry skill version; the bundle version, publication commit and actual hashes identify this output.
+## Limits and sources
 
-The three stale structural suites were repaired before this adapter work: 68 checks passed across those three suites, not the whole repository. Template documentation is not counted as a working form, and editing checks no longer depend on the lifecycle count of unrelated skills.
+- Review model output. Experimental is not tested; packaging is not successful skill execution.
+- Preserve meaning, quantities, quotations, attribution and uncertainty. Editing and translation do not implicitly authorize factual correction or publication.
+- Editing adapts the supplied Zolfaghari compilation; the original book was not inspected. Detox adapts a pinned persian-writing revision with its MIT notice.
+- New-version model behavior, real host compatibility, RTL rendering and comprehensive security acceptance remain unverified. Historical results do not transfer to new versions.
+- Local files do not imply local-model or private processing. Keep confidential data and source identities outside the public repository.
 
-The other six skills already have source-only 0.1.1 planned candidates. Their 40 historical builder-unit tests and archive integrity checks do not establish behavioral acceptance. Eighteen prepared scenarios remain unrun. No new GitHub Release or tag is created by this adapter.
+Read the [third-party notices](THIRD_PARTY_NOTICES.md) and notices inside each package, [MIT license](LICENSE), [security policy](SECURITY.md) and [contribution guide](CONTRIBUTING.md). [AGENTS.md](AGENTS.md) guides repository development; installing it into a user's project is not required.
 
-## Design commitments
+## Documentation and history
 
-- Separate language, geography, methodology and personal house style.
-- Persian-language work does not automatically activate Iran-specific rules.
-- Preserve originals, uncertainty, attribution and the distinction between translation and factual correction.
-- Evaluate evidence beyond institutional authority; copied reports do not constitute independent corroboration.
-- Keep sensitive data and source identities outside this public repository.
-- Disclose actual tool use and verification coverage. No fabricated checks, interviews or citations.
-- Publish compatibility evidence per environment; reading Markdown is not proof of runtime compatibility.
-- Optimize for better writing and auditable reporting, not AI-detector evasion.
+- [Architecture](docs/architecture.md), [skill boundaries](docs/skill-boundaries.md), [compatibility](docs/compatibility.md) and [Iran requirements](docs/iran-requirements.md)
+- [Profiles](profiles/README.md), [working templates](templates/README.md) and [record validator](scripts/validation/README.md)
+- [Current roadmap](docs/roadmap.md) and [changelog](CHANGELOG.md)
+- [Complete previous English README](docs/history/readme-en-before-2026-11-18.md) and [Persian README archive](docs/history/readme-fa-before-2026-11-18.md)
 
-## Documentation
-
-The design documents are currently in Persian:
-
-- [Architecture](docs/architecture.md)
-- [Skill boundaries](docs/skill-boundaries.md)
-- [Iran requirements](docs/iran-requirements.md)
-- [Compatibility](docs/compatibility.md)
-- [Testing strategy](docs/testing-strategy.md)
-- [Roadmap](docs/roadmap.md)
-
-## Available tooling
-
-- [Persian profiles](profiles/README.md): declarative locale and replaceable house-style guidance, not a text-rewriting engine or automatic Iran-context selector.
-- [Eleven working templates](templates/README.md): blank human forms, not completed reviews or automatic JSON exports.
-- [Record validator](scripts/validation/README.md): one JSON record or an array; local schema and versioned-reference checks. It does not fetch sources, execute declared calculations or modify the input file.
-
-With Node.js and the reviewed dependencies available, run from the repository root:
-
-```bash
-node scripts/validation/validate-records.cjs --input examples/records/synthetic-bundle.json
-```
-
-The example is entirely synthetic. Exit zero may include warnings and does not grant publication authority. The validator guide covers setup, stdin, unresolved-reference mode, limits and error codes.
-
-The following historical counts concern editing and its supporting infrastructure, not translation. Only build-time controls and archive integrity comparison were performed for translation; no project test suites, model evaluation or host installation were run.
-
-The frozen pre-release candidate had 338 recorded passing local technical checks; no new suite was run for these release-status edits: 67 schema/regression, 88 validator/CLI, 32 profile/template, 20 editing-source/fixture checks, 16 editorial-source contracts, 41 packager tests and 74 transcription-helper tests. See the [0.1.3 report](docs/evaluations/persian-editing-0.1.3.md). The two previously failed quotation outputs remain rejected by the new audit; historical responses were not repaired or replaced.
-
-The [supplementary 0.1.2 record](docs/evaluations/persian-editing-0.1.2-astra-opus-2026-11-14.md) distinguishes earlier unknown-model comparisons from the later open-book Astra retest and returned Opus review. Eight responses received 47 applicable pass labels, with one minor issue and incomplete blinding; this is not a general success rate or proof of a repaired skill. Identity relies on runtime declarations, not provider request metadata.
-
-Environment of earlier checks: Node.js v22.23.1, Ajv 6.15.0, js-yaml 4.3.2 and Python 3.12.13. A later native record declared GPT-6 Astra and met its reported with-skill conditions, while a baseline was invalidated by additional editing guidance. No valid paired native baseline, independent provider verification, complete context isolation or human review was established. Network installation, npm commands, CI, visual rendering and comprehensive security audits remain untested. No complete transitive-dependency lockfile is supplied. See the release-status record for the partial host evidence and the decision to stop further tests.
-
-## Contributing and licensing
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md) and [SECURITY.md](SECURITY.md). Original project material is [MIT licensed](LICENSE); third-party material retains its own license. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the [translation package notices](skills/humanities-translation/package-NOTICES.md). Exact editorial source URLs were added from existing records, without redistributing their articles or conducting a new license or web review.
+History was preserved, not shortened; it is separate from current guidance. The project was developed with GPT-6 Astra, with inspiration from [persian-writing](https://github.com/ali2000hos/persian-writing) and [claude-skills-journalism](https://github.com/jamditis/claude-skills-journalism). Historical records retain model provenance and limits on evaluation independence.
