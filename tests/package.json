@@ -4,7 +4,7 @@
   "private": true,
   "description": "Compatibility test entry point. Install reviewed dependencies at the repository root.",
   "scripts": {
-    "test": "node schemas.test.cjs && node validator.test.cjs && node profiles.test.cjs && node editing-package.test.cjs && node editorial-sources.test.cjs && python3 test_transcribed_fa.py",
+    "test": "node ../scripts/testing/run-all.cjs",
     "test:normalization": "python3 test_transcribed_fa.py",
     "test:packaging": "python3 test_editing_build.py"
   }

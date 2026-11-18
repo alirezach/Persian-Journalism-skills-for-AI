@@ -11,7 +11,7 @@ Documentation updated: **2026-11-18**. The three-skill language refactor was mer
 - The catalog contains **10 skills: four experimental and six planned**.
 - OpenCode bundle **0.2.0** contains the original eight skills, with editing updated to 0.2.0.
 - Persian language suite **0.1.0** separately provides editing, detox and the combined skill. There is no claimed unified ten-skill bundle.
-- The merged snapshot passed **455 unique technical checks, zero failures**. This is not model acceptance, host installation or a security certification. [Recorded test run](docs/evaluations/main-full-tests-2026-11-17.md)
+- The unified `npm test` command now runs **505 unique checks**, all passing in the isolated preparation run, including real package builds. This is not model acceptance, host installation or a security certification. [New run record](docs/evaluations/full-suite-ci-2026-11-18.md); [historical 455-check baseline](docs/evaluations/main-full-tests-2026-11-17.md).
 
 ## Choose a skill
 
@@ -53,16 +53,20 @@ See the [Persian language suite guide](docs/persian-language-suite.md) and [pack
 python3 scripts/packaging/build-translation.py --output dist/humanities-translation-0.1.0-experimental.zip
 ```
 
-## Technical checks
+## One full test command
 
-With Node.js 20+, project dependencies and Python available, these commands together cover all current test modules:
+In a trusted checkout, use Node.js 20+, an npm version supporting lockfile v3 and Python 3.10+. Install locked dependencies when setting up the environment or after a lockfile change; then run every suite with one command:
 
 ```bash
+npm ci --include=dev --ignore-scripts --no-audit --no-fund
 npm test
-python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-`npm test` alone runs 297 checks and omits 158 packaging checks. Python discovery runs 232 tests, including 74 normalization tests already run by npm: the unique total is 455. No new unified command, CI workflow or complete dependency lockfile is added by this documentation update. [Testing strategy and environment setup](docs/testing-strategy.md)
+The runner discovers top-level `tests/*.test.cjs` suites and runs Python unittest discovery once. No normalization tests are counted twice. Any suite failure makes the command fail. `npm --prefix tests test` delegates to the same runner. Set `PYTHON` to an executable path if needed, not a shell command.
+
+Real integration tests build all ten skills, including translation, full and selected eight-skill/three-skill bundles and compatibility routes. They check source/output hashes, package-local links and repeat-build byte equality. Temporary archives are not installed or published.
+
+[CI](.github/workflows/test.yml) uses the same install and test commands on main pushes and PRs targeting main: Ubuntu 24.04, Node 24.22.1, Python 3.13.18 and npm 12.2.3. Actions are pinned to full SHAs and access is read-only. A committed workflow is not proof of a successful hosted run; check each run separately. The lockfile does not freeze the whole operating system or establish security acceptance. [Testing strategy](docs/testing-strategy.md)
 
 ## Limits and sources
 

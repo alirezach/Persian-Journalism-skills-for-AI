@@ -7,7 +7,28 @@ project:
   default_language: fa
   license: MIT
   updated: '2026-11-18'
-  note: 'Language refactor merged into main through PR #1 on 2026-11-17. Ten catalog entries: editing 0.2.0, detox 0.1.0, combined 0.2.0 and translation 0.1.0 are experimental; six remain planned. Project identifier stays 0.4.3-editing. Documentation updated 2026-11-18; see main_test_run for the recorded full technical run. No lifecycle promotion, host installation, new model evaluation, Release or tag is claimed. Historical run fields retain their original dates and limits.'
+  note: 'Language refactor merged into main through PR #1 on 2026-11-17. Ten catalog entries: editing 0.2.0, detox 0.1.0, combined 0.2.0 and translation 0.1.0 are experimental; six remain planned. Project identifier stays 0.4.3-editing. Unified npm test, real package integration and locked CI added 2026-11-18; see test_automation for the 505-check preparation run and main_test_run for the unchanged historical 455-check run. No lifecycle promotion, host installation, new model evaluation, Release or tag is claimed. Historical run fields retain their original dates and limits.'
+
+test_automation:
+  date: '2026-11-18'
+  base_commit: 'e15faf4d38f51329225cf7fcb145bdfb0c1deb80'
+  command: npm test
+  compatibility_command: npm --prefix tests test
+  runner: scripts/testing/run-all.cjs
+  lockfile: package-lock.json
+  workflow: .github/workflows/test.yml
+  real_package_tests: tests/test_real_package_builds.py
+  report: docs/evaluations/full-suite-ci-2026-11-18.md
+  unique_passed: 505
+  failed: 0
+  javascript_checks: 252
+  python_tests: 253
+  clean_install_repeated: true
+  source_skill_count: 10
+  real_build_routes: 17
+  hosted_ci_evidence: separate-from-prepublication-run
+  lifecycle_promoted: false
+  note: 'Preparation run, not model or host acceptance. Existing historical run records are unchanged. No release, tag, installation or branch-protection change.'
 
 lifecycle_values:
   planned: 'Not designated for experimental release; design, source guidance or a preparation-stage candidate archive may exist. Packaging does not promote lifecycle status.'
